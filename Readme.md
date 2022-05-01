@@ -1,0 +1,35 @@
+<h1 style="color:#0f96b8">
+    HandBagStore_V1 Doc
+</h1>
+
+<details>
+    <summary style="font-weight:bold">
+        1. Back-end codes
+    </summary>
+    <li>
+        Parent package: <span style="color:#2c6ade">com.g9.handbagstore</span>
+        <span style="color:#11855a;font-weight:bold"> -> g9 aka 'group 9'</span>
+    </li>
+    <li>
+        Child package: name structure like <span style="color:#2c6ade">com.g9.handbagstore.app.'package_name'</span>
+        <p style="margin-left:40px">
+            Example: <span style="color:#b51b75">com.g9.handbagstore.app.entity</span>
+        </p>
+    </li>
+</details>
+
+<details>
+    <summary style="font-weight:bold">
+        2. Front-end codes
+    </summary>
+    <li>
+        We have 2 src: one for customer and one for employee
+    </li>
+    <li>
+        Link: <span style="color:#2c6ade">src/main/resources/static</span>
+    </li>
+</details>
+
+
+
+
