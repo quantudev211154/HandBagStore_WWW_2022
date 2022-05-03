@@ -31,5 +31,17 @@
 </details>
 
 
+<details>
+    <summary style="font-weight:bold">
+        3. Chú ý khi dùng github
+    </summary>
+    <p>
+        3.1. Trước khi clone code mới về, hãy gõ lệnh 'git stash save'
+    </p>
+    <p>
+        3.2. Sau khi pull code mới về, gõ lệnh 'git stash apply' để áp những code mới đã viết vào code hiện tại
+    </p>
+</details>
+
 
 
