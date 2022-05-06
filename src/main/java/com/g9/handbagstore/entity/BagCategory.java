@@ -1,6 +1,7 @@
 package com.g9.handbagstore.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -39,12 +40,14 @@ public class BagCategory implements Serializable {
 	private String shortDescription;
 	@Column(name = "long_description", columnDefinition = "ntext", nullable = false)
 	private String longDescription;
+	@Column(name = "import_date", columnDefinition = "date", nullable = false)
+	private LocalDate importDate;
 
 	@OneToMany(mappedBy = "bagCategory")
 	private List<Bag> listBags;
 
 	public BagCategory(int bagCategoryId, Brand brand, String name, String size, double weight, String coverPhoto,
-			String shortDescription, String longDescription) {
+			String shortDescription, String longDescription, LocalDate importDate) {
 		super();
 		this.bagCategoryId = bagCategoryId;
 		this.brand = brand;
@@ -54,10 +57,11 @@ public class BagCategory implements Serializable {
 		this.coverPhoto = coverPhoto;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
+		this.importDate = importDate;
 	}
 
 	public BagCategory(Brand brand, String name, String size, double weight, String coverPhoto, String shortDescription,
-			String longDescription) {
+			String longDescription, LocalDate importDate) {
 		super();
 		this.brand = brand;
 		this.name = name;
@@ -66,6 +70,7 @@ public class BagCategory implements Serializable {
 		this.coverPhoto = coverPhoto;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
+		this.importDate = importDate;
 	}
 
 	public BagCategory() {
@@ -136,10 +141,18 @@ public class BagCategory implements Serializable {
 		this.longDescription = longDescription;
 	}
 
+	public LocalDate getImportDate() {
+		return importDate;
+	}
+
+	public void setImportDate(LocalDate importDate) {
+		this.importDate = importDate;
+	}
+
 	@Override
 	public String toString() {
 		return "BagCategory [bagCategoryId=" + bagCategoryId + ", brand=" + brand + ", name=" + name + ", size=" + size
-				+ ", weight=" + weight + ", coverPhoto=" + coverPhoto + ", shortDescription="
-				+ shortDescription + ", longDescription=" + longDescription + "]";
+				+ ", weight=" + weight + ", coverPhoto=" + coverPhoto + ", shortDescription=" + shortDescription
+				+ ", longDescription=" + longDescription + "]";
 	}
 }
