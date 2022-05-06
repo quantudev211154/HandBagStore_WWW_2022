@@ -1,7 +1,6 @@
 package com.g9.handbagstore.entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -34,8 +33,8 @@ public class BagCategory implements Serializable {
 	private String size;
 	@Column(name = "weight", columnDefinition = "real", nullable = false)
 	private double weight;
-	@Column(name = "cover_photo", columnDefinition = "varbinary(MAX)", nullable = false)
-	private byte[] coverPhoto;
+	@Column(name = "cover_photo", columnDefinition = "varchar(3000)", nullable = false)
+	private String coverPhoto;
 	@Column(name = "short_description", columnDefinition = "nvarchar(255)", nullable = false)
 	private String shortDescription;
 	@Column(name = "long_description", columnDefinition = "ntext", nullable = false)
@@ -44,7 +43,7 @@ public class BagCategory implements Serializable {
 	@OneToMany(mappedBy = "bagCategory")
 	private List<Bag> listBags;
 
-	public BagCategory(int bagCategoryId, Brand brand, String name, String size, double weight, byte[] coverPhoto,
+	public BagCategory(int bagCategoryId, Brand brand, String name, String size, double weight, String coverPhoto,
 			String shortDescription, String longDescription) {
 		super();
 		this.bagCategoryId = bagCategoryId;
@@ -57,7 +56,7 @@ public class BagCategory implements Serializable {
 		this.longDescription = longDescription;
 	}
 
-	public BagCategory(Brand brand, String name, String size, double weight, byte[] coverPhoto, String shortDescription,
+	public BagCategory(Brand brand, String name, String size, double weight, String coverPhoto, String shortDescription,
 			String longDescription) {
 		super();
 		this.brand = brand;
@@ -113,11 +112,11 @@ public class BagCategory implements Serializable {
 		this.weight = weight;
 	}
 
-	public byte[] getCoverPhoto() {
+	public String getCoverPhoto() {
 		return coverPhoto;
 	}
 
-	public void setCoverPhoto(byte[] coverPhoto) {
+	public void setCoverPhoto(String coverPhoto) {
 		this.coverPhoto = coverPhoto;
 	}
 
@@ -140,7 +139,7 @@ public class BagCategory implements Serializable {
 	@Override
 	public String toString() {
 		return "BagCategory [bagCategoryId=" + bagCategoryId + ", brand=" + brand + ", name=" + name + ", size=" + size
-				+ ", weight=" + weight + ", coverPhoto=" + Arrays.toString(coverPhoto) + ", shortDescription="
+				+ ", weight=" + weight + ", coverPhoto=" + coverPhoto + ", shortDescription="
 				+ shortDescription + ", longDescription=" + longDescription + "]";
 	}
 }

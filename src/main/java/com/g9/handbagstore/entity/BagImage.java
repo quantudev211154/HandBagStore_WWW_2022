@@ -1,7 +1,6 @@
 package com.g9.handbagstore.entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,17 +25,17 @@ public class BagImage implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "bag_id", nullable = false)
 	private Bag bag;
-	@Column(name = "image", columnDefinition = "varbinary(MAX)", nullable = false)
-	private byte[] image;
+	@Column(name = "image", columnDefinition = "varchar(3000)", nullable = false)
+	private String image;
 
-	public BagImage(int bagImageId, Bag bag, byte[] image) {
+	public BagImage(int bagImageId, Bag bag, String image) {
 		super();
 		this.bagImageId = bagImageId;
 		this.bag = bag;
 		this.image = image;
 	}
 
-	public BagImage(Bag bag, byte[] image) {
+	public BagImage(Bag bag, String image) {
 		super();
 		this.bag = bag;
 		this.image = image;
@@ -62,16 +61,16 @@ public class BagImage implements Serializable {
 		this.bag = bag;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
 	@Override
 	public String toString() {
-		return "BagImage [bag=" + bag + ", image=" + Arrays.toString(image) + "]";
+		return "BagImage [bag=" + bag + ", image=" + image + "]";
 	}
 }
