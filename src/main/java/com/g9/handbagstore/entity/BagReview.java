@@ -1,7 +1,7 @@
 package com.g9.handbagstore.entity;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,9 +34,9 @@ public class BagReview implements Serializable {
 	@Column(name = "star", columnDefinition = "int", nullable = false)
 	private int star;
 	@Column(name = "review_date", columnDefinition = "datetime", nullable = false)
-	private Timestamp reviewDate;
+	private LocalDateTime reviewDate;
 
-	public BagReview(int bagReviewId, Bag bag, User customer, String comment, int star, Timestamp reviewDate) {
+	public BagReview(int bagReviewId, Bag bag, User customer, String comment, int star, LocalDateTime reviewDate) {
 		super();
 		this.bagReviewId = bagReviewId;
 		this.bag = bag;
@@ -46,7 +46,7 @@ public class BagReview implements Serializable {
 		this.reviewDate = reviewDate;
 	}
 
-	public BagReview(Bag bag, User customer, String comment, int star, Timestamp reviewDate) {
+	public BagReview(Bag bag, User customer, String comment, int star, LocalDateTime reviewDate) {
 		super();
 		this.bag = bag;
 		this.customer = customer;
@@ -99,11 +99,11 @@ public class BagReview implements Serializable {
 		this.star = star;
 	}
 
-	public Timestamp getReviewDate() {
+	public LocalDateTime getReviewDate() {
 		return reviewDate;
 	}
 
-	public void setReviewDate(Timestamp reviewDate) {
+	public void setReviewDate(LocalDateTime reviewDate) {
 		this.reviewDate = reviewDate;
 	}
 

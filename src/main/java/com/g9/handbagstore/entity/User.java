@@ -1,7 +1,6 @@
 package com.g9.handbagstore.entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -37,8 +36,8 @@ public class User implements Serializable {
 	private String address;
 	@Column(name = "phone", columnDefinition = "varchar(10)")
 	private String phone;
-	@Column(name = "avatar", columnDefinition = "varbinary(MAX)")
-	private byte[] avatar;
+	@Column(name = "avatar", columnDefinition = "varchar(3000)")
+	private String avatar;
 	@Column(name = "username", columnDefinition = "varchar(50)", nullable = false)
 	private String username;
 	@Column(name = "password", columnDefinition = "varchar(255)", nullable = false)
@@ -56,7 +55,7 @@ public class User implements Serializable {
 	private List<SaleOrder> listSaleOrders;
 
 	public User(int customerId, String firstName, String lastName, String email, String gender, String address,
-			String phone, byte[] avatar, String username, String password, String role, boolean enabled) {
+			String phone, String avatar, String username, String password, String role, boolean enabled) {
 		super();
 		this.customerId = customerId;
 		this.firstName = firstName;
@@ -73,7 +72,7 @@ public class User implements Serializable {
 	}
 
 	public User(String firstName, String lastName, String email, String gender, String address, String phone,
-			byte[] avatar, String username, String password, String role, boolean enabled) {
+			String avatar, String username, String password, String role, boolean enabled) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -148,11 +147,11 @@ public class User implements Serializable {
 		this.phone = phone;
 	}
 
-	public byte[] getAvatar() {
+	public String getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(byte[] avatar) {
+	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
 
@@ -176,6 +175,6 @@ public class User implements Serializable {
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", gender=" + gender + ", address=" + address + ", phone=" + phone + ", avatar="
-				+ Arrays.toString(avatar) + "]";
+				+ avatar + "]";
 	}
 }

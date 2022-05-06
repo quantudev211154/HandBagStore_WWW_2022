@@ -2,7 +2,7 @@ package com.g9.handbagstore.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -30,11 +30,11 @@ public class SaleOrder implements Serializable {
 	@JoinColumn(name = "customer_id", nullable = false)
 	private User customer;
 	@Column(name = "order_date", columnDefinition = "datetime", nullable = false)
-	private Timestamp orderDate;
+	private LocalDateTime orderDate;
 	@Column(name = "due_date", columnDefinition = "datetime", nullable = false)
-	private Timestamp dueDate;
+	private LocalDateTime dueDate;
 	@Column(name = "ship_date", columnDefinition = "datetime", nullable = false)
-	private Timestamp shipDate;
+	private LocalDateTime shipDate;
 	@Column(name = "status", columnDefinition = "tinyint", nullable = false)
 	private short status;
 	@Column(name = "address", columnDefinition = "nvarchar(300)", nullable = false)
@@ -53,7 +53,7 @@ public class SaleOrder implements Serializable {
 	@OneToMany(mappedBy = "saleOrder")
 	private List<SaleOrderDetail> listSaleOrderDetails;
 
-	public SaleOrder(int saleOrderId, User customer, Timestamp orderDate, Timestamp dueDate, Timestamp shipDate,
+	public SaleOrder(int saleOrderId, User customer, LocalDateTime orderDate, LocalDateTime dueDate, LocalDateTime shipDate,
 			short status, String address, String comment, BigDecimal subTotal, BigDecimal taxVat, BigDecimal freight,
 			BigDecimal totalDue) {
 		super();
@@ -71,7 +71,7 @@ public class SaleOrder implements Serializable {
 		this.totalDue = totalDue;
 	}
 
-	public SaleOrder(User customer, Timestamp orderDate, Timestamp dueDate, Timestamp shipDate, short status,
+	public SaleOrder(User customer, LocalDateTime orderDate, LocalDateTime dueDate, LocalDateTime shipDate, short status,
 			String address, String comment, BigDecimal subTotal, BigDecimal taxVat, BigDecimal freight,
 			BigDecimal totalDue) {
 		super();
@@ -108,27 +108,27 @@ public class SaleOrder implements Serializable {
 		this.customer = customer;
 	}
 
-	public Timestamp getOrderDate() {
+	public LocalDateTime getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Timestamp orderDate) {
+	public void setOrderDate(LocalDateTime orderDate) {
 		this.orderDate = orderDate;
 	}
 
-	public Timestamp getDueDate() {
+	public LocalDateTime getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(Timestamp dueDate) {
+	public void setDueDate(LocalDateTime dueDate) {
 		this.dueDate = dueDate;
 	}
 
-	public Timestamp getShipDate() {
+	public LocalDateTime getShipDate() {
 		return shipDate;
 	}
 
-	public void setShipDate(Timestamp shipDate) {
+	public void setShipDate(LocalDateTime shipDate) {
 		this.shipDate = shipDate;
 	}
 
