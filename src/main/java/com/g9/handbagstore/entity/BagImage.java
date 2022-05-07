@@ -25,7 +25,7 @@ public class BagImage implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "bag_id", nullable = false)
 	private Bag bag;
-	@Column(name = "image", columnDefinition = "varchar(3000)", nullable = false)
+	@Column(name = "image", columnDefinition = "text", nullable = false)
 	private String image;
 
 	public BagImage(int bagImageId, Bag bag, String image) {

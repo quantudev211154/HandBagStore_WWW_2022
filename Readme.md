@@ -42,6 +42,3 @@
         3.2. Sau khi pull code mới về, gõ lệnh 'git stash apply' để áp những code mới đã viết vào code hiện tại
     </p>
 </details>
-
-
-

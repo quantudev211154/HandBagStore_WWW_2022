@@ -1,8 +1,8 @@
 package com.g9.handbagstore.service;
 
-import java.util.List;
-
 import com.g9.handbagstore.entity.SaleOrder;
+
+import java.util.List;
 
 public interface SaleOrderService {
 	List<SaleOrder> getAllSaleOrder();

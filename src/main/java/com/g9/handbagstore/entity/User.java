@@ -36,7 +36,7 @@ public class User implements Serializable {
 	private String address;
 	@Column(name = "phone", columnDefinition = "varchar(10)")
 	private String phone;
-	@Column(name = "avatar", columnDefinition = "varchar(3000)")
+	@Column(name = "avatar", columnDefinition = "text")
 	private String avatar;
 	@Column(name = "username", columnDefinition = "varchar(50)", nullable = false)
 	private String username;

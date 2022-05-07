@@ -2,10 +2,10 @@ package com.g9.handbagstore.service.impl;
 
 import java.util.List;
 
+import com.g9.handbagstore.entity.SaleOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.g9.handbagstore.entity.SaleOrder;
 import com.g9.handbagstore.repository.SaleOrderRepository;
 import com.g9.handbagstore.service.SaleOrderService;
 

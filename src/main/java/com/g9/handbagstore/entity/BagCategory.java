@@ -34,7 +34,7 @@ public class BagCategory implements Serializable {
 	private String size;
 	@Column(name = "weight", columnDefinition = "real", nullable = false)
 	private double weight;
-	@Column(name = "cover_photo", columnDefinition = "varchar(3000)", nullable = false)
+	@Column(name = "cover_photo", columnDefinition = "text", nullable = false)
 	private String coverPhoto;
 	@Column(name = "short_description", columnDefinition = "nvarchar(255)", nullable = false)
 	private String shortDescription;

@@ -39,7 +39,7 @@ public class SaleOrder implements Serializable {
 	private short status;
 	@Column(name = "address", columnDefinition = "nvarchar(300)", nullable = false)
 	private String address;
-	@Column(name = "comment", columnDefinition = "nvarchar(300)", nullable = false)
+	@Column(name = "comment", columnDefinition = "nvarchar(300)")
 	private String comment;
 	@Column(name = "sub_total", columnDefinition = "money", nullable = false)
 	private BigDecimal subTotal;
