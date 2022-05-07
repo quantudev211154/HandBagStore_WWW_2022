@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -103,14 +103,14 @@
                             </p>
                         </div>
                     </div>
-                    <form action="" class="main-form mt-6">
+                    <form th:action="@{/authenUser}" method="post" class="main-form mt-6">
                         <div class="form-comp form-email">
                             <div class="title">
                                 <p class="label">
                                     Email
                                 </p>
                             </div>
-                            <input type="text" placeholder="abc123@gmail.com" autofocus>
+                            <input type="text" placeholder="abc123@gmail.com" name="email" autofocus>
                             <p class="notify">
                                 
                             </p>
@@ -130,7 +130,7 @@
                                     Quên mật khẩu
                                 </a>
                             </div>
-                            <input type="password" placeholder="*****"
+                            <input type="password" name="password" placeholder="*****"
                             class="
                             
                             "

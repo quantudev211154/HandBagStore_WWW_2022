@@ -13,12 +13,11 @@ public class LoginController {
 	@Autowired
 	private UserServiceImpl userServiceImpl;
 	
-	@GetMapping("/")
+	@GetMapping("/welcome")
 	public String welcomePage(Model model) {
 		return "view_customer/index";
 	}
 	
-//	This one is for login and authen user later on
 	@GetMapping("/login")
 	public String loginPage() {
 		return "view_customer/login";
