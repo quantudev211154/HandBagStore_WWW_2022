@@ -77,13 +77,17 @@ header__container
         header__icon
         header__profile-link header__profile-link--hej
         ">
-      <a th:if="${#request.userPrincipal} != null" th:href="@{/}" class="btn leading-icon btn--small btn--icon-tertiary"
-      th:title="${#request.userPrincipal.name}">
+      <a th:if="${#request.userPrincipal} != null" th:href="@{/}" class="btn leading-icon btn--small btn--icon-tertiary min-w-[18px] flex flex-row justify-center item-center">
           <span class="btn__inner btn-login-register">
-                    <figure class="w-10 h-10">
+                    <figure th:if="${userAvatar} != null" class="w-10 h-10 mr-2">
                         <img th:src="${userAvatar}" class="w-full h-full object-cover rounded-full">
                     </figure>
-                    <span class="btn__label" th:text="${#request.userPrincipal.name}"></span>
+                    <svg th:unless="${userAvatar} != null" xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                         class="svg-icon person__icon"
+                    >
+                        <path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
+                    </svg>
+                    <span class="btn__label" th:text="${userLastName}"></span>
           </span>
       </a>
       <a th:unless="${#request.userPrincipal} != null" th:href="/login" class="
