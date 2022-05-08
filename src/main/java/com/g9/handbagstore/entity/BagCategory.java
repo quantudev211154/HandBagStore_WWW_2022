@@ -28,7 +28,7 @@ public class BagCategory implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "brand_id", nullable = false)
 	private Brand brand;
-	@Column(name = "name", columnDefinition = "ntext", nullable = false)
+	@Column(name = "name", columnDefinition = "nvarchar(MAX)", nullable = false)
 	private String name;
 	@Column(name = "size", columnDefinition = "varchar(80)", nullable = false)
 	private String size;
@@ -38,7 +38,7 @@ public class BagCategory implements Serializable {
 	private String coverPhoto;
 	@Column(name = "short_description", columnDefinition = "nvarchar(255)", nullable = false)
 	private String shortDescription;
-	@Column(name = "long_description", columnDefinition = "ntext", nullable = false)
+	@Column(name = "long_description", columnDefinition = "nvarchar(MAX)", nullable = false)
 	private String longDescription;
 	@Column(name = "import_date", columnDefinition = "date", nullable = false)
 	private LocalDate importDate;
