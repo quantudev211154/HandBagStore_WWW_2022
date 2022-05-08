@@ -9,7 +9,6 @@
     var closeSearchIcon = document.querySelector('.search-box__button-wrapper-close-icon');
     var absoluteMenuLeft = document.querySelector('.prdFilter-nav');
     var menuSidebar = document.querySelector('.header__menu');
-    var suggestionSearchProductHtml = "\n        <div class=\"search-results\">\n                            <ol id=\"search-suggestions\" class=\"\n                            search-results__list search-results__container search-results__container--autocomplete\n                            \">\n                                <li class=\"universal-item\">\n                                    <a href=\"\" class=\"\n                                    universal-item__link\n                                    \">\n                                        <span class=\"universal-item__text\">\n                                            <div class=\"universal-item__title with-autocomplete-icon\">\n                                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" style=\"fill: rgba(0, 0, 0, 1);\"\n                                                class=\"svg-icon universal-item__icon\"\n                                                >\n                                                    <path d=\"M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z\"></path>\n                                                </svg>\n                                               <p class=\"universal-item__value\">\n                                                   Gucci\n                                                </p>\n                                            </div>\n                                        </span>\n                                    </a>\n                                </li>\n                            </ol>\n                        </div>\n                        <div class=\"search-results\">\n                        <ol id=\"search-suggestions\" class=\"\n                        search-results__list search-results__container search-results__container--autocomplete\n                        \">\n                            <li class=\"universal-item\">\n                                <a href=\"\" class=\"\n                                universal-item__link\n                                \">\n                                    <span class=\"universal-item__text\">\n                                        <div class=\"universal-item__title with-autocomplete-icon\">\n                                            <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" style=\"fill: rgba(0, 0, 0, 1);\"\n                                            class=\"svg-icon universal-item__icon\"\n                                            >\n                                                <path d=\"M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z\"></path>\n                                            </svg>\n                                           <p class=\"universal-item__value\">\n                                               Panadol Extra\n                                            </p>\n                                        </div>\n                                    </span>\n                                </a>\n                            </li>\n                        </ol>\n                    </div>\n        ";
     function setActionWhenClickingOnOverlayDropdown(target) {
         target.onclick = function () {
             if (window.innerWidth < 768) {
@@ -29,6 +28,22 @@
     }
     setActionWhenClickingOnOverlayDropdown(closeSearchIcon);
     setActionWhenClickingOnOverlayDropdown(overlayDropdown);
+    function renderBagSearchResultToHtml(bagData) {
+        var html = "\n                    <div xmlns:th=\"http://www.thymeleaf.org/\" class=\"search-results\">\n                            <ol id=\"search-suggestions\" class=\"\n                            search-results__list search-results__container search-results__container--autocomplete\n                            \">\n                                <li class=\"universal-item\">\n                                    <a href=\"/bagCategoryDetail/".concat(bagData['bagCategoryId'], "\" class=\"universal-item__link\">\n                                        <span class=\"universal-item__text\">\n                                            <div class=\"universal-item__title with-autocomplete-icon\">\n                                                <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" style=\"fill: rgba(0, 0, 0, 1);\"\n                                                class=\"svg-icon universal-item__icon\"\n                                                >\n                                                    <path d=\"M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z\"></path>\n                                                </svg>\n                                               <p class=\"universal-item__value\">\n                                                   ").concat(bagData['name'], "\n                                                </p>\n                                            </div>\n                                        </span>\n                                    </a>\n                                </li>\n                            </ol>\n                        </div>\n        ");
+        return html;
+    }
+    function getBagResultWithAPI(innerHTMLTarget, keyword) {
+        innerHTMLTarget.innerHTML = "";
+        fetch("http://localhost:8080/api/bags/search/".concat(keyword))
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+            console.log(data[0]);
+            for (var i = 0; i < 3; ++i) {
+                innerHTMLTarget.innerHTML += renderBagSearchResultToHtml(data[i]);
+            }
+        });
+    }
+    ;
     (function () {
         searchFieldInput.onfocus = function () {
             if (window.innerWidth < 768) {
@@ -51,8 +66,8 @@
             }
             else {
                 searchBoxContainsClearAndSearchBtn.classList.add('active');
+                getBagResultWithAPI(suggestionSearchDropdown, searchKeyWord);
                 suggestionSearchDropdown.classList.add('active');
-                suggestionSearchDropdown.innerHTML = suggestionSearchProductHtml;
                 if (window.innerWidth > 768) {
                     searchIcon.classList.add('active');
                     searchFieldInput.classList.add('active');
