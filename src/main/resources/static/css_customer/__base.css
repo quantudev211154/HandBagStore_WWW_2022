@@ -512,28 +512,28 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.h-0 {
-  height: 0px;
+.h-20 {
+  height: 5rem;
 }
 
-.h-12 {
-  height: 3rem;
+.h-10 {
+  height: 2.5rem;
 }
 
 .h-full {
   height: 100%;
 }
 
-.h-20 {
-  height: 5rem;
-}
-
-.w-12 {
-  width: 3rem;
+.h-0 {
+  height: 0px;
 }
 
 .w-full {
   width: 100%;
+}
+
+.w-10 {
+  width: 2.5rem;
 }
 
 .flex-initial {
