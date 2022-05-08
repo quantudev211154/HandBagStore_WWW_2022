@@ -15,7 +15,7 @@ public class BagCategoryServiceImpl implements BagCategoryService {
 
 	@Autowired
 	private BagCategoryRepository bagCategoryRepo;
-	
+
 	@Override
 	public List<BagCategory> getAllBagCategories() {
 		return bagCategoryRepo.findAll();
@@ -28,13 +28,16 @@ public class BagCategoryServiceImpl implements BagCategoryService {
 
 	@Override
 	public List<BagCategory> getBagCategoriesByName(String name) {
-//		return bagCategoryRepo.getBagCategoriesByName(name);
-		return null;
+		return bagCategoryRepo.getBagCategoriesByName(name);
 	}
 
 	@Override
 	public List<BagCategory> getBagCategoriesByImportDate(LocalDate importDate) {
-//		return bagCategoryRepo.getBagCategoriesByImportDate(importDate);
-		return null;
+		return bagCategoryRepo.getBagCategoriesByImportDate(importDate);
+	}
+
+	@Override
+	public List<BagCategory> getBagCategoriesLikeName(String name) {
+		return bagCategoryRepo.getBagCategoriesLikeName("%" + name + "%");
 	}
 }

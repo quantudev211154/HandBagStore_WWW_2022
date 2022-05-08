@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface SaleOrderRepository extends JpaRepository<SaleOrder, Integer> {
 	@Query("from SaleOrder where customer_id = :customerID")
-	List<SaleOrder> getSaleOrdersByCustomerID(@Param("customerID") String customerID);
+	List<SaleOrder> getSaleOrdersByCustomerID(@Param("customerID") int customerID);
 	
 	@Query("from SaleOrder where sale_order_id = :saleOrderID")
 	SaleOrder getSaleOrderBySaleOrderID(@Param("saleOrderID") String saleOrderID);
