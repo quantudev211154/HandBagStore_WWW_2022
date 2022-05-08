@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.g9.handbagstore.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.g9.handbagstore.repository.UserRepository;
@@ -14,7 +15,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepo;
-	
+
 	@Override
 	public List<User> getAllUsers() {
 		return userRepo.findAll();
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void addOrUpdateUser(User newUser) {
+		newUser.setPassword(new BCryptPasswordEncoder().encode(newUser.getPassword()));
 		userRepo.save(newUser);
 	}
 }
