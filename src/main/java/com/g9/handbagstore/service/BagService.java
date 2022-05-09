@@ -8,4 +8,5 @@ public interface BagService {
 	List<Bag> getAllBags();
 	Bag getBagByID(int bagID);
 	void addOrUpdateBag(Bag bag);
+	List<Bag> getBagListOfBagCategory(int bagCategoryId);
 }

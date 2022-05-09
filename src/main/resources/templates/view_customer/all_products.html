@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title th:text="${pageTitle}"></title>
+    <link rel="icon" th:src="@{/imgs/logo.png}">
     <link rel="stylesheet" href="/css_customer/__base.css">
 </head>
 <body>
@@ -233,7 +234,8 @@
   <div class="products__list w-full">
     <div class="products__list-container w-full py-3 flex flex-row justify-start items-start flex-wrap">
       <th:block th:each="product: ${listProducts}">
-          <a href="/products/${product.bagCategoryId}" class="products-links">
+          <a th:href="@{/products/product/{categoryId}(categoryId=${product.bagCategoryId})}" class="products-links"
+          th:title="${product.name}">
               <div class="products-links-container">
                   <div class="products-image-container">
                       <img th:src="'data:image/png;base64,' + ${product.coverPhoto}" alt="" class="products-image">

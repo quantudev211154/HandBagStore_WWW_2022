@@ -29,4 +29,9 @@ public class BagServiceImpl implements BagService {
 	public void addOrUpdateBag(Bag bag) {
 		bagRepo.save(bag);
 	}
+
+	@Override
+	public List<Bag> getBagListOfBagCategory(int bagCategoryId) {
+		return bagRepo.findBagsListByBagCategoryId(bagCategoryId);
+	}
 }
