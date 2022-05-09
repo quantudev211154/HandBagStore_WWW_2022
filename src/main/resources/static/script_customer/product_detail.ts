@@ -19,8 +19,6 @@ function renderBagColorListToBtn(bag: object): string{
     fetch("http://localhost:8080/api/bags/bagCategory=" + currentBagCategoryId.value)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-
             for (let i = 0; i < data.length; ++i){
                 productColorsList.innerHTML += renderBagColorListToBtn(data[i])
             }
@@ -29,11 +27,86 @@ function renderBagColorListToBtn(bag: object): string{
 
             animateForColorButton()
         })
-
-
 })()
 
-function getImageListOfBagByBagIdAndRenderIntoImageContainer(bagId: number): void{
+async function getAvatarAndFullNameOfReviewOwner(api: string){
+    let response = await fetch(api)
+    let data = await response.json()
+
+    data = JSON.stringify(data)
+    data = JSON.parse(data)
+
+    return data
+}
+
+function getReviewListOfBagByBagIdAndRenderToReviewsContainer(bagId: number): void{
+    const reviewContainer = document.querySelector('.product-reviews-wrapper') as HTMLDivElement
+    const productNum = document.querySelector('.product-num') as HTMLParagraphElement
+
+    reviewContainer.innerHTML = ''
+
+    fetch("http://localhost:8080/bags/" + bagId + "/listBagReviews")
+        .then(response => response.json())
+        .then(data => {
+            let tmpData = data['_embedded']['bagReviews']
+            let reviewNum = tmpData.length
+
+            productNum.innerText = reviewNum
+
+            for (let i = 0; i < tmpData.length; ++i){
+                let tmp = getAvatarAndFullNameOfReviewOwner(tmpData[i]['_links']['customer']['href'])
+
+                tmp.then(data => {
+                    let fullname: string = data.firstName + ' ' + data.lastName
+                    let avatar = 'data:image/png;base64,' + data.avatar
+
+                    reviewContainer.innerHTML += `
+                    <div class="product-review">
+                            <div class="review-owner">
+                                <figure class="owner-avatar">
+                                    <img src="${avatar}" alt="">
+                                </figure>
+                                <div class="product-review-detail">
+                                        <span class="owner-name">
+                                            ${fullname}
+                                        </span>
+                                    <p class="text-sm">
+                                        Đã viết vào:
+                                        <span class="review-date">${tmpData[i]['reviewDate']}</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="review-star">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                                     class="svg-icon star star-1">
+                                    <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                                     class="svg-icon star star-2">
+                                    <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                                     class="svg-icon star star-3">
+                                    <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                                     class="svg-icon star star-4">
+                                    <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"
+                                     class="svg-icon star-5">
+                                    <path d="m6.516 14.323-1.49 6.452a.998.998 0 0 0 1.529 1.057L12 18.202l5.445 3.63a1.001 1.001 0 0 0 1.517-1.106l-1.829-6.4 4.536-4.082a1 1 0 0 0-.59-1.74l-5.701-.454-2.467-5.461a.998.998 0 0 0-1.822 0L8.622 8.05l-5.701.453a1 1 0 0 0-.619 1.713l4.214 4.107zm2.853-4.326a.998.998 0 0 0 .832-.586L12 5.43l1.799 3.981a.998.998 0 0 0 .832.586l3.972.315-3.271 2.944c-.284.256-.397.65-.293 1.018l1.253 4.385-3.736-2.491a.995.995 0 0 0-1.109 0l-3.904 2.603 1.05-4.546a1 1 0 0 0-.276-.94l-3.038-2.962 4.09-.326z"></path>
+                                </svg>
+                            </div>
+                            <div class="review-comment">${tmpData[i]['comment']}</div>
+                    </div>
+                `
+                })
+            }
+        })
+}
+
+function getImageListOfBagByBagIdAndRenderToImageContainer(bagId: number): void{
     const imagesContainer = document.querySelector('.product-images') as HTMLDivElement
 
     imagesContainer.innerHTML = ''
@@ -65,7 +138,9 @@ function getInfoOfBagByIdAndRenderToHtml(bagId: number): void{
             priceOfBagWithColor.innerHTML = convertFromIntToString(data['price'] + '') + '<span> &#8363</span>'
             quantityOfBag.innerText = data['quantity']
 
-            getImageListOfBagByBagIdAndRenderIntoImageContainer(bagId)
+            getImageListOfBagByBagIdAndRenderToImageContainer(bagId)
+
+            getReviewListOfBagByBagIdAndRenderToReviewsContainer(bagId)
         })
 }
 
