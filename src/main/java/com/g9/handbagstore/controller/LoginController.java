@@ -15,27 +15,10 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/welcome")
+	@GetMapping("/")
 	public String welcomePage(Model model) {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User user = null;
+		UserSession.getLoggedUserInfo(userService, model);
 
-		if (principal instanceof MyUserDetail){
-			String username = ((MyUserDetail) principal).getUsername();
-			user = userService.getUserByUserName(username);
-
-			String tmpAvatar = userService.getUserByUserName(username).getAvatar();
-
-			String avatar = (tmpAvatar != null)
-					? tmpAvatar
-					: "";
-
-			if (!avatar.isEmpty()){
-				model.addAttribute("userAvatar", "data:image/png;base64," + avatar);
-			}
-		}
-
-		model.addAttribute("userLastName", user.getLastName());
 		model.addAttribute("pageTitle", "G9 Bag Store");
 
 		return "view_customer/index";

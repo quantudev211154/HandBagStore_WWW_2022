@@ -9,8 +9,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import javax.sql.DataSource;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.HttpStatusRequestRejectedHandler;
+import org.springframework.security.web.firewall.RequestRejectedHandler;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 @EnableWebSecurity
 public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -40,7 +42,7 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
 					.loginProcessingUrl("/authenUser")
 					.usernameParameter("email")
 		            .passwordParameter("password")
-		            .defaultSuccessUrl("/welcome")
+		            .defaultSuccessUrl("/")
 	                .permitAll()
 			.and().logout()
 					.deleteCookies("JSESSIONID")
@@ -48,6 +50,28 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().cors()
 			.and().csrf().disable();
 	}
+
+//	@Override
+//	public void configure(WebSecurity webSecurity) throws Exception {
+//		webSecurity.ignoring().antMatchers("/resources/**");
+//	}
+
+	@Bean
+	public HttpFirewall configureFirewall(){
+		StrictHttpFirewall strictHttpFirewall = new StrictHttpFirewall();
+
+//		strictHttpFirewall.setAllowedHttpMethods(Arrays.asList("GET", "POST", "DELETE", "OPTIONS"));
+//		strictHttpFirewall.setAllowBackSlash(true);
+		strictHttpFirewall.setAllowUrlEncodedDoubleSlash(true);
+		strictHttpFirewall.setAllowUrlEncodedSlash(true);
+
+		return strictHttpFirewall;
+	}
+//
+//	@Bean
+//	public RequestRejectedHandler requestRejectedHandler(){
+//		return new HttpStatusRequestRejectedHandler();
+//	}
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
