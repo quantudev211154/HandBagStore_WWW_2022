@@ -35,6 +35,9 @@ public class BagServiceImpl implements BagService {
 	}
 
 	@Override
+	public List<Bag> getBagListOfBagCategory(int bagCategoryId) {
+		return bagRepo.findBagsListByBagCategoryId(bagCategoryId);
+    
 	public BigDecimal getBagPriceByCateID(int cateID) {
 		return bagRepo.getBagPriceByCateID(cateID);
 	}

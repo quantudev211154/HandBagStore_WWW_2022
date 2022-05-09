@@ -18,4 +18,7 @@ public interface BagCategoryRepository extends JpaRepository<BagCategory, Intege
 	
 	@Query("from BagCategory where import_date = :importDate")
 	List<BagCategory> getBagCategoriesByImportDate(@Param("importDate") LocalDate importDate);
+
+//	@Query("select min(Bag.price) from BagCategory join Bag on BagCategory.bagCategoryId = Bag.bagCategory.bagCategoryId")
+//	double getMinPriceOfBagCategory(@Param("bagCategoryId") int bagCategoryId);
 }

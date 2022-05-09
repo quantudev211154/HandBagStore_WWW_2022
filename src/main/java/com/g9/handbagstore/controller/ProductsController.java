@@ -50,15 +50,17 @@ public class ProductsController {
     }
 
 
-    @GetMapping("/{categoryId}")
-    public String showProductDetail(@PathVariable int categoryId, Model model){
-        BagCategory bagCategory = bagCategoryService.getBagCategoryByID(categoryId);
+    @GetMapping("/product/{categoryId}")
+    public String showProductDetail(@PathVariable("categoryId") int categoryId, Model model){
+        UserSession.getLoggedUserInfo(userService, model);
 
-        System.out.println(bagCategory);
+        BagCategory bagCategory = bagCategoryService.getBagCategoryByID(categoryId);
 
         model.addAttribute("bagCategory", bagCategory);
         model.addAttribute("pageTitle", bagCategory.getName());
 
-        return "view_customer/product_detail";
+        return "/view_customer/product_detail";
     }
+
+
 }

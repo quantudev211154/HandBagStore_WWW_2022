@@ -37,6 +37,11 @@ public class BagCategoryServiceImpl implements BagCategoryService {
 		return bagCategoryRepo.getBagCategoriesByImportDate(importDate);
 	}
 
+//	@Override
+//	public double getMinPriceOfBagCategory(int bagCategoryId) {
+//		return bagCategoryRepo.getMinPriceOfBagCategory(bagCategoryId);
+//	}
+
 	@Override
 	public List<BagCategory> getBagCategoriesLikeName(String name) {
 		return bagCategoryRepo.getBagCategoriesLikeName("%" + name + "%");
