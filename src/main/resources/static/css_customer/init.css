@@ -1289,6 +1289,55 @@ input[type="search"]::-webkit-search-results-decoration {
     text-sm font-medium
 }
 
+.product-review{
+    @apply
+    py-5 border-b-[1px] border-slate-600
+}
+
+.review-owner{
+    @apply
+    flex flex-row justify-start items-center
+}
+
+.owner-avatar{
+    @apply
+    w-14 h-14
+}
+
+.owner-avatar img{
+    @apply
+    w-full h-full object-cover rounded-full
+}
+
+.product-review-detail{
+    @apply
+    flex flex-col justify-start ml-3
+}
+
+.owner-name{
+    @apply
+    font-medium mb-1
+}
+
+.review-date{
+    @apply
+    font-medium text-sm
+}
+
+.review-star{
+    @apply
+    flex flex-row items-center justify-start py-5
+}
+
+.review-comment{
+    @apply
+    text-slate-900
+}
+
+
+
+
+
 /* END PRODUCT DETAIL  */
 
 

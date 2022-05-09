@@ -38,6 +38,8 @@ public class BagServiceImpl implements BagService {
 	public List<Bag> getBagListOfBagCategory(int bagCategoryId) {
 		return bagRepo.findBagsListByBagCategoryId(bagCategoryId);
 	}
+
+	@Override
 	public BigDecimal getBagPriceByCateID(int cateID) {
 		return bagRepo.getBagPriceByCateID(cateID);
 	}
