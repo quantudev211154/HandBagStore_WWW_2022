@@ -1,6 +1,7 @@
 package com.g9.handbagstore.service;
 
 import java.math.BigDecimal;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import com.g9.handbagstore.entity.Bag;
@@ -13,4 +14,6 @@ public interface BagService {
 	List<Bag> getBagListOfBagCategory(int bagCategoryId);
 	BigDecimal getBagPriceByCateID(int cateID);
 	List<String> listPrice(List<BagCategory> listBagCategory);
+	LinkedHashSet<Integer> getBagCategoryIdOrderByPriceAsc();
+	LinkedHashSet<Integer> getBagCategoryIdOrderByPriceDesc();
 }

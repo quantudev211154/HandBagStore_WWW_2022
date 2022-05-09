@@ -11,4 +11,8 @@ public interface BagCategoryService {
 	List<BagCategory> getBagCategoriesByName(String name);
 	List<BagCategory> getBagCategoriesLikeName(String name);
 	List<BagCategory> getBagCategoriesByImportDate(LocalDate importDate);
+	List<BagCategory> getBagCategoriesOrderByNameFromA2Z();
+	List<BagCategory> getBagCategoriesOrderByNameFromZ2A();
+	List<BagCategory> getBagCategoriesOrderByPriceAsc();
+	List<BagCategory> getBagCategoriesOrderByPriceDesc();
 }
