@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.g9.handbagstore.entity.Brand;
 import com.g9.handbagstore.repository.BrandRepository;
 import com.g9.handbagstore.service.BrandService;
 
+@Service
 public class BrandServiceImpl implements BrandService {
 	
 	@Autowired
