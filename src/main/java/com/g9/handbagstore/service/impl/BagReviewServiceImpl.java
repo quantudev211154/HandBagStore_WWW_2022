@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.g9.handbagstore.entity.BagReview;
 import com.g9.handbagstore.repository.BagReviewRepository;
 import com.g9.handbagstore.service.BagReviewService;
 
+@Service
 public class BagReviewServiceImpl implements BagReviewService {
 
 	@Autowired

@@ -3,11 +3,13 @@ package com.g9.handbagstore.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.g9.handbagstore.entity.SaleOrderDetail;
 import com.g9.handbagstore.repository.SaleOrderDetailRepository;
 import com.g9.handbagstore.service.SaleOrderDetailService;
 
+@Service
 public class SaleOrderDetailServiceImpl implements SaleOrderDetailService {
 	
 	@Autowired

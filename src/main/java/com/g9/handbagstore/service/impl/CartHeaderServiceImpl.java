@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.g9.handbagstore.entity.CartHeader;
 import com.g9.handbagstore.repository.CartHeaderRepository;
 import com.g9.handbagstore.service.CartHeaderService;
 
+@Service
 public class CartHeaderServiceImpl implements CartHeaderService {
 
 	@Autowired
