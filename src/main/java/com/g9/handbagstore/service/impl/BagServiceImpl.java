@@ -3,6 +3,7 @@ package com.g9.handbagstore.service.impl;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,15 @@ public class BagServiceImpl implements BagService {
 		});
 		
 		return listPrice;
+	}
+
+	@Override
+	public LinkedHashSet<Integer> getBagCategoryIdOrderByPriceAsc() {
+		return bagRepo.getBagCategoryIdOrderByPriceAsc();
+	}
+
+	@Override
+	public LinkedHashSet<Integer> getBagCategoryIdOrderByPriceDesc() {
+		return bagRepo.getBagCategoryIdOrderByPriceDesc();
 	}
 }

@@ -1,6 +1,9 @@
 package com.g9.handbagstore.service.impl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +12,13 @@ import org.springframework.stereotype.Service;
 import com.g9.handbagstore.entity.BagCategory;
 import com.g9.handbagstore.repository.BagCategoryRepository;
 import com.g9.handbagstore.service.BagCategoryService;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BagCategoryServiceImpl implements BagCategoryService {
 
+	@Autowired
+	private BagServiceImpl bagServiceImpl;
+	
 	@Autowired
 	private BagCategoryRepository bagCategoryRepo;
 
@@ -45,5 +50,41 @@ public class BagCategoryServiceImpl implements BagCategoryService {
 	@Override
 	public List<BagCategory> getBagCategoriesLikeName(String name) {
 		return bagCategoryRepo.getBagCategoriesLikeName("%" + name + "%");
+	}
+
+	@Override
+	public List<BagCategory> getBagCategoriesOrderByNameFromA2Z() {
+		return bagCategoryRepo.getBagCategoriesOrderByNameFromA2Z();
+	}
+
+	@Override
+	public List<BagCategory> getBagCategoriesOrderByNameFromZ2A() {
+		return bagCategoryRepo.getBagCategoriesOrderByNameFromZ2A();
+	}
+
+	@Override
+	public List<BagCategory> getBagCategoriesOrderByPriceAsc() {
+		List<BagCategory> bagCategories = new ArrayList<>();
+		
+		LinkedHashSet<Integer> cateIdList = bagServiceImpl.getBagCategoryIdOrderByPriceAsc();
+		
+		cateIdList.forEach(cateId -> {
+			bagCategories.add(getBagCategoryByID(cateId));
+		});
+		
+		return bagCategories;
+	}
+
+	@Override
+	public List<BagCategory> getBagCategoriesOrderByPriceDesc() {
+		List<BagCategory> bagCategories = new ArrayList<>();
+		
+		LinkedHashSet <Integer> cateIdList = bagServiceImpl.getBagCategoryIdOrderByPriceDesc();
+		
+		cateIdList.forEach(cateId -> {
+			bagCategories.add(getBagCategoryByID(cateId));
+		});
+		
+		return bagCategories;
 	}
 }
