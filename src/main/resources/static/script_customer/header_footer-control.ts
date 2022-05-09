@@ -42,7 +42,7 @@
                             search-results__list search-results__container search-results__container--autocomplete
                             ">
                                 <li class="universal-item">
-                                    <a href="/bagCategoryDetail/${bagData['bagCategoryId']}" class="universal-item__link">
+                                    <a href="/products/${bagData['bagCategoryId']}" class="universal-item__link">
                                         <span class="universal-item__text">
                                             <div class="universal-item__title with-autocomplete-icon">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);"

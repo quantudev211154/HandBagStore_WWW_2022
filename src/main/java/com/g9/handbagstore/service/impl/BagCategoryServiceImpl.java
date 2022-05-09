@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.g9.handbagstore.entity.BagCategory;
 import com.g9.handbagstore.repository.BagCategoryRepository;
 import com.g9.handbagstore.service.BagCategoryService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BagCategoryServiceImpl implements BagCategoryService {
