@@ -2,19 +2,29 @@ package com.g9.handbagstore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.g9.handbagstore.entity.User;
 import com.g9.handbagstore.service.impl.UserServiceImpl;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/register")
 public class RegisterController {
 	
 	@Autowired
 	private UserServiceImpl userServiceImpl;
+
+	@GetMapping("/all")
+	public String showRegisterPage(Model model){
+		model.addAttribute("pageTitle", "Đăng kí tài khoản");
+		return "view_customer/register";
+	}
 	
-	@PostMapping("/register")
+	@PostMapping("/reg")
 	public String register(@ModelAttribute User user) {
 		
 		user.setCustomerId(0);

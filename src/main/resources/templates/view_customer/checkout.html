@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}"></title>
+    <link rel="stylesheet" href="/css_customer/__base.css">
+</head>
+<body>
+<!-- START HEADER -->
+<header class="header" th:insert="view_customer/header.html">
+
+</header>
+<!-- END HEADER -->
+
+<!-- START SUB HEADER -->
+<div class="sub__header" th:insert="view_customer/sub_header.html">
+
+</div>
+<!-- END SUB HEADER -->
+
+
+<!-- START MAIN CONTENT -->
+<div class="
+    checkout-container
+    w-full
+    px-3 sm:px-4 md:px-10 lg:px-32
+    py-4
+    z-20">
+    <div class="checkout relative w-full flex flex-row justify-between items-start">
+        <div class="checkout-left w-1/2 static top-0 left-0 pr-5">
+            <div class="left-payMethod mb-5">
+                <div class="left-payMethod-title py-3">
+                    <p class="font-medium text-2xl">
+                        1. Phương thức thanh toán
+                    </p>
+                </div>
+                <div class="left-payMethod-detail w-full px-6 py-5 border-[1px] border-slate-400 border-dashed rounded-md">
+                    <p class="text-blue-700">
+                        Thanh toán khi nhận hàng (COD)
+                    </p>
+                </div>
+            </div>
+            <div class="left-customerInfo mb-5">
+                <div class="left-customerInfo-title py-3">
+                    <h1 class="font-medium text-2xl">
+                        3. Thông tin người mua
+                    </h1>
+                </div>
+                <div class="left-customerInfo-detail px-6 py-5 border-[1px] border-slate-400 border-dashed rounded-md">
+                    <div class="customer-component customer-name">
+                        <p class="customer-title customer-title-name">
+                            3.1. Họ tên khách hàng
+                            <span class="customer-title-required">
+                                    (*)
+                                </span>
+                        </p>
+                        <input type="text" placeholder="VD: Võ Thị Trà My" checked class="customer-input customer-name-input">
+                        <p class="customer-info-noti customer-name-noti">
+
+                        </p>
+                    </div>
+                    <div class="customer-component customer-phone">
+                        <p class="customer-title customer-title-phone">
+                            3.2. Số điện thoại liên lạc
+                            <span class="customer-title-required">
+                                    (*)
+                                </span>
+                        </p>
+                        <input type="text" placeholder="VD: 0358434915" class="customer-input customer-phone-input">
+                        <p class="customer-info-noti customer-phone-noti">
+
+                        </p>
+                    </div>
+                    <div class="customer-component customer-address">
+                        <p class="customer-title customer-title-address">
+                            3.3. Địa chỉ nhận hàng
+                            <span class="customer-title-required">
+                                    (*)
+                                </span>
+                        </p>
+                        <input type="text" placeholder="VD: Số 68, đường 17, KP.5, P.Bình Chiểu, Tp.Thủ Đức" class="customer-input customer-address-input">
+                        <p class="customer-info-noti customer-address-noti">
+
+                        </p>
+                    </div>
+                </div>
+                <div class="left-buyOption mt-6">
+                    <div class="customer-buyButton-container">
+                        <p class="text-slate-800 italic font-medium flex flex-row">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-slate-800">
+                                <path d="M12 4c-4.879 0-9 4.121-9 9s4.121 9 9 9 9-4.121 9-9-4.121-9-9-9zm0 16c-3.794 0-7-3.206-7-7s3.206-7 7-7 7 3.206 7 7-3.206 7-7 7zm8.292-13.292-3.01-3 1.412-1.417 3.01 3zM6.698 3.707l-2.99 2.999L2.29 5.294l2.99-3z"></path><path d="M14.832 10.555A1 1 0 0 0 14 9H9v2h3.132l-2.964 4.445A1 1 0 0 0 10 17h5v-2h-3.132l2.964-4.445z"></path>
+                            </svg>
+                            Hãy kiểm tra hàng được giao trước khi thanh toán cho shipper.
+                        </p>
+                        <button class="buyButton-btn">
+                            Đặt mua
+                        </button>
+                    </div>
+                </div>
+                <div class="left-noti">
+                    <div class="left-noti-container left-noti-success transition-all duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-green-900">
+                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path><path d="M9.999 13.587 7.7 11.292l-1.412 1.416 3.713 3.705 6.706-6.706-1.414-1.414z"></path>
+                        </svg>
+                        <span class="text-green-900 ml-2">
+                                Bạn đã đặt hàng thành công. Xin cảm ơn!
+                            </span>
+                    </div>
+                    <div class="left-noti-container left-noti-fail transition-all duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-red-600">
+                            <path d="M9.172 16.242 12 13.414l2.828 2.828 1.414-1.414L13.414 12l2.828-2.828-1.414-1.414L12 10.586 9.172 7.758 7.758 9.172 10.586 12l-2.828 2.828z"></path><path d="M12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12s4.486 10 10 10zm0-18c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8z"></path>
+                        </svg>
+                        <span class="text-red-600 ml-2">
+                                Đặt mua thất bại. Hãy kiểm tra lại thông tin của bạn
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-right w-1/2 pl-5">
+            <div class="right-title py-3">
+                <h1 class="font-medium text-2xl">
+                    2. Thông tin đơn hàng
+                </h1>
+            </div>
+            <div class="right-top">
+                <div class="right-top-orderOverrall px-6 py-3 border-[1px] border-dashed border-slate-400 rounded-md">
+                    <div class="orderOverrall-title py-2">
+                        <p class="font-medium">
+                            2.1. Tổng quan
+                        </p>
+                    </div>
+                    <div class="orderOverrall-detail">
+                        <div class="orderOverrall-detail-component orderOverrall-quantity-container">
+                                <span class="orderOverrall-quantity-title">
+                                    Tổng số lượng sản phẩm
+                                </span>
+                            <span class="orderOverrall-quantity font-bold">
+                                    2
+                                </span>
+                        </div>
+                        <div class="orderOverrall-detail-component orderOverrall-totalPrice-container">
+                                <span class="orderOverrall-totalPrice-title font-bold">
+                                    Thành tiền
+                                </span>
+                            <span class="orderOverrall-totalPrice text-red-600 font-bold">
+                                    600.000
+                                    <span>
+                                        &#8363
+                                    </span>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-bottom mt-5 px-6 py-3 border-[1px] border-dashed border-slate-400 rounded-md">
+                <div class="right-bottom-title mb-3">
+                    <h1 class="font-medium">
+                        2.2. Danh sách sản phẩm
+                    </h1>
+                </div>
+                <div class="right-bottom-list">
+                    <table class="bottom-list w-full">
+                        <tr class="bottom-list-header">
+                            <td class="bottom-list-header-col list-count">STT</td>
+                            <td class="bottom-list-header-col list-name">Tên sản phẩm</td>
+                            <td class="bottom-list-header-col list-quantity">Số lượng</td>
+                            <td class="bottom-list-header-col list-totalPrice">Thành tiền</td>
+                        </tr>
+                        <tr class="bottom-list-item">
+                            <td class="bottom-count">
+                                1
+                            </td>
+                            <td class="bottom-name">
+                                <a href="product_detail.html" class="bottom-link">
+                                    Gucci beng 2022
+                                </a>
+                            </td>
+                            <td class="bottom-quantity">
+                                1
+                            </td>
+                            <td class="item-totalPrice">
+                                    <span>
+                                        300.000
+                                    </span>
+                                <span>
+                                        &#8363
+                                    </span>
+                            </td>
+                        </tr>
+                        <tr class="bottom-list-item">
+                            <td class="bottom-count">
+                                1
+                            </td>
+                            <td class="bottom-name">
+                                <a href="product_detail.html" class="bottom-link">
+                                    Gucci beng 2022
+                                </a>
+                            </td>
+                            <td class="bottom-quantity">
+                                1
+                            </td>
+                            <td class="item-totalPrice">
+                                    <span>
+                                        300.000
+                                    </span>
+                                <span>
+                                        &#8363
+                                    </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END MAIN CONTENT -->
+
+<!-- START FOOTER -->
+<footer class="footer" th:insert="view_customer/footer.html">
+
+</footer>
+<!-- END FOOTER -->
+
+<!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
+<script src="/script_customer/header_footer-control.js"></script>
+</body>
+</html>

@@ -472,6 +472,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   pointer-events: none;
 }
 
+.static {
+  position: static;
+}
+
 .fixed {
   position: fixed;
 }
@@ -553,12 +557,36 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 1.25rem;
 }
 
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+.block {
+  display: block;
+}
+
 .inline-block {
   display: inline-block;
 }
 
 .flex {
   display: flex;
+}
+
+.table {
+  display: table;
 }
 
 .hidden {
@@ -585,6 +613,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 5rem;
 }
 
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .w-full {
   width: 100%;
 }
@@ -609,6 +641,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 4rem;
 }
 
+.w-3\/4 {
+  width: 75%;
+}
+
+.w-1\/4 {
+  width: 25%;
+}
+
 .min-w-\[18px\] {
   min-width: 18px;
 }
@@ -623,6 +663,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .-translate-x-8 {
   --tw-translate-x: -2rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.-rotate-3 {
+  --tw-rotate: -3deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -725,6 +770,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(71 85 105 / var(--tw-border-opacity));
 }
 
+.border-slate-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(148 163 184 / var(--tw-border-opacity));
+}
+
 .bg-blue-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
@@ -745,8 +795,34 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.bg-pink-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(219 39 119 / var(--tw-bg-opacity));
+}
+
 .fill-white {
   fill: #fff;
+}
+
+.fill-slate-800 {
+  fill: #1e293b;
+}
+
+.fill-green-900 {
+  fill: #14532d;
+}
+
+.fill-red-600 {
+  fill: #dc2626;
+}
+
+.fill-black {
+  fill: #000;
 }
 
 .object-cover {
@@ -808,6 +884,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 1.25rem;
 }
 
+.pr-5 {
+  padding-right: 1.25rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -858,6 +938,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 700;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .text-slate-700 {
   --tw-text-opacity: 1;
   color: rgb(51 65 85 / var(--tw-text-opacity));
@@ -896,6 +980,31 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-red-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
+.text-blue-700 {
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
+}
+
+.text-green-900 {
+  --tw-text-opacity: 1;
+  color: rgb(20 83 45 / var(--tw-text-opacity));
+}
+
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-pink-700 {
+  --tw-text-opacity: 1;
+  color: rgb(190 24 93 / var(--tw-text-opacity));
 }
 
 .opacity-0 {
@@ -3957,6 +4066,11 @@ input[type="search"]::-webkit-search-results-decoration {
   border-color: rgb(203 213 225 / var(--tw-border-opacity));
 }
 
+.hover\:border-slate-700:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(51 65 85 / var(--tw-border-opacity));
+}
+
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
@@ -3965,6 +4079,11 @@ input[type="search"]::-webkit-search-results-decoration {
 .hover\:bg-slate-400:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-pink-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(190 24 93 / var(--tw-bg-opacity));
 }
 
 .hover\:text-blue-700:hover {
@@ -4008,6 +4127,16 @@ input[type="search"]::-webkit-search-results-decoration {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
+.focus\:border-green-400:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(74 222 128 / var(--tw-border-opacity));
+}
+
+.focus\:border-pink-800:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(157 23 77 / var(--tw-border-opacity));
+}
+
 .focus\:bg-white:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -4021,6 +4150,11 @@ input[type="search"]::-webkit-search-results-decoration {
 .focus\:text-pink-600:focus {
   --tw-text-opacity: 1;
   color: rgb(219 39 119 / var(--tw-text-opacity));
+}
+
+.focus\:text-blue-700:focus {
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 
 .focus\:underline:focus {
@@ -4042,6 +4176,14 @@ input[type="search"]::-webkit-search-results-decoration {
 
   .md\:mt-0 {
     margin-top: 0px;
+  }
+
+  .md\:mt-5 {
+    margin-top: 1.25rem;
+  }
+
+  .md\:mb-5 {
+    margin-bottom: 1.25rem;
   }
 
   .md\:block {
@@ -4104,6 +4246,12 @@ input[type="search"]::-webkit-search-results-decoration {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
+
+  .md\:shadow-none {
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -4113,6 +4261,14 @@ input[type="search"]::-webkit-search-results-decoration {
 
   .lg\:mt-0 {
     margin-top: 0px;
+  }
+
+  .lg\:mt-8 {
+    margin-top: 2rem;
+  }
+
+  .lg\:mb-8 {
+    margin-bottom: 2rem;
   }
 
   .lg\:block {
@@ -4179,5 +4335,11 @@ input[type="search"]::-webkit-search-results-decoration {
   .lg\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .lg\:shadow-none {
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 }
