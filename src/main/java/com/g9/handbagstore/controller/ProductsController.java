@@ -89,5 +89,4 @@ public class ProductsController {
         return "/view_customer/product_detail";
     }
 
-
 }

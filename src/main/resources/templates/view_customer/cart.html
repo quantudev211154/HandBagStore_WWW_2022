@@ -40,6 +40,7 @@
         <tr class="items-list-header">
           <td class="items-list-header-col col-imge">Ảnh sản phẩm</td>
           <td class="items-list-header-col col-name">Tên sản phẩm</td>
+            <td class="items-list-header-col col-color">Màu sắc</td>
           <td class="items-list-header-col col-unitPrice">Đơn giá</td>
           <td class="items-list-header-col col-quantity">Số lượng</td>
           <td class="items-list-header-col col-totalPrice">Thành tiền</td>
@@ -58,7 +59,10 @@
                       </figure>
                   </td>
                   <td class="item-name">
-                      <a th:href="@{/products/product/{categoryId}(categoryId=${cartDetail.bag.bagId})}" class="item-link" th:text="${cartDetail.bag.bagCategory.name}"></a>
+                      <a th:href="@{/products/product/{categoryId}(categoryId=${cartDetail.bag.bagCategory.bagCategoryId})}" class="item-link" th:text="${cartDetail.bag.bagCategory.name}"></a>
+                  </td>
+                  <td class="item-color">
+                      <span th:text="${cartDetail.bag.color}"></span>
                   </td>
                   <td class="item-unitPrice">
                                 <span th:text="${@priceConvert.chuyenMoney(cartDetail.bag.price)}"></span>
