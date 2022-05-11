@@ -2,6 +2,8 @@ package com.g9.handbagstore.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -14,57 +16,101 @@ import org.springframework.security.web.firewall.HttpStatusRequestRejectedHandle
 import org.springframework.security.web.firewall.RequestRejectedHandler;
 import org.springframework.security.web.firewall.StrictHttpFirewall;
 
+@Configuration
 @EnableWebSecurity
-public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private UserDetailsService detailsService;
+public class MySpringSecurityConfig {
+	@Configuration
+	@Order(1)
+	public static class UserSecurityConfig extends WebSecurityConfigurerAdapter{
+		@Autowired
+		private UserDetailsService detailsService;
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(detailsService);
+		public UserSecurityConfig(){
+			super();
+		}
+
+		@Override
+		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+			auth.userDetailsService(detailsService);
+		}
+
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			http.authorizeRequests()
+					.antMatchers("/static/**").permitAll();
+
+			http.authorizeRequests()
+					.antMatchers("/products/product/add_to_cart/**").hasRole("USER")
+					.antMatchers("/cart/**").hasRole("USER")
+					.and().formLogin()
+						.loginPage("/login")
+						.loginProcessingUrl("/authenUser")
+						.usernameParameter("email")
+						.passwordParameter("password")
+						.defaultSuccessUrl("/")
+					.and().logout()
+						.logoutUrl("/pa/logout")
+						.logoutSuccessUrl("/")
+						.deleteCookies("JSESSIONID")
+						.permitAll()
+					.and().cors()
+					.and().csrf().disable();
+
+		}
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-			.antMatchers("/static/**").permitAll();
-		
-		http.authorizeRequests()
-			.antMatchers("/products/product/add_to_cart/**").hasAnyRole("USER", "ADMIN")
-				.antMatchers("/cart/**").hasAnyRole("USER", "ADMIN")
-			.and().formLogin()
-					.loginPage("/login")
-					.loginProcessingUrl("/authenUser")
-					.usernameParameter("email")
-		            .passwordParameter("password")
-		            .defaultSuccessUrl("/")
-	                .permitAll()
-			.and().logout()
-					.logoutUrl("/pa/logout")
-					.logoutSuccessUrl("/")
-					.deleteCookies("JSESSIONID")
-					.permitAll()
-			.and().cors()
-			.and().csrf().disable();
+	@Configuration
+	@Order(2)
+	public static class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
+		@Autowired
+		private UserDetailsService detailsService;
 
-//		http.authorizeRequests()
-//				.antMatchers("/admin/**").hasAnyRole("USER", "ADMIN")
-//				.and().formLogin()
+		public AdminSecurityConfig(){
+			super();
+		}
+
+		@Override
+		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+			auth.userDetailsService(detailsService);
+		}
+
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			http.authorizeRequests()
+					.antMatchers("/static/**").permitAll();
+
+			http.authorizeRequests()
+					.antMatchers("/admin/**").hasRole("ADMIN")
+							.and().formLogin()
+								.loginPage("/admin/login")
+										.loginProcessingUrl("/authenAdmin")
+					.usernameParameter("username")
+					.passwordParameter("password")
+												.defaultSuccessUrl("/admin/welcome")
+					.and().cors()
+					.and().csrf().disable();
+
+
+//			http.authorizeRequests()
+//					.antMatchers("/admin/**").hasRole("ADMIN")
+//					.and().formLogin()
 //					.loginPage("/admin/login")
-//					.loginProcessingUrl("/admin/authenUser")
+//					.loginProcessingUrl("/admin/authenAdmin")
 //					.usernameParameter("email")
 //					.passwordParameter("password")
 //					.defaultSuccessUrl("/admin/welcome")
 //					.permitAll()
-//				.and().logout()
+//					.and().logout()
 //					.logoutUrl("/admin/logout")
 //					.logoutSuccessUrl("/admin/login")
 //					.deleteCookies("JSESSIONID")
 //					.permitAll()
-//				.and().cors()
-//				.and().csrf().disable();
+//					.and().cors()
+//					.and().csrf().disable();
 
+		}
 	}
+
 
 	@Bean
 	public HttpFirewall configureFirewall(){
