@@ -38,7 +38,6 @@
     <div class="cart-left w-3/4 px-3">
       <table class="items-list w-full">
         <tr class="items-list-header">
-          <td class="items-list-header-col col-count">STT</td>
           <td class="items-list-header-col col-imge">Ảnh sản phẩm</td>
           <td class="items-list-header-col col-name">Tên sản phẩm</td>
           <td class="items-list-header-col col-unitPrice">Đơn giá</td>
@@ -50,116 +49,53 @@
             </svg>
           </td>
         </tr>
-        <tr class="items-list-item">
-          <td class="item-count">
-            1
-          </td>
-          <td class="item-image-wrapper">
-            <figure class="item-image">
-              <img src="../imgs/aboutus_demo_cover_photo.jpg" alt="">
-            </figure>
-          </td>
-          <td class="item-name">
-            <a href="product_detail.html" class="item-link">
-              Gucci beng 2022
-            </a>
-          </td>
-          <td class="item-unitPrice">
-                                <span>
-                                    300.000
-                                </span>
-            <span>
+          <th:block th:each="cartDetail: ${cartDetailList}">
+              <tr class="items-list-item">
+                  <input type="hidden" class="item-id" th:value="${cartDetail.bag.bagId}">
+                  <td class="item-image-wrapper">
+                      <figure class="item-image">
+                          <img th:src="'data:image/png;base64,' + ${cartDetail.bag.bagCategory.coverPhoto}" alt="">
+                      </figure>
+                  </td>
+                  <td class="item-name">
+                      <a th:href="@{/products/product/{categoryId}(categoryId=${cartDetail.bag.bagId})}" class="item-link" th:text="${cartDetail.bag.bagCategory.name}"></a>
+                  </td>
+                  <td class="item-unitPrice">
+                                <span th:text="${@priceConvert.chuyenMoney(cartDetail.bag.price)}"></span>
+                      <span>
                                     &#8363
                                 </span>
-          </td>
-          <td class="item-quantity">
-            <div class="item-quantity-wrapper">
-              <button class="item-quantity-btn quantity-minus">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
-                  <path d="M5 11h14v2H5z"></path>
-                </svg>
-              </button>
-              <span class="item-quantity">
-                                        1
-                                    </span>
-              <button class="item-quantity-btn quantity-add">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
-                  <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
-                </svg>
-              </button>
-            </div>
-          </td>
-          <td class="item-totalPrice">
-                                <span>
-                                    300.000
-                                </span>
-            <span>
+                  </td>
+                  <td class="item-quantity">
+                      <div class="item-quantity-wrapper">
+                          <button class="item-quantity-btn quantity-minus">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
+                                  <path d="M5 11h14v2H5z"></path>
+                              </svg>
+                          </button>
+                          <span class="item-quantity" th:text="${cartDetail.bagQty}"></span>
+                          <button class="item-quantity-btn quantity-add">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
+                                  <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                              </svg>
+                          </button>
+                      </div>
+                  </td>
+                  <td class="item-totalPrice">
+                                <span th:text="${@priceConvert.chuyenMoney(cartDetail.bagQty * cartDetail.bag.price)}"></span>
+                      <span>
                                     &#8363
                                 </span>
-          </td>
-          <td>
-            <button class="item-deleteBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
-                <path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path>
-              </svg>
-            </button>
-          </td>
-        </tr>
-        <tr class="items-list-item">
-          <td class="item-count">
-            1
-          </td>
-          <td class="item-image-wrapper">
-            <figure class="item-image">
-              <img src="../imgs/aboutus_demo_cover_photo.jpg" alt="">
-            </figure>
-          </td>
-          <td class="item-name">
-            <a href="product_detail.html" class="item-link">
-              Gucci beng 2022
-            </a>
-          </td>
-          <td class="item-unitPrice">
-                                <span>
-                                    300.000
-                                </span>
-            <span>
-                                    &#8363
-                                </span>
-          </td>
-          <td class="item-quantity">
-            <div class="item-quantity-wrapper">
-              <button class="item-quantity-btn quantity-minus">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
-                  <path d="M5 11h14v2H5z"></path>
-                </svg>
-              </button>
-              <span class="item-quantity">
-                                        1
-                                    </span>
-              <button class="item-quantity-btn quantity-add">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
-                  <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
-                </svg>
-              </button>
-            </div>
-          </td>
-          <td class="item-totalPrice">
-                                <span>
-                                    300.000
-                                </span>
-            <span>
-                                    &#8363
-                                </span>
-          </td>
-          <td>
-            <button class="item-deleteBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
-                <path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path>
-              </svg>
-            </button>
-          </td>
-        </tr>
+                  </td>
+                  <td>
+                      <button class="item-deleteBtn">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
+                              <path d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"></path><path d="M9 10h2v8H9zm4 0h2v8h-2z"></path>
+                          </svg>
+                      </button>
+                  </td>
+              </tr>
+          </th:block>
       </table>
     </div>
     <div class="cart-right w-1/4 px-3 py-3 sticky top-0 right-0 bg-slate-200 rounded-md">
@@ -168,24 +104,19 @@
                             <span class="cart-totalQuantity-title">
                                 Số danh mục
                             </span>
-          <span class="cart-totalQuantity font-medium">
-                                2
-                            </span>
+          <span class="cart-totalQuantity font-medium" th:text="${cartDetailNum}"></span>
         </div>
         <div class="cart-totalQuantity-container w-full mb-5 flex flex-row justify-between items-center">
                             <span class="cart-totalQuantity-title">
                                 Tổng số lượng
                             </span>
-          <span class="cart-totalQuantity font-medium">
-                                2
-                            </span>
+                            <span class="cart-totalQuantity font-medium" th:text="${cartHeader.totalQuantity}"></span>
         </div>
         <div class="cart-totalDue-container w-full mb-5 flex flex-row justify-between items-center">
                             <span class="cart-totalDue-title">
                                 Tổng tiền
                             </span>
-          <span class="cart-totalDue font-medium text-red-600">
-                                600.000
+          <span class="cart-totalDue font-medium text-red-600" th:text="${@priceConvert.chuyenMoney(cartHeader.totalPrice)}">
                                 &#8363
                             </span>
         </div>
