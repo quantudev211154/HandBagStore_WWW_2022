@@ -1,14 +1,11 @@
 package com.g9.handbagstore.controller;
 
-import com.g9.handbagstore.config.MyUserDetail;
-import com.g9.handbagstore.entity.User;
-import com.g9.handbagstore.service.UserService;
-import com.g9.handbagstore.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.g9.handbagstore.service.UserService;
 
 @Controller
 public class LoginController {

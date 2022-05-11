@@ -36,6 +36,7 @@ public class UserSession {
             }
 
             model.addAttribute("userLastName", currentUser.getLastName());
-        }
+            model.addAttribute("userID", currentUser.getCustomerId());
+        } 
     }
 }

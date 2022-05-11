@@ -87,6 +87,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="product-info-container order-1 md:order-2 lg:order-2 w-full md:w-1/3 lg:w-1/3 h-auto pl-5 py-3 relative md:sticky lg:sticky md:top-0 lg:top-0 md:right-0 lg:right-0">
             <div class="product-info-top flex flex-col flex-wrap">
                 <input type="hidden" id="currentBagCategory" th:value="${bagCategory.bagCategoryId}">
@@ -99,6 +100,7 @@
                 <p class="text-slate-800">
                     Các màu:
                 </p>
+                
                 <div class="product-info-colors w-full mt-3 flex flex-row justify-start items-center flex-wrap">
 
                 </div>
@@ -117,7 +119,7 @@
                                 <path d="M5 11h14v2H5z"></path>
                             </svg>
                         </button>
-                        <span class="inline-block quantity font-bold w-16 text-center">1</span>
+                        <span class="inline-block quantity font-bold w-16 text-center" >1</span>
                         <button class="product-quantity-add">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1)"
                                  class="svg-icon icon-add">
@@ -127,19 +129,29 @@
                     </div>
                 </div>
                 <div class="product-buyOptions-container mt-8 flex flex-col justify-start items-start">
-                    <button class="product-buyOption product-addToCart">
-                        Thêm vào giỏ hàng
-                    </button>
-                    <div class="product-alert">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                             class="svg-icon product-alert-icon">
-                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
-                        </svg>
-                        <p class="product-alert-title">
-                            Đã thêm sản phẩm vào giỏ hàng của bạn
-                        </p>
-                    </div>
-
+                
+                	<form action="#" class="w-full" th:action="@{/products/product/add_to_cart}" method="post">
+                		<input type="hidden" name="orderQuantity" class="orderQuantity" value="" />
+                		<input type="hidden" value="" class="selectedColor" name="bagID"/>
+                		<input type="hidden" th:value="${userID}" name="cusID"/>
+                		<input type="hidden" th:value="${bagCategory.bagCategoryId}" name="bagCateID"/>
+                		
+	                    <button type="submit" class="product-buyOption product-addToCart">
+	                        Thêm vào giỏ hàng
+	                    </button>
+                	</form>
+                	
+                	<div th:if="${param.added != null}">
+	                	<div class="product-alert active">
+	                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+	                             class="svg-icon product-alert-icon">
+	                            <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1.999 14.413-3.713-3.705L7.7 11.292l2.299 2.295 5.294-5.294 1.414 1.414-6.706 6.706z"></path>
+	                        </svg>
+	                        <p class="product-alert-title">
+	                            Đã thêm sản phẩm vào giỏ hàng của bạn
+	                        </p>
+	                    </div>
+                	</div>
                 </div>
             </div>
         </div>
@@ -158,5 +170,6 @@
 <!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
 <script src="/script_customer/header_footer-control.js"></script>
 <script src="/script_customer/product_detail.js"></script>
+<script src="/script_customer/product_to_cart.js"></script>
 </body>
 </html>
