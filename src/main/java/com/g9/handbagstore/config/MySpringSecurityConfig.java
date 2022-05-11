@@ -27,15 +27,9 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/css_customer/**").permitAll()
-			.antMatchers("/js/**").permitAll()
-			.antMatchers("/fonts/**").permitAll()
-			.antMatchers("/css/**").permitAll()
-			.antMatchers("/static/**").permitAll()
 			.antMatchers("/static/**").permitAll();
 		
 		http.authorizeRequests()
-			.antMatchers("/admin/**").hasRole("ADMIN")
 			.antMatchers("/products/product/add_to_cart/**").hasAnyRole("USER", "ADMIN")
 				.antMatchers("/cart/**").hasAnyRole("USER", "ADMIN")
 			.and().formLogin()
@@ -52,6 +46,24 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
 					.permitAll()
 			.and().cors()
 			.and().csrf().disable();
+
+//		http.authorizeRequests()
+//				.antMatchers("/admin/**").hasAnyRole("USER", "ADMIN")
+//				.and().formLogin()
+//					.loginPage("/admin/login")
+//					.loginProcessingUrl("/admin/authenUser")
+//					.usernameParameter("email")
+//					.passwordParameter("password")
+//					.defaultSuccessUrl("/admin/welcome")
+//					.permitAll()
+//				.and().logout()
+//					.logoutUrl("/admin/logout")
+//					.logoutSuccessUrl("/admin/login")
+//					.deleteCookies("JSESSIONID")
+//					.permitAll()
+//				.and().cors()
+//				.and().csrf().disable();
+
 	}
 
 	@Bean

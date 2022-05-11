@@ -178,21 +178,14 @@ function canChangeQuantityWhenClikingQuantityBtn(quantity, isMinusBtn) {
     };
     orderQuantityInputElement.value = quantityElement.innerText;
 })();
-/*;(function(){
-    const buyOptionsContainer = document.querySelector('.product-buyOptions-container') as HTMLDivElement
-    const addToCartBtn = document.querySelector('.product-addToCart') as HTMLButtonElement
-    const productAlert = document.querySelector('.product-alert') as HTMLDivElement
-
-    addToCartBtn.onclick = function(){
-        if (!productAlert.classList.contains('active')){
-            productAlert.classList.add('active')
-
-            setTimeout(function(){
-                productAlert.classList.remove('active')
-            }, 2000)
-        }
+(function () {
+    var productAlert = document.querySelector('.product-alert');
+    if (productAlert.classList.contains("active")) {
+        setTimeout(function () {
+            productAlert.classList.remove('active');
+        }, 3000);
     }
-})()*/
+})();
 function convertFromIntToString(source) {
     var tmp = '';
     var count = 0;

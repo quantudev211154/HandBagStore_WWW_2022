@@ -4,7 +4,8 @@
   "description": "<h1 style=\"color:#0f96b8\">\r     HandBagStore_V1 Doc\r </h1>",
   "main": "index.js",
   "scripts": {
-    "tailwind_customer": "tailwind -i src/main/resources/static/css_customer/init.css -o src/main/resources/static/css_customer/__base.css --watch"
+    "tailwind_customer": "tailwind -i src/main/resources/static/css_customer/init.css -o src/main/resources/static/css_customer/__base.css --watch",
+    "tailwind_admin": "tailwind -i src/main/resources/static/css_admin/init.css -o src/main/resources/static/css_admin/__base.css --watch"
   },
   "repository": {
     "type": "git",

@@ -220,21 +220,15 @@ function canChangeQuantityWhenClikingQuantityBtn(quantity: number, isMinusBtn: b
 	orderQuantityInputElement.value = quantityElement.innerText
 })()
 
-/*;(function(){
-    const buyOptionsContainer = document.querySelector('.product-buyOptions-container') as HTMLDivElement
-    const addToCartBtn = document.querySelector('.product-addToCart') as HTMLButtonElement
+;(function(){
     const productAlert = document.querySelector('.product-alert') as HTMLDivElement
 
-    addToCartBtn.onclick = function(){
-        if (!productAlert.classList.contains('active')){
-            productAlert.classList.add('active')
-
-            setTimeout(function(){
-                productAlert.classList.remove('active')
-            }, 2000)
-        }
+    if (productAlert.classList.contains("active")){
+        setTimeout(function (){
+            productAlert.classList.remove('active')
+        }, 3000)
     }
-})()*/
+})()
 
 function convertFromIntToString(source: string): string{
     var tmp = ''

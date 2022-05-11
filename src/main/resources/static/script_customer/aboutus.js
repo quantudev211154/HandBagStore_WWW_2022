@@ -27,9 +27,9 @@ function renderAllDevInfoToHtml(devArr) {
 ;
 (function () {
     var dev1 = new Developer('../imgs/aboutus_demo_cover_photo.jpg', true, 'Phạm Quan Tú', '19482831', 'DHKTMPM15A', 'quantu211154@gmail.com', 'https://github.com/quantudev211154');
-    var dev2 = new Developer('../imgs/aboutus_demo_cover_photo.jpg', false, 'Nguyễn Chí Hiếu', '19482831', 'DHKTMPM15A', 'quantu211154@gmail.com', 'https://github.com/quantudev211154');
-    var dev3 = new Developer('../imgs/aboutus_demo_cover_photo.jpg', false, 'Nguyễn Thanh Hoài', '19482831', 'DHKTMPM15A', 'quantu211154@gmail.com', 'https://github.com/quantudev211154');
-    var dev4 = new Developer('../imgs/aboutus_demo_cover_photo.jpg', false, 'Vương Ánh Lâm', '19482831', 'DHKTMPM15A', 'quantu211154@gmail.com', 'https://github.com/quantudev211154');
+    var dev2 = new Developer('../imgs/aboutus_demo_cover_photo.jpg', false, 'Nguyễn Chí Hiếu', '19521341', 'DHKTMPM15B', 'quantu211154@gmail.com', 'https://github.com/nubmaster-69');
+    var dev3 = new Developer('../imgs/aboutus_demo_cover_photo.jpg', false, 'Nguyễn Thanh Hoài', '19492501', 'DHKTMPM15A', 'thanhhoai160518@gmail.com', 'https://github.com/nth090801');
+    var dev4 = new Developer('../imgs/aboutus_demo_cover_photo.jpg', false, 'Vương Ánh Lâm', '19489221', 'DHKTMPM15A', 'lamdavid821@gmail.com', 'https://github.com/lamzuong');
     var devArr = new Array(dev1, dev2, dev3, dev4);
     var mainWrapper = document.querySelector('.main__wrapper');
     mainWrapper.innerHTML = renderAllDevInfoToHtml(devArr);
