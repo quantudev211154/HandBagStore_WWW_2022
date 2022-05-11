@@ -14,16 +14,16 @@
             Đăng nhập
         </p>
         <div class="w-full mt-5">
-            <form th:action="@{/admin/authenUser}" method="post">
+            <form th:action="@{/authenAdmin}" method="post">
                 <div class="w-full mb-3 flex flex-col justify-start items-start">
                     <span class="mb-1 text-lg font-medium">Tên đăng nhập</span>
-                    <input type="text" autofocus
+                    <input type="text" autofocus name="username"
                            class="w-full px-5 py-2 text-lg rounded-md mb-1 outline-none border-2 border-slate-500 bg-white transition-all duration-200 focus:border-blue-600">
                     <span></span>
                 </div>
                 <div class="w-full mb-3 flex flex-col justify-start items-start">
                     <span class="mb-1 text-lg font-medium">Mật khẩu</span>
-                    <input type="password"
+                    <input type="password" name="password"
                            class="w-full px-5 py-2 text-lg rounded-md mb-1 outline-none border-2 border-slate-500 bg-white transition-all duration-200 focus:border-blue-600">
                     <span></span>
                 </div>
