@@ -20,19 +20,22 @@ public class UserSession {
 
         return user;
     }
+
     public static void getLoggedUserInfo(UserService userService, Model model){
         User currentUser = getCurrentUser(userService);
 
-        String tmpAvatar = userService.getUserByUserName(currentUser.getUsername()).getAvatar();
+        if (currentUser != null){
+            String tmpAvatar = userService.getUserByUserName(currentUser.getUsername()).getAvatar();
 
-        String avatar = (tmpAvatar != null)
-                ? tmpAvatar
-                : "";
+            String avatar = (tmpAvatar != null)
+                    ? tmpAvatar
+                    : "";
 
-        if (!avatar.isEmpty()){
-            model.addAttribute("userAvatar", "data:image/png;base64," + avatar);
+            if (!avatar.isEmpty()){
+                model.addAttribute("userAvatar", "data:image/png;base64," + avatar);
+            }
+
+            model.addAttribute("userLastName", currentUser.getLastName());
         }
-
-        model.addAttribute("userLastName", currentUser.getLastName());
     }
 }

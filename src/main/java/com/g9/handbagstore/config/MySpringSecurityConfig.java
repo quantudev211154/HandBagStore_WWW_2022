@@ -36,7 +36,8 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests()
 			.antMatchers("/admin/**").hasRole("ADMIN")
-			.antMatchers("/welcome/**").hasAnyRole("USER", "ADMIN")
+			.antMatchers("/products/product/add_to_cart/**").hasAnyRole("USER", "ADMIN")
+				.antMatchers("/cart/**").hasAnyRole("USER", "ADMIN")
 			.and().formLogin()
 					.loginPage("/login")
 					.loginProcessingUrl("/authenUser")
@@ -45,33 +46,22 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		            .defaultSuccessUrl("/")
 	                .permitAll()
 			.and().logout()
+					.logoutUrl("/pa/logout")
+					.logoutSuccessUrl("/")
 					.deleteCookies("JSESSIONID")
 					.permitAll()
 			.and().cors()
 			.and().csrf().disable();
 	}
 
-//	@Override
-//	public void configure(WebSecurity webSecurity) throws Exception {
-//		webSecurity.ignoring().antMatchers("/resources/**");
-//	}
-
 	@Bean
 	public HttpFirewall configureFirewall(){
 		StrictHttpFirewall strictHttpFirewall = new StrictHttpFirewall();
-
-//		strictHttpFirewall.setAllowedHttpMethods(Arrays.asList("GET", "POST", "DELETE", "OPTIONS"));
-//		strictHttpFirewall.setAllowBackSlash(true);
 		strictHttpFirewall.setAllowUrlEncodedDoubleSlash(true);
 		strictHttpFirewall.setAllowUrlEncodedSlash(true);
 
 		return strictHttpFirewall;
 	}
-//
-//	@Bean
-//	public RequestRejectedHandler requestRejectedHandler(){
-//		return new HttpStatusRequestRejectedHandler();
-//	}
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {

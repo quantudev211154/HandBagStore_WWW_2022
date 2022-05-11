@@ -170,7 +170,7 @@
                         </tr>
                         <th:block th:each="cartDetail: ${cartDetailList}">
                             <tr class="bottom-list-item">
-                                <td class="bottom-name">
+                                <td class="bottom-name py-3">
                                     <a th:href="@{/products/product/{categoryId}(categoryId=${cartDetail.bag.bagId})}" class="bottom-link"
                                     th:text="${cartDetail.bag.bagCategory.name}"></a>
                                 </td>
