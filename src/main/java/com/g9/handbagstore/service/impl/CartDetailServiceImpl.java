@@ -49,5 +49,4 @@ public class CartDetailServiceImpl implements CartDetailService {
 	public void deleteCartDetailByCartHeaderIdAndBagId(int cartID, int bagID) {
 		cartDetailRepository.deleteCartDetailByCartHeaderIdAndBagId(cartID, bagID);
 	}
-	
 }

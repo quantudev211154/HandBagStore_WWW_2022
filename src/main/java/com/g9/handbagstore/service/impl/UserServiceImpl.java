@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
 		newUser.setPassword(new BCryptPasswordEncoder().encode(newUser.getPassword()));
 		userRepo.save(newUser);
 	}
+
+	@Override
+	public User getUserByUserID(int userID) {
+		return userRepo.findById(userID).get();
+	}
 }

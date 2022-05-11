@@ -1,5 +1,6 @@
 package com.g9.handbagstore.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,17 +9,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.g9.handbagstore.entity.Bag;
 import com.g9.handbagstore.entity.BagCategory;
+import com.g9.handbagstore.entity.CartDetail;
+import com.g9.handbagstore.entity.CartHeader;
 import com.g9.handbagstore.service.BagCategoryService;
 import com.g9.handbagstore.service.UserService;
 import com.g9.handbagstore.service.impl.BagServiceImpl;
+import com.g9.handbagstore.service.impl.CartDetailServiceImpl;
+import com.g9.handbagstore.service.impl.CartHeaderServiceImpl;
+import com.g9.handbagstore.service.impl.UserServiceImpl;
 
 @Controller
 @RequestMapping("/products")
 public class ProductsController {
+	
     @Autowired
     private UserService userService;
 
@@ -28,6 +37,14 @@ public class ProductsController {
     @Autowired
     private BagCategoryService bagCategoryService;
     
+    @Autowired
+	private CartHeaderServiceImpl cartHeaderServiceImpl;
+
+	@Autowired
+	private CartDetailServiceImpl cartDetailServiceImpl;
+	
+	@Autowired
+	private UserServiceImpl userServiceImpl;
 
     @GetMapping("/all")
     public String showAllProducts(Model model){
@@ -89,4 +106,52 @@ public class ProductsController {
         return "/view_customer/product_detail";
     }
 
+
+    @PostMapping("/product/add_to_cart")
+	public String addToCart(
+			@RequestParam int cusID, @RequestParam int orderQuantity,
+			@RequestParam int bagID, @RequestParam int bagCateID
+	) {
+
+		CartHeader cartHeader = cartHeaderServiceImpl.getCartHeaderByID(cusID);
+		Bag bag = bagServiceImpl.getBagByID(bagID);
+		
+		if(cartHeader != null) {
+			CartDetail cartDetail = cartDetailServiceImpl.getCartDetailByCartHeaderIdAndBagId(cusID, bagID);
+			
+			if(cartDetail != null)
+				cartDetail.setBagQty(cartDetail.getBagQty() + orderQuantity);
+			else
+				cartDetail = new CartDetail(cartHeader, bag, orderQuantity);
+				
+			cartDetailServiceImpl.addOrUpdateCartDetail(cartDetail);
+
+			cartHeader
+					.setTotalPrice(cartHeader.getTotalPrice()
+							.add(bag.getPrice().multiply(new BigDecimal(orderQuantity))));
+
+			cartHeader.setTotalQuantity(cartHeader.getTotalQuantity() + orderQuantity);
+
+			cartHeaderServiceImpl.addOrUpdateCartHeader(cartHeader);
+		}
+		else {
+			cartHeader = new CartHeader(new BigDecimal(0), 0, userServiceImpl.getUserByUserID(cusID));
+			CartDetail cartDetail = new CartDetail(cartHeader, bag, orderQuantity);
+			
+			cartDetailServiceImpl.addOrUpdateCartDetail(cartDetail);
+
+			cartHeader
+					.setTotalPrice(cartHeader.getTotalPrice()
+							.add(bag.getPrice().multiply(new BigDecimal(orderQuantity))));
+
+			cartHeader.setTotalQuantity(cartHeader.getTotalQuantity() + orderQuantity);
+
+			cartHeaderServiceImpl.addOrUpdateCartHeader(cartHeader);
+		}
+		
+		bag.setQuantity(bag.getQuantity() - orderQuantity);
+		bagServiceImpl.addOrUpdateBag(bag);
+		
+		return "redirect:/products/product/" + bagCateID + "?added";
+	}
 }

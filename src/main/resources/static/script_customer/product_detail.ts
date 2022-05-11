@@ -26,7 +26,8 @@ function renderBagColorListToBtn(bag: object): string{
             }
 
             getInfoOfBagByIdAndRenderToHtml(data[0]['bagId'])
-
+			setSelectedColor(data[0]['bagId'])
+			
             animateForColorButton()
         })
 })()
@@ -155,6 +156,7 @@ function animateForColorButton(): void{
     }
 
     const productsColorList = document.getElementsByClassName('product-color') as HTMLCollection
+	
 
     productsColorList[0].classList.add('active')
 
@@ -163,12 +165,18 @@ function animateForColorButton(): void{
 
         tmpBtn.onclick = function(){
             resetStatusOfProductColorBtn(productsColorList)
-
+			
             tmpBtn.classList.add('active')
+			setSelectedColor(tmpBtn.value)
 
             getInfoOfBagByIdAndRenderToHtml(parseInt(tmpBtn.value))
         }
     }
+}
+
+function setSelectedColor(bagID : String) {
+	const selectedColor = document.querySelector('.selectedColor') as HTMLInputElement 
+	selectedColor.value = bagID + ""
 }
 
 function canChangeQuantityWhenClikingQuantityBtn(quantity: number, isMinusBtn: boolean): boolean{
@@ -183,17 +191,18 @@ function canChangeQuantityWhenClikingQuantityBtn(quantity: number, isMinusBtn: b
     const minusBtn = document.querySelector('.product-quantity-subtract') as HTMLButtonElement
     const plusBtn = document.querySelector('.product-quantity-add') as HTMLButtonElement
     const quantityElement = document.querySelector('.quantity') as HTMLSpanElement
-
+	const orderQuantityInputElement = document.querySelector('.orderQuantity') as HTMLInputElement
+	
     minusBtn.onclick = function(e: Event){
         let quantity: number = parseInt(quantityElement.innerText)
 
         if (canChangeQuantityWhenClikingQuantityBtn(quantity, true)){
             quantityElement.innerText = --quantity + ''
+			orderQuantityInputElement.value = quantityElement.innerText		
         }
         else{
             e.preventDefault()
         }
-
     }
 
     plusBtn.onclick = function(e: Event){
@@ -201,14 +210,17 @@ function canChangeQuantityWhenClikingQuantityBtn(quantity: number, isMinusBtn: b
 
         if (canChangeQuantityWhenClikingQuantityBtn(quantity, false)){
             quantityElement.innerText = ++quantity + ''
+			orderQuantityInputElement.value = quantityElement.innerText
         }
         else{
             e.preventDefault()
         }
     }
+
+	orderQuantityInputElement.value = quantityElement.innerText
 })()
 
-;(function(){
+/*;(function(){
     const buyOptionsContainer = document.querySelector('.product-buyOptions-container') as HTMLDivElement
     const addToCartBtn = document.querySelector('.product-addToCart') as HTMLButtonElement
     const productAlert = document.querySelector('.product-alert') as HTMLDivElement
@@ -222,7 +234,7 @@ function canChangeQuantityWhenClikingQuantityBtn(quantity: number, isMinusBtn: b
             }, 2000)
         }
     }
-})()
+})()*/
 
 function convertFromIntToString(source: string): string{
     var tmp = ''

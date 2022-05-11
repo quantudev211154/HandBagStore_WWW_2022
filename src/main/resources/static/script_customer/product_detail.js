@@ -49,6 +49,7 @@ function renderBagColorListToBtn(bag) {
             productColorsList.innerHTML += renderBagColorListToBtn(data[i]);
         }
         getInfoOfBagByIdAndRenderToHtml(data[0]['bagId']);
+        setSelectedColor(data[0]['bagId']);
         animateForColorButton();
     });
 })();
@@ -131,12 +132,17 @@ function animateForColorButton() {
         tmpBtn.onclick = function () {
             resetStatusOfProductColorBtn(productsColorList);
             tmpBtn.classList.add('active');
+            setSelectedColor(tmpBtn.value);
             getInfoOfBagByIdAndRenderToHtml(parseInt(tmpBtn.value));
         };
     };
     for (var i = 0; i < productsColorList.length; ++i) {
         _loop_2(i);
     }
+}
+function setSelectedColor(bagID) {
+    var selectedColor = document.querySelector('.selectedColor');
+    selectedColor.value = bagID + "";
 }
 function canChangeQuantityWhenClikingQuantityBtn(quantity, isMinusBtn) {
     if (isMinusBtn) {
@@ -149,10 +155,12 @@ function canChangeQuantityWhenClikingQuantityBtn(quantity, isMinusBtn) {
     var minusBtn = document.querySelector('.product-quantity-subtract');
     var plusBtn = document.querySelector('.product-quantity-add');
     var quantityElement = document.querySelector('.quantity');
+    var orderQuantityInputElement = document.querySelector('.orderQuantity');
     minusBtn.onclick = function (e) {
         var quantity = parseInt(quantityElement.innerText);
         if (canChangeQuantityWhenClikingQuantityBtn(quantity, true)) {
             quantityElement.innerText = --quantity + '';
+            orderQuantityInputElement.value = quantityElement.innerText;
         }
         else {
             e.preventDefault();
@@ -162,25 +170,29 @@ function canChangeQuantityWhenClikingQuantityBtn(quantity, isMinusBtn) {
         var quantity = parseInt(quantityElement.innerText);
         if (canChangeQuantityWhenClikingQuantityBtn(quantity, false)) {
             quantityElement.innerText = ++quantity + '';
+            orderQuantityInputElement.value = quantityElement.innerText;
         }
         else {
             e.preventDefault();
         }
     };
+    orderQuantityInputElement.value = quantityElement.innerText;
 })();
-(function () {
-    var buyOptionsContainer = document.querySelector('.product-buyOptions-container');
-    var addToCartBtn = document.querySelector('.product-addToCart');
-    var productAlert = document.querySelector('.product-alert');
-    addToCartBtn.onclick = function () {
-        if (!productAlert.classList.contains('active')) {
-            productAlert.classList.add('active');
-            setTimeout(function () {
-                productAlert.classList.remove('active');
-            }, 2000);
+/*;(function(){
+    const buyOptionsContainer = document.querySelector('.product-buyOptions-container') as HTMLDivElement
+    const addToCartBtn = document.querySelector('.product-addToCart') as HTMLButtonElement
+    const productAlert = document.querySelector('.product-alert') as HTMLDivElement
+
+    addToCartBtn.onclick = function(){
+        if (!productAlert.classList.contains('active')){
+            productAlert.classList.add('active')
+
+            setTimeout(function(){
+                productAlert.classList.remove('active')
+            }, 2000)
         }
-    };
-})();
+    }
+})()*/
 function convertFromIntToString(source) {
     var tmp = '';
     var count = 0;

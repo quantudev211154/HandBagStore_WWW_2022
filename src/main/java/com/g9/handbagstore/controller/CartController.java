@@ -1,19 +1,19 @@
 package com.g9.handbagstore.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.g9.handbagstore.entity.CartDetail;
 import com.g9.handbagstore.entity.CartHeader;
 import com.g9.handbagstore.entity.User;
 import com.g9.handbagstore.service.CartDetailService;
 import com.g9.handbagstore.service.CartHeaderService;
 import com.g9.handbagstore.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/cart")
