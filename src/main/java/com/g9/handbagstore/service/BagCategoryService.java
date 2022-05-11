@@ -15,4 +15,5 @@ public interface BagCategoryService {
 	List<BagCategory> getBagCategoriesOrderByNameFromZ2A();
 	List<BagCategory> getBagCategoriesOrderByPriceAsc();
 	List<BagCategory> getBagCategoriesOrderByPriceDesc();
+	List<BagCategory> getBagCategoriesByNewestDate();
 }

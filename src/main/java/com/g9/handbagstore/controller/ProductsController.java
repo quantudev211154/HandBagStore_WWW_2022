@@ -89,7 +89,16 @@ public class ProductsController {
 
     @GetMapping("/newest")
     public String showNewestProducts(Model model){
+    	UserSession.getLoggedUserInfo(userService, model);
 
+        List<BagCategory> listBagCategory = bagCategoryService.getBagCategoriesByNewestDate();
+
+        List<String> bagCatePriceList = bagServiceImpl.listPrice(listBagCategory);
+        
+        model.addAttribute("resultSize", listBagCategory.size());
+        model.addAttribute("pageTitle", "Tất cả sản phẩm");
+        model.addAttribute("listProducts", listBagCategory);
+        model.addAttribute("listProductsPrice", bagCatePriceList); 
         return "view_customer/all_products";
     }
 
