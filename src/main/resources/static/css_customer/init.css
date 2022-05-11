@@ -795,11 +795,6 @@ input[type="search"]::-webkit-search-results-decoration {
     items-center md:items-start lg:items-start
 }
 
-.aboutus_container .main__wrapper::-webkit-scrollbar{
-    @apply
-    hidden
-}
-
 .aboutus_container .main__wrapper .main-content{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     @apply
