@@ -24,6 +24,9 @@ public interface BagCategoryRepository extends JpaRepository<BagCategory, Intege
 	
 	@Query(value = "from BagCategory order by name desc")
 	List<BagCategory> getBagCategoriesOrderByNameFromZ2A();
+	
+	@Query(value = "from BagCategory order by import_date desc")
+	List<BagCategory> getBagCategoriesByNewestDate();
 
 //	@Query("select min(Bag.price) from BagCategory join Bag on BagCategory.bagCategoryId = Bag.bagCategory.bagCategoryId")
 //	double getMinPriceOfBagCategory(@Param("bagCategoryId") int bagCategoryId);
