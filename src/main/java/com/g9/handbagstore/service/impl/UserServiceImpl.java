@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
 	public User getUserByUserID(int userID) {
 		return userRepo.findById(userID).get();
 	}
+
+	@Override
+	public void updateOldUser(User user) {
+		userRepo.save(user);
+	}
 }

@@ -28,7 +28,7 @@
     px-3 sm:px-4 md:px-10 lg:px-32
     py-4
     z-2 ">
-    <form action="" method="post">
+    <form action="/pa/save" method="post" enctype="multipart/form-data">
         <div class="pa relative w-full h-full flex flex-row justify-between items-start">
             <div class="pa-left h-full px-3 bg-white w-1/4 border-r-[1px] border-slate-300 flex flex-col justify-start items-start sticky top-0 left-0">
                 <div class="pa-left-top-wrapper w-full flex-shrink-0">
@@ -91,7 +91,7 @@
                                              class="w-full h-full object-cover rounded-full">
                                     </figure>
                                     <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 flex-shrink-0 flex flex-row items-center justify-center">
-                                        <input type="file" value="Cập nhật avatar" id="changeAvatar" class="hidden flex-shrink-0">
+                                        <input type="file" value="Cập nhật avatar" id="changeAvatar" class="hidden flex-shrink-0" name="avatar">
                                         <label for="changeAvatar" title="Cập nhật avatar của bạn"
                                                class="text-sm text-blue-600 bg-slate-200 cursor-pointer w-6 h-6 flex flex-row items-center justify-center rounded-full hover:bg-slate-300">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);" class="transform scale-75">
@@ -100,6 +100,7 @@
                                         </label>
                                     </div>
                                 </div>
+                                <input type="hidden" th:value="${currentUser.customerId}" name="customerId">
                                 <div class="personalinfo-top-right w-3/4 pl-3">
                                     <div class="personalinfo-comp">
                                         <div class="personalinfo-comp-title">
@@ -108,7 +109,7 @@
                                             </p>
                                         </div>
                                         <div class="personalinfo-comp-main personalinfo-firstName">
-                                            <input type="text" placeholder="VD: Võ Thị Trà" class="personalinfo-comp-main-input input-firstName" th:value="${currentUser.firstName}">
+                                            <input type="text" placeholder="VD: Võ Thị Trà" class="personalinfo-comp-main-input input-firstName" th:value="${currentUser.firstName}" name="firstName">
                                             <span class="personalinfo-comp-main-noti noti-firstName">
 
                                                 </span>
@@ -121,7 +122,7 @@
                                             </p>
                                         </div>
                                         <div class="personalinfo-comp-main personalinfo-lastName">
-                                            <input type="text" placeholder="VD: My" class="personalinfo-comp-main-input input-lastName" th:value="${currentUser.lastName}">
+                                            <input type="text" placeholder="VD: My" class="personalinfo-comp-main-input input-lastName" th:value="${currentUser.lastName}" name="lastName">
                                             <span class="personalinfo-comp-main-noti noti-lastName">
 
                                                 </span>
@@ -137,7 +138,7 @@
                                         </p>
                                     </div>
                                     <div class="personalinfo-comp-main personalinfo-address">
-                                        <input type="text" placeholder="VD: Số 68, Đường 17, P.Bình Chiều, TP.Thủ Đức" class="personalinfo-comp-main-input input-address" th:value="${currentUser.address}">
+                                        <input type="text" placeholder="VD: Số 68, Đường 17, P.Bình Chiều, TP.Thủ Đức" class="personalinfo-comp-main-input input-address" th:value="${currentUser.address}" name="address">
                                         <span class="personalinfo-comp-main-noti noti-address">
 
                                             </span>
@@ -150,13 +151,17 @@
                                         </p>
                                     </div>
                                     <div class="personalinfo-comp-main personalinfo-address">
-                                        <select class="personalinfo-comp-main-input input-gender" th:if="${currentUser.gender} == null" th:value="">
-                                            <option value=""></option>
+                                        <select class="personalinfo-comp-main-input input-gender" th:if="${currentUser.gender} == null" th:value="" name="gender">
+                                            <option value="" selected></option>
                                             <option value="Nam">Nam</option>
                                             <option value="Nữ">Nữ</option>
                                         </select>
-                                        <select class="personalinfo-comp-main-input input-gender" th:unless="${currentUser.gender} == null" th:value="${currentUser.gender}">
+                                        <select class="personalinfo-comp-main-input input-gender" th:unless="${currentUser.gender} == null" th:if="${currentUser.gender} == 'Nữ'" name="gender">
                                             <option value="Nam">Nam</option>
+                                            <option value="Nữ" selected>Nữ</option>
+                                        </select>
+                                        <select class="personalinfo-comp-main-input input-gender" th:unless="${currentUser.gender} == null" th:if="${currentUser.gender} == 'Nam'" name="gender">
+                                            <option value="Nam" selected>Nam</option>
                                             <option value="Nữ">Nữ</option>
                                         </select>
                                     </div>
@@ -174,14 +179,14 @@
                         <div class="pa-right-main py-3 w-full flex-col justify-start items-start">
                             <div class="importantinfo-comp">
                                 <p class="importantinfo-comp importantinfo-comp-title">Địa chỉ email</p>
-                                <input type="text" placeholder="VD: 0358434915" class="importantinfo-comp importantinfo-comp-input input-phone" th:value="${currentUser.email}">
+                                <input type="text" placeholder="VD: 0358434915" class="importantinfo-comp importantinfo-comp-input input-phone" th:value="${currentUser.email}" name="email">
                                 <span class="importantinfo-comp importantinfo-comp-noti noti-phone">
 
                                     </span>
                             </div>
                             <div class="importantinfo-comp">
                                 <p class="importantinfo-comp importantinfo-comp-title">Số điện thoại</p>
-                                <input type="text" placeholder="VD: 0358434915" class="importantinfo-comp importantinfo-comp-input input-phone" th:value="${currentUser.phone}">
+                                <input type="text" placeholder="VD: 0358434915" class="importantinfo-comp importantinfo-comp-input input-phone" th:value="${currentUser.phone}" name="phone">
                                 <span class="importantinfo-comp importantinfo-comp-noti noti-phone">
 
                                     </span>
