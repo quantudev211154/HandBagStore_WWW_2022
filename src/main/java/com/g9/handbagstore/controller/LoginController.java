@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.g9.handbagstore.entity.User;
 import com.g9.handbagstore.service.UserService;
 
 @Controller
@@ -14,10 +15,16 @@ public class LoginController {
 	
 	@GetMapping("/")
 	public String welcomePage(Model model) {
+		
+		User user = UserSession.getCurrentUser(userService);
+		
+		if(user != null && user.getRole().equalsIgnoreCase("admin"))
+			return "/view_admin/index";
+		
 		UserSession.getLoggedUserInfo(userService, model);
 
 		model.addAttribute("pageTitle", "G9 Bag Store");
-
+			
 		return "view_customer/index";
 	}
 	
