@@ -25,4 +25,6 @@ public class LoginController {
 	public String loginPage() {
 		return "view_customer/login";
 	}
+
+
 }

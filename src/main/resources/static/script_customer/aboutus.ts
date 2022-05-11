@@ -112,30 +112,30 @@ function renderAllDevInfoToHtml(devArr: Developer[]): string{
         '../imgs/aboutus_demo_cover_photo.jpg',
         false,
         'Nguyễn Chí Hiếu',
-        '19482831',
-        'DHKTMPM15A',
+        '19521341',
+        'DHKTMPM15B',
         'quantu211154@gmail.com',
-        'https://github.com/quantudev211154'
+        'https://github.com/nubmaster-69'
         )
 
     let dev3 = new Developer(
         '../imgs/aboutus_demo_cover_photo.jpg',
         false,
         'Nguyễn Thanh Hoài',
-        '19482831',
+        '19492501',
         'DHKTMPM15A',
-        'quantu211154@gmail.com',
-        'https://github.com/quantudev211154'
+        'thanhhoai160518@gmail.com',
+        'https://github.com/nth090801'
         )
 
     let dev4 = new Developer(
         '../imgs/aboutus_demo_cover_photo.jpg',
         false,
         'Vương Ánh Lâm',
-        '19482831',
+        '19489221',
         'DHKTMPM15A',
-        'quantu211154@gmail.com',
-        'https://github.com/quantudev211154'
+        'lamdavid821@gmail.com',
+        'https://github.com/lamzuong'
         )
     
     let devArr: Developer[] = new Array(dev1, dev2, dev3, dev4)
