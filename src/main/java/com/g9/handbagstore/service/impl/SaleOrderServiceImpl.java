@@ -34,4 +34,19 @@ public class SaleOrderServiceImpl implements SaleOrderService {
 	public void addOrUpdateSaleOrder(SaleOrder saleOrder) {
 		saleOrderRepo.save(saleOrder);
 	}
+
+	@Override
+	public List<SaleOrder> getSaleOrderByStatus(short status) {
+		return saleOrderRepo.getSaleOrderByStatus(status);
+	}
+
+	@Override
+	public List<SaleOrder> getSaleOrderToday(int day, int month, int year) {
+		return saleOrderRepo.getSaleOrderToday(day, month, year);
+	}
+
+	@Override
+	public List<SaleOrder> getSaleOrderThisMonth(int month, int year) {
+		return saleOrderRepo.getSaleOrderThisMonth(month, year);
+	}
 }

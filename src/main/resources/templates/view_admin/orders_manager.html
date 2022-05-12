@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${pageTitle}"></title>
-    <link rel="stylesheet" href="css_admin/__base.css">
+    <link rel="stylesheet" href="/css_admin/__base.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 </head>
 <body>
@@ -125,19 +125,19 @@
                             </svg>
                         </div>
                         <div class="admin-order-viewOptions z-50 absolute top-8 left-0 transition-all duration-200 flex flex-col justify-start items-start px-2 py-2 w-56 border border-slate-400 shadow-lg rounded-md bg-white opacity-0 invisible">
-                            <a href="" class="admin-order-view-option">
+                            <a href="/admin/all" class="admin-order-view-option">
                                 Tất cả đơn hàng
                             </a>
-                            <a href="" class="admin-order-view-option">
+                            <a href="/admin/processingOrders" class="admin-order-view-option">
                                 Đơn hàng mới
                             </a>
-                            <a href="" class="admin-order-view-option">
+                            <a href="/admin/shippingOrders" class="admin-order-view-option">
                                 Đơn hàng đang giao
                             </a>
-                            <a href="" class="admin-order-view-option">
+                            <a href="/admin/shippedOrders" class="admin-order-view-option">
                                 Đơn hàng đã giao
                             </a>
-                            <a href="" class="admin-order-view-option">
+                            <a href="/admin/cancelledOrders" class="admin-order-view-option">
                                 Đơn hàng đã huỷ
                             </a>
                         </div>
@@ -177,46 +177,49 @@
                         <td class="w-2/12">Tổng tiền</td>
                         <td class="w-1/12 rounded-tr-md">Trạng thái</td>
                     </tr>
+                    <th:block th:each="order: ${orderList}">
                     <tr class="border-b border-slate-300 text-center">
                         <td class="h-full pt-1 flex flex-row justify-start items-center">
                             <a href="" class="mr-2 px-2 py-2 rounded-md bg-blue-500 text-white transition-all hover:bg-blue-600">
                                 Xem
                             </a>
-                            <a href="" class="px-2 py-2 rounded-md bg-red-500 text-white transition-all hover:bg-red-600">
+                            <a href="" th:if="${order.status} == 1" class="px-2 py-2 rounded-md bg-red-500 text-white transition-all hover:bg-red-600"
+                            onclick="if(!(confirm('Bạn có chắc sẽ hủy đơn hàng không?'))) return false;"
+                            th:href="@{/admin/cancelOrders/{saleOrderId}(saleOrderId=${order.saleOrderId})}">
                                 Huỷ
                             </a>
                         </td>
-                        <td>1</td>
-                        <td>23</td>
-                        <td class="py-3">Đỗ Văn Tài</td>
-                        <td>03625362312</td>
-                        <td>11-12-2020 11:30:29</td>
+                        <td th:text="${order.saleOrderId}"></td>
+                        <td th:text="${order.customer.customerId}"></td>
+                        <td class="py-3" th:text="${order.customer.firstName} + ' ' + ${order.customer.lastName}"></td>
+                        <td th:text="${order.phone}"></td>
+                        <td th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></td>
                         <td>
-                            <span>3.000.000</span>
+                            <span th:text="${order.totalDue}"></span>
                             <span class="ml-1">&#8363</span>
                         </td>
-                        <td>
-                                <span class="inline-block w-24 py-2 text-sm font-medium text-white rounded-md bg-green-600">
-                                    Đã giao
-                                </span>
+                        <td th:if="${order.status} == 4">
+                            <span class="inline-block w-24 py-2 text-sm font-medium text-white rounded-md bg-green-600">
+                                Đã giao
+                            </span>
                         </td>
-                        <!-- <td>
+                        <td th:if="${order.status} == 3">
                             <span class="inline-block w-24 py-2 text-sm font-medium text-white rounded-md bg-red-600">
                                 Đã huỷ
                             </span>
                         </td>
-                        <td>
+                        <td th:if="${order.status} == 2">
                             <span class="inline-block w-24 py-2  text-sm font-medium text-white rounded-md bg-blue-600">
                                 Đang giao
                             </span>
                         </td>
-                        <td>
+                        <td th:if="${order.status} == 1">
                             <span class="inline-block w-24 py-2 text-sm font-medium text-white rounded-md bg-yellow-600">
                                 Chờ xử lí
                             </span>
-                        </td> -->
+                        </td>
                     </tr>
-
+					</th:block>
                 </table>
             </div>
             <div class="mt-6">
@@ -238,8 +241,8 @@
 </div>
 
 <!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER-->
-<script src="script_admin/header.js"></script>
-<script src="script_admin/orders_manager.js" defer></script>
-<script src="script_admin/orders-chart.js"></script>
+<script src="/script_admin/header.js"></script>
+<script src="/script_admin/orders_manager.js" defer></script>
+<script src="/script_admin/orders-chart.js"></script>
 </body>
 </html>
