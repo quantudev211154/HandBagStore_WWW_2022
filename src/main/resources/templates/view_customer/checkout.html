@@ -6,6 +6,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${pageTitle}"></title>
     <link rel="stylesheet" href="/css_customer/__base.css">
+    <script src="/script_customer/bootstrap.min.js.js"></script>
+    <script src="/script_customer/popper.min.js"></script>
+    <script src="/script_customer/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            function checkHoTen() {
+                let x = $("#txtHoTen").val()
+                if (x.trim()===''){
+                    $("#tbHoTen").html("Họ tên không được để trống");
+                    return false;
+                }
+                $("#tbHoTen").html("(*)");
+                return true;
+            }
+            function checkSDT() {
+                let x = $("#txtSDT").val()
+                let regex = /^(0)\d{9}$/
+                if (x.trim()==='') {
+                    $("#tbSDT").html("Số điện thoại không được để trống")
+                    return false
+                }
+                if (!regex.test(x)) {
+                    $("#tbSDT").html("Số điện thọai phải 10 ký số bắt đầu bắt số 0")
+                    return false
+                }
+                $("#tbSDT").html("(*)")
+                return true
+            }
+            function checkDiaChi() {
+                let x = $("#txtDiaChi").val()
+                if (x.trim()===''){
+                    $("#tbDiaChi").html("Địa chỉ không được để trống");
+                    return false;
+                }
+                $("#tbDiaChi").html("(*)");
+                return true;
+            }
+            function Luu() {
+                if (!checkHoTen() || !checkSDT() || !checkDiaChi()) {
+                    alert("Vui lòng nhập đủ thông tin")
+                    return false
+                }
+                return true
+            }
+            $("#txtHoTen").blur(checkHoTen)
+            $("#txtSDT").blur(checkSDT)
+            $("#txtDiaChi").blur(checkDiaChi)
+            $("#btnDatMua").click(Luu)
+        })
+    </script>
 </head>
 <body>
 <!-- START HEADER -->
@@ -53,12 +103,12 @@
                     <div class="customer-component customer-name">
                         <p class="customer-title customer-title-name">
                             3.1. Họ tên khách hàng
-                            <span class="customer-title-required">
+                            <span class="customer-title-required" id="tbHoTen">
                                     (*)
                                 </span>
                         </p>
                         <input type="text" placeholder="VD: Võ Thị Trà My" checked class="customer-input customer-name-input"
-                        th:value="${user.firstName} + ' ' + ${user.lastName}">
+                        th:value="${user.firstName} + ' ' + ${user.lastName}" id="txtHoTen">
                         <p class="customer-info-noti customer-name-noti">
 
                         </p>
@@ -66,12 +116,12 @@
                     <div class="customer-component customer-phone">
                         <p class="customer-title customer-title-phone">
                             3.2. Số điện thoại liên lạc
-                            <span class="customer-title-required">
+                            <span class="customer-title-required" id="tbSDT">
                                     (*)
                                 </span>
                         </p>
                         <input type="text" placeholder="VD: 0358434915" class="customer-input customer-phone-input"
-                        th:value="${user.phone}" name="phone">
+                        th:value="${user.phone}" name="phone" id="txtSDT">
                         <p class="customer-info-noti customer-phone-noti">
 
                         </p>
@@ -79,11 +129,11 @@
                     <div class="customer-component customer-address">
                         <p class="customer-title customer-title-address">
                             3.3. Địa chỉ nhận hàng
-                            <span class="customer-title-required">
+                            <span class="customer-title-required" id="tbDiaChi">
                                     (*)
                                 </span>
                         </p>
-                        <input type="text" placeholder="VD: Số 68, đường 17, KP.5, P.Bình Chiểu, Tp.Thủ Đức" class="customer-input customer-address-input" th:value="${user.address}" name="address">
+                        <input type="text" placeholder="VD: Số 68, đường 17, KP.5, P.Bình Chiểu, Tp.Thủ Đức" class="customer-input customer-address-input" th:value="${user.address}" name="address" id="txtDiaChi">
                         <p class="customer-info-noti customer-address-noti">
 
                         </p>
@@ -98,7 +148,7 @@
                             Hãy kiểm tra hàng được giao trước khi thanh toán cho shipper.
                         </p>
                         
-                        <button class="buyButton-btn">
+                        <button class="buyButton-btn" id="btnDatMua">
                              Đặt mua
                         </button>
                         

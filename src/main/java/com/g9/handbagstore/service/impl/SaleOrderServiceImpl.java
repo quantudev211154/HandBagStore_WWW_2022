@@ -26,7 +26,7 @@ public class SaleOrderServiceImpl implements SaleOrderService {
 	}
 
 	@Override
-	public SaleOrder getSaleOrderBySaleOrderID(String saleOrderID) {
+	public SaleOrder getSaleOrderBySaleOrderID(int saleOrderID) {
 		return saleOrderRepo.getSaleOrderBySaleOrderID(saleOrderID);
 	}
 
