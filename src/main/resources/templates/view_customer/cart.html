@@ -53,6 +53,7 @@
           <th:block th:each="cartDetail: ${cartDetailList}">
               <tr class="items-list-item">
                   <input type="hidden" class="item-id" th:value="${cartDetail.bag.bagId}">
+                  <input type="hidden" class="cart-header-id" th:value="${cartDetail.cartHeader.customer.customerId}">
                   <td class="item-image-wrapper">
                       <figure class="item-image">
                           <img th:src="'data:image/png;base64,' + ${cartDetail.bag.bagCategory.coverPhoto}" alt="">
