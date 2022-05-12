@@ -28,7 +28,7 @@
     px-3 sm:px-4 md:px-10 lg:px-32
     py-4
     z-2 ">
-    <form action="/pa/save" method="post" enctype="multipart/form-data">
+    <form action="/pa/account/save" method="post" enctype="multipart/form-data">
         <div class="pa relative w-full h-full flex flex-row justify-between items-start">
             <div class="pa-left h-full px-3 bg-white w-1/4 border-r-[1px] border-slate-300 flex flex-col justify-start items-start sticky top-0 left-0">
                 <div class="pa-left-top-wrapper w-full flex-shrink-0">
@@ -38,12 +38,12 @@
                         </div>
                         <div class="pa-userinfo-right flex flex-col justify-between flex-1 items-start ml-3">
                             <span class="text-slate-700 text-sm">Tài khoản của</span>
-                            <span class="font-medium text-lg" th:text="${currentUser.firstName} + ' ' + ${currentUser.lastName}">Phạm Quan Tú</span>
+                            <span class="font-medium text-lg" th:text="${currentUser.firstName} + ' ' + ${currentUser.lastName}"></span>
                         </div>
                     </div>
                 </div>
                 <div class="pa-left-bot-wrapper w-full h-full flex-1 mt-2">
-                    <a href="/" class="pa-left-bot-comp pa-account bg-slate-200">
+                    <a href="/pa/account" class="pa-left-bot-comp pa-account bg-slate-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
                             <path d="M7.5 6.5C7.5 8.981 9.519 11 12 11s4.5-2.019 4.5-4.5S14.481 2 12 2 7.5 4.019 7.5 6.5zM20 21h1v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h17z"></path>
                         </svg>
@@ -51,7 +51,7 @@
                                 Thông tin tài khoản
                             </span>
                     </a>
-                    <a href="/" class="pa-left-bot-comp pa-order">
+                    <a href="/pa/orders/processingOrders" class="pa-left-bot-comp pa-order">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
                             <path d="M22 8a.76.76 0 0 0 0-.21v-.08a.77.77 0 0 0-.07-.16.35.35 0 0 0-.05-.08l-.1-.13-.08-.06-.12-.09-9-5a1 1 0 0 0-1 0l-9 5-.09.07-.11.08a.41.41 0 0 0-.07.11.39.39 0 0 0-.08.1.59.59 0 0 0-.06.14.3.3 0 0 0 0 .1A.76.76 0 0 0 2 8v8a1 1 0 0 0 .52.87l9 5a.75.75 0 0 0 .13.06h.1a1.06 1.06 0 0 0 .5 0h.1l.14-.06 9-5A1 1 0 0 0 22 16V8zm-10 3.87L5.06 8l2.76-1.52 6.83 3.9zm0-7.72L18.94 8 16.7 9.25 9.87 5.34zM4 9.7l7 3.92v5.68l-7-3.89zm9 9.6v-5.68l3-1.68V15l2-1v-3.18l2-1.11v5.7z"></path>
                         </svg>

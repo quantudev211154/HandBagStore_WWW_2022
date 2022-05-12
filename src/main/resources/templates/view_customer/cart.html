@@ -38,7 +38,7 @@
     <div class="cart-left w-3/4 px-3">
       <table class="items-list w-full">
         <tr class="items-list-header">
-          <td class="items-list-header-col col-imge">Ảnh sản phẩm</td>
+          <td class="items-list-header-col col-imge">Ảnh minh hoạ</td>
           <td class="items-list-header-col col-name">Tên sản phẩm</td>
             <td class="items-list-header-col col-color">Màu sắc</td>
           <td class="items-list-header-col col-unitPrice">Đơn giá</td>
@@ -125,10 +125,13 @@
                                 &#8363
                             </span>
         </div>
-        <div class="cart-buy-container w-full">
-          <a href="/checkout/all" class="cart-buy-btn block text-center w-full py-4 bg-pink-600 text-white rounded-md transition-all transform hover:bg-pink-700 focus:scale-95">
+        <div class="cart-buy-container w-full flex flex-col justify-start items-center">
+          <a href="/checkout/all" th:if="${cartDetailNum} != 0" class="cart-buy-btn block text-center w-full py-4 bg-blue-600 text-white rounded-md transition-all transform hover:bg-blue-700 focus:scale-95">
             Mua hàng
           </a>
+            <a href="/checkout/clearAll" th:if="${cartDetailNum} != 0" class="cart-buy-btn block mt-3 text-center w-full py-4 bg-red-600 text-white rounded-md transition-all transform hover:bg-red-700 focus:scale-95">
+                Xoá hết sản phẩm trong giỏ
+            </a>
         </div>
       </div>
     </div>

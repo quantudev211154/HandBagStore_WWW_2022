@@ -70,13 +70,11 @@ function setAnimationWhenFirstLoadingPage(): void {
 	function validateUserInput(username: String, password: String) {
 		if (username === '') {
 			emailInput.focus()
-			emailInput.blur()
 			return false
 		}
 
 		if (password === '') {
 			passwordInput.focus()
-			passwordInput.blur()
 			return false
 		}
 
