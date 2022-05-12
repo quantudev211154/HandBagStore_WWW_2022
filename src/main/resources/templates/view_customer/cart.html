@@ -125,11 +125,14 @@
                                 &#8363
                             </span>
         </div>
-        <div class="cart-buy-container w-full flex flex-col justify-start items-center">
-          <a href="/checkout/all" th:if="${cartDetailNum} != 0" class="cart-buy-btn block text-center w-full py-4 bg-blue-600 text-white rounded-md transition-all transform hover:bg-blue-700 focus:scale-95">
+        
+        <div class="cart-buy-container w-full flex flex-col justify-start items-center" th:if="${cartDetailNum} != 0">
+          <a href="/checkout/all" class="cart-buy-btn block text-center w-full py-4 bg-blue-600 text-white rounded-md transition-all transform hover:bg-blue-700 focus:scale-95">
             Mua hàng
           </a>
-            <a href="/checkout/clearAll" th:if="${cartDetailNum} != 0" class="cart-buy-btn block mt-3 text-center w-full py-4 bg-red-600 text-white rounded-md transition-all transform hover:bg-red-700 focus:scale-95">
+            <a th:href="@{/cart/clear}" 
+            onclick="return confirm('Bạn có chắc muốn xoá giỏ hàng?')"
+            class="cart-buy-btn block mt-3 text-center w-full py-4 bg-red-600 text-white rounded-md transition-all transform hover:bg-red-700 focus:scale-95">
                 Xoá hết sản phẩm trong giỏ
             </a>
         </div>

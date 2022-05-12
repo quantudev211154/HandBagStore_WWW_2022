@@ -205,8 +205,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
+		return "User [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", gender=" + gender + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar
-				+ "]";
+				+ ", username=" + username + ", password=" + password + ", role=" + role + ", enabled=" + enabled + "]";
 	}
 }

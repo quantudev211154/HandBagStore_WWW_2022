@@ -37,7 +37,7 @@ function setAnimationWhenFirstLoadingPage() {
     emailInput.addEventListener('blur', function () {
         if (emailInput.value.trim() === '') {
             emailInput.parentElement.classList.add('error');
-            emailInput.nextElementSibling.textContent = 'Username không được để trống!';
+            emailInput.nextElementSibling.textContent = 'Tên đăng nhập không được để trống!';
         }
         else {
             emailInput.parentElement.classList.remove('error');
@@ -47,7 +47,7 @@ function setAnimationWhenFirstLoadingPage() {
     passwordInput.addEventListener('blur', function () {
         if (passwordInput.value.trim() === '') {
             passwordInput.parentElement.classList.add('error');
-            passwordInput.nextElementSibling.textContent = 'Password không được để trống!';
+            passwordInput.nextElementSibling.textContent = 'Mật  khẩu không được để trống!';
         }
         else {
             passwordInput.parentElement.classList.remove('error');
