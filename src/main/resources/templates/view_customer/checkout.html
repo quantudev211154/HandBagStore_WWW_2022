@@ -22,6 +22,7 @@
 
 
 <!-- START MAIN CONTENT -->
+<form action="/checkout/done">
 <div class="
     checkout-container
     w-full
@@ -70,7 +71,7 @@
                                 </span>
                         </p>
                         <input type="text" placeholder="VD: 0358434915" class="customer-input customer-phone-input"
-                        th:value="${user.phone}">
+                        th:value="${user.phone}" name="phone">
                         <p class="customer-info-noti customer-phone-noti">
 
                         </p>
@@ -82,7 +83,7 @@
                                     (*)
                                 </span>
                         </p>
-                        <input type="text" placeholder="VD: Số 68, đường 17, KP.5, P.Bình Chiểu, Tp.Thủ Đức" class="customer-input customer-address-input" th:value="${user.address}">
+                        <input type="text" placeholder="VD: Số 68, đường 17, KP.5, P.Bình Chiểu, Tp.Thủ Đức" class="customer-input customer-address-input" th:value="${user.address}" name="address">
                         <p class="customer-info-noti customer-address-noti">
 
                         </p>
@@ -96,9 +97,11 @@
                             </svg>
                             Hãy kiểm tra hàng được giao trước khi thanh toán cho shipper.
                         </p>
+                        
                         <button class="buyButton-btn">
-                            Đặt mua
+                             Đặt mua
                         </button>
+                        
                     </div>
                 </div>
                 <div class="left-noti">
@@ -189,7 +192,7 @@
         </div>
     </div>
 </div>
-
+</form>
 <!-- END MAIN CONTENT -->
 
 <!-- START FOOTER -->

@@ -3,8 +3,10 @@ package com.g9.handbagstore.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.g9.handbagstore.entity.CartDetail;
 
@@ -15,8 +17,12 @@ public interface CartDetailRepository extends JpaRepository<CartDetail, Integer>
 	List<CartDetail> getCartDetailsByBagID(@Param("bagID") int bagID);
 	@Query("from CartDetail where cart_header_id = :cartID AND bag_id = :bagID")
 	CartDetail getCartDetailByCartHeaderIdAndBagId(@Param("cartID") int cartID, @Param("bagID") int bagID);
+	@Modifying
+	@Transactional
 	@Query("delete from CartDetail where cart_header_id = :cartID")
 	void deleteCartDetailByCartHeaderId(@Param("cartID") int cartID);
+	@Modifying
+	@Transactional
 	@Query("delete from CartDetail where cart_header_id = :cartID AND bag_id = :bagID")
 	void deleteCartDetailByCartHeaderIdAndBagId(@Param("cartID") int cartID, @Param("bagID") int bagID);
 }
