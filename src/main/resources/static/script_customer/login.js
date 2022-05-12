@@ -28,3 +28,47 @@ function setAnimationWhenFirstLoadingPage() {
         setMinHeightForLeftAndRightComponents();
     });
 })();
+;
+(function () {
+    var form = document.querySelector('.main-form');
+    var emailInput = document.querySelector('#emailInput');
+    var passwordInput = document.querySelector('#passwordInput');
+    var btnLogin = document.querySelector('#btnLogin');
+    emailInput.addEventListener('blur', function () {
+        if (emailInput.value.trim() === '') {
+            emailInput.parentElement.classList.add('error');
+            emailInput.nextElementSibling.textContent = 'Username không được để trống!';
+        }
+        else {
+            emailInput.parentElement.classList.remove('error');
+            emailInput.nextElementSibling.textContent = '';
+        }
+    });
+    passwordInput.addEventListener('blur', function () {
+        if (passwordInput.value.trim() === '') {
+            passwordInput.parentElement.classList.add('error');
+            passwordInput.nextElementSibling.textContent = 'Password không được để trống!';
+        }
+        else {
+            passwordInput.parentElement.classList.remove('error');
+            passwordInput.nextElementSibling.textContent = '';
+        }
+    });
+    form.addEventListener('submit', function (e) {
+        if (!validateUserInput(emailInput.value.trim(), passwordInput.value.trim()))
+            e.preventDefault();
+    });
+    function validateUserInput(username, password) {
+        if (username === '') {
+            emailInput.focus();
+            emailInput.blur();
+            return false;
+        }
+        if (password === '') {
+            passwordInput.focus();
+            passwordInput.blur();
+            return false;
+        }
+        return true;
+    }
+})();
