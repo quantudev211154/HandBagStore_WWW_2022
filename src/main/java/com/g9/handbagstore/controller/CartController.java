@@ -1,5 +1,6 @@
 package com.g9.handbagstore.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,19 @@ public class CartController {
 
         model.addAttribute("pageTitle", "Giỏ hàng của bạn");
         return "view_customer/cart";
+    }
+    
+    @GetMapping("/clear")
+    public String clearCart() { 
+    	User currentUser = UserSession.getCurrentUser(userService);
+    	
+    	CartHeader cartHeader = cartHeaderService.getCartHeaderByID(currentUser.getCustomerId());
+    	
+    	cartDetailService.deleteCartDetailByCartHeaderId(cartHeader.getId());
+        cartHeader.setTotalPrice(new BigDecimal(0));
+        cartHeader.setTotalQuantity(0);
+        cartHeaderService.addOrUpdateCartHeader(cartHeader);
+    	
+    	return "redirect:/cart/all";
     }
 }

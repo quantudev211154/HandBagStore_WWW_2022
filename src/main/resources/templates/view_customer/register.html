@@ -107,14 +107,14 @@
                         </p>
                     </div>
                 </div>
-                <form action="" class="main-form mt-6">
+                <form th:action="@{/register/regis}" th:object="${user}" method="post" class="main-form mt-6">
                     <div class="form-comp form-firstName">
                         <div class="title">
                             <p class="label">
                                 Họ của bạn
                             </p>
                         </div>
-                        <input type="text" placeholder="Võ Thị Trà" autofocus>
+                        <input type="text" placeholder="Võ Thị Trà" id="firstName" name="firstName" autofocus>
                         <p class="notify"></p>
                     </div>
                     <div class="form-comp form-lastName">
@@ -123,7 +123,7 @@
                                 Tên của bạn
                             </p>
                         </div>
-                        <input type="text" placeholder="Mi">
+                        <input type="text" placeholder="Mi" id="lastName" name="lastName">
                         <p class="notify"></p>
                     </div>
                     <div class="form-comp form-email">
@@ -132,14 +132,14 @@
                                 Tên đăng nhập
                             </p>
                         </div>
-                        <input type="text" placeholder="tramicute123@gmail.com">
+                        <input type="text" placeholder="VD: tramicute123" id="emailInput" name="username">
                         <p class="notify"></p>
                     </div>
                     <div class="form-comp form-pasword">
                         <p class="label">
                             Mật khẩu
                         </p>
-                        <input type="password" placeholder="*****">
+                        <input type="password" placeholder="*****" id="passwordInput" name="password" >
                         <p class="notify"></p>
                     </div>
                     <input type="submit" class="

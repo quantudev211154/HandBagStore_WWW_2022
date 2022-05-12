@@ -158,9 +158,6 @@ public class ProductsController {
 			cartHeaderServiceImpl.addOrUpdateCartHeader(cartHeader);
 		}
 		
-		bag.setQuantity(bag.getQuantity() - orderQuantity);
-		bagServiceImpl.addOrUpdateBag(bag);
-		
 		return "redirect:/products/product/" + bagCateID + "?added";
 	}
 }
