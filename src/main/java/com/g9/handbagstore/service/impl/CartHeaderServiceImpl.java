@@ -1,11 +1,13 @@
 package com.g9.handbagstore.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.g9.handbagstore.entity.CartDetail;
 import com.g9.handbagstore.entity.CartHeader;
 import com.g9.handbagstore.repository.CartHeaderRepository;
 import com.g9.handbagstore.service.CartHeaderService;
@@ -15,7 +17,7 @@ public class CartHeaderServiceImpl implements CartHeaderService {
 
 	@Autowired
 	private CartHeaderRepository cartHeaderRepo;
-	
+
 	@Override
 	public List<CartHeader> getAllCartHeader() {
 		return cartHeaderRepo.findAll();
@@ -25,7 +27,7 @@ public class CartHeaderServiceImpl implements CartHeaderService {
 	public CartHeader getCartHeaderByID(int cartHeaderID) {
 		Optional<CartHeader> result = cartHeaderRepo.findById(cartHeaderID);
 		CartHeader cartHeader = null;
-		if(result.isPresent()) {
+		if (result.isPresent()) {
 			cartHeader = result.get();
 		} else {
 			throw new RuntimeException("Did not find cart header id - " + cartHeaderID);
@@ -38,4 +40,23 @@ public class CartHeaderServiceImpl implements CartHeaderService {
 		cartHeaderRepo.save(cartHeader);
 	}
 
+	@Override
+	public void updateCartTotalPriceAndQuantity(int userID, List<CartDetail> cartDetails) {
+
+		CartHeader cartHeader = getCartHeaderByID(userID);
+
+		int totalQuantity = 0;
+		BigDecimal totalPrice = new BigDecimal(0);
+
+		for (CartDetail cartDetail : cartDetails) {
+			totalPrice = totalPrice
+					.add(cartDetail.getBag().getPrice().multiply(new BigDecimal(cartDetail.getBagQty())));
+			totalQuantity += cartDetail.getBagQty();
+		}
+			
+		cartHeader.setTotalPrice(totalPrice);
+		cartHeader.setTotalQuantity(totalQuantity);
+		
+		addOrUpdateCartHeader(cartHeader);
+	}
 }
