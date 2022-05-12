@@ -1,3 +1,82 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* START SALE ORDER PAGE */
+
+.menu.active{
+    @apply
+    top-12 opacity-100 visible z-50
+}
+
+.option{
+    @apply
+    w-full
+    px-3 py-4
+    transition-all duration-200
+    flex flex-row justify-start items-center
+    text-slate-700 font-medium rounded-md
+    border border-dashed border-transparent
+    hover:border-slate-800
+}
+
+.option svg{
+    @apply fill-slate-700 transition-all duration-200
+}
+
+.option span{
+    @apply ml-6 transition-all duration-200
+}
+
+.option:hover svg{
+    @apply fill-black
+}
+
+.option:hover span{
+    @apply text-black
+}
+
+
+.admin-order-view-option{
+    @apply
+    block w-full
+    px-3 py-3 transition-all duration-200 rounded-md
+    hover:bg-slate-300
+}
+
+.admin-order-viewOptions-icon.active{
+    @apply
+    rotate-180
+}
+
+.admin-order-viewOptions.active {
+    @apply
+    top-full opacity-100 visible mt-1
+}
+
+.search-order-suggesstion-container.active {
+    @apply
+    opacity-100 visible
+}
+
+.order-search-suggesstion{
+    @apply
+    block w-full px-3 py-3 transition-all
+    flex flex-row justify-between items-center
+    border border-dashed border-transparent
+    rounded-md
+    hover:border-slate-500
+}
+
+.order-search-suggesstion span:nth-child(3){
+    @apply
+    font-medium
+}
+
+.search-order-status{
+    @apply
+    px-3 py-1 rounded-md bg-slate-500 text-white
+}
+
+/* END SALE ORDER PAGE */
