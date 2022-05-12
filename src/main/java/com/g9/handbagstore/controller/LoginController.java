@@ -18,8 +18,13 @@ public class LoginController {
 		
 		User user = UserSession.getCurrentUser(userService);
 		
-		if(user != null && user.getRole().equalsIgnoreCase("admin"))
-			return "/view_admin/index";
+		if (user != null && user.getRole().equalsIgnoreCase("admin")){
+			UserSession.getLoggedUserInfo(userService, model);
+
+			model.addAttribute("pageTitle", "G9 - Quản lí đơn hàng");
+
+			return "/view_admin/orders_manager";
+		}
 		
 		UserSession.getLoggedUserInfo(userService, model);
 
@@ -32,6 +37,4 @@ public class LoginController {
 	public String loginPage() {
 		return "view_customer/login";
 	}
-
-
 }
