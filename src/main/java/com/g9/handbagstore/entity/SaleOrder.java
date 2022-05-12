@@ -33,12 +33,14 @@ public class SaleOrder implements Serializable {
 	private LocalDateTime orderDate;
 	@Column(name = "due_date", columnDefinition = "datetime", nullable = false)
 	private LocalDateTime dueDate;
-	@Column(name = "ship_date", columnDefinition = "datetime", nullable = false)
+	@Column(name = "ship_date", columnDefinition = "datetime")
 	private LocalDateTime shipDate;
 	@Column(name = "status", columnDefinition = "tinyint", nullable = false)
 	private short status;
 	@Column(name = "address", columnDefinition = "nvarchar(300)", nullable = false)
 	private String address;
+	@Column(name = "phone", columnDefinition = "varchar(10)", nullable = false)
+	private String phone;
 	@Column(name = "comment", columnDefinition = "nvarchar(300)")
 	private String comment;
 	@Column(name = "sub_total", columnDefinition = "money", nullable = false)
@@ -54,7 +56,7 @@ public class SaleOrder implements Serializable {
 	private List<SaleOrderDetail> listSaleOrderDetails;
 
 	public SaleOrder(int saleOrderId, User customer, LocalDateTime orderDate, LocalDateTime dueDate, LocalDateTime shipDate,
-			short status, String address, String comment, BigDecimal subTotal, BigDecimal taxVat, BigDecimal freight,
+			short status, String address, String phone, String comment, BigDecimal subTotal, BigDecimal taxVat, BigDecimal freight,
 			BigDecimal totalDue) {
 		super();
 		this.saleOrderId = saleOrderId;
@@ -64,6 +66,7 @@ public class SaleOrder implements Serializable {
 		this.shipDate = shipDate;
 		this.status = status;
 		this.address = address;
+		this.phone = phone;
 		this.comment = comment;
 		this.subTotal = subTotal;
 		this.taxVat = taxVat;
@@ -72,7 +75,7 @@ public class SaleOrder implements Serializable {
 	}
 
 	public SaleOrder(User customer, LocalDateTime orderDate, LocalDateTime dueDate, LocalDateTime shipDate, short status,
-			String address, String comment, BigDecimal subTotal, BigDecimal taxVat, BigDecimal freight,
+			String address, String phone, String comment, BigDecimal subTotal, BigDecimal taxVat, BigDecimal freight,
 			BigDecimal totalDue) {
 		super();
 		this.customer = customer;
@@ -81,6 +84,7 @@ public class SaleOrder implements Serializable {
 		this.shipDate = shipDate;
 		this.status = status;
 		this.address = address;
+		this.phone = phone;
 		this.comment = comment;
 		this.subTotal = subTotal;
 		this.taxVat = taxVat;
@@ -148,6 +152,14 @@ public class SaleOrder implements Serializable {
 		this.address = address;
 	}
 
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public String getComment() {
 		return comment;
 	}
@@ -192,7 +204,7 @@ public class SaleOrder implements Serializable {
 	public String toString() {
 		return "SaleOrder [saleOrderId=" + saleOrderId + ", customer=" + customer
 				+ ", orderDate=" + orderDate + ", dueDate=" + dueDate + ", shipDate=" + shipDate + ", status=" + status
-				+ ", address=" + address + ", comment=" + comment + ", subTotal=" + subTotal + ", taxVat=" + taxVat
+				+ ", address=" + address + ", phone=" + phone + ", comment=" + comment + ", subTotal=" + subTotal + ", taxVat=" + taxVat
 				+ ", freight=" + freight + ", totalDue=" + totalDue + "]";
 	}
 }
