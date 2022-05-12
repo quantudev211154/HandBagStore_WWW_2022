@@ -41,9 +41,7 @@
                         <p class="text-slate-900">
                             Tổng số
                         </p>
-                        <p class="text-xl font-medium">
-                            356
-                        </p>
+                        <p class="text-xl font-medium" th:text="${orderStatusTotal}"></p>
                     </div>
                 </div>
                 <div class="w-48 h-20 border border-slate-300 shadow-sm rounded-md px-3 py-3 bg-white flex flex-row justify-between items-center">
@@ -58,8 +56,7 @@
                         <p class="text-slate-900">
                             Mới
                         </p>
-                        <p class="text-xl font-medium">
-                            123
+                        <p class="text-xl font-medium" th:text="${orderStatusProcess}">
                         </p>
                     </div>
                 </div>
@@ -75,8 +72,7 @@
                         <p class="text-slate-900">
                             Đang giao
                         </p>
-                        <p class="text-xl font-medium">
-                            203
+                        <p class="text-xl font-medium" th:text="${orderStatusDelivery}">
                         </p>
                     </div>
                 </div>
@@ -92,8 +88,7 @@
                         <p class="text-slate-900">
                             Đã giao
                         </p>
-                        <p class="text-xl font-medium">
-                            172
+                        <p class="text-xl font-medium" th:text="${orderStatusShipped}">
                         </p>
                     </div>
                 </div>
@@ -109,8 +104,7 @@
                         <p class="text-slate-900">
                             Đã huỷ
                         </p>
-                        <p class="text-xl font-medium">
-                            20
+                        <p class="text-xl font-medium" th:text="${orderStatusCancel}">
                         </p>
                     </div>
                 </div>

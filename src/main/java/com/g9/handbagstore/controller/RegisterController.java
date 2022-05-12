@@ -27,6 +27,9 @@ public class RegisterController {
 	@PostMapping("/regis")
 	public String register(@ModelAttribute User user) {
 		
+		if(userServiceImpl.getUserByUserName(user.getUsername()) != null)
+			return "redirect:/register/all?error";
+		
 		user.setEmail("");
 		user.setGender("Nam");
 		user.setAddress("");
