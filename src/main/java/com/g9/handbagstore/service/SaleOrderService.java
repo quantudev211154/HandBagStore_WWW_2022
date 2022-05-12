@@ -11,5 +11,6 @@ public interface SaleOrderService {
 	void addOrUpdateSaleOrder(SaleOrder saleOrder);
 	List<SaleOrder> getSaleOrderToday(int day, int month, int year);
 	List<SaleOrder> getSaleOrderThisMonth(int month, int year);
+	List<SaleOrder> getSaleOrderThisWeek(String startOfWeek, String EndOfWeek);
 	List<SaleOrder> getSaleOrderByStatus(short status);
 }

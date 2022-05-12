@@ -18,9 +18,12 @@ public interface SaleOrderRepository extends JpaRepository<SaleOrder, Integer> {
 	@Query("from SaleOrder where status = :status_value")
 	List<SaleOrder> getSaleOrderByStatus(@Param("status_value") short status);
 	
-	@Query("from SaleOrder where DAY(s.order_date) = :day AND MONTH(order_date) = :month AND YEAR(order_date) = :year")
+	@Query("from SaleOrder where DAY(order_date) = :day AND MONTH(order_date) = :month AND YEAR(order_date) = :year")
 	List<SaleOrder> getSaleOrderToday(@Param("day") int day, @Param("month") int month, @Param("year") int year);
 	
 	@Query("from SaleOrder where MONTH(order_date) = :month AND YEAR(order_date) = :year")
 	List<SaleOrder> getSaleOrderThisMonth(@Param("month") int month, @Param("year") int year);
+	
+	@Query(value = "select * from sale_orders where order_date >= CONVERT(DATETIME, :startOfWeek) and order_date <= CONVERT(DATETIME, :EndOfWeek)", nativeQuery = true)
+	List<SaleOrder> getSaleOrderThisWeek(@Param("startOfWeek") String startOfWeek, @Param("EndOfWeek") String EndOfWeek);
 }

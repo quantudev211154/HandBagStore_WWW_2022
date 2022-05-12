@@ -49,4 +49,9 @@ public class SaleOrderServiceImpl implements SaleOrderService {
 	public List<SaleOrder> getSaleOrderThisMonth(int month, int year) {
 		return saleOrderRepo.getSaleOrderThisMonth(month, year);
 	}
+
+	@Override
+	public List<SaleOrder> getSaleOrderThisWeek(String startOfWeek, String EndOfWeek) {
+		return saleOrderRepo.getSaleOrderThisWeek(startOfWeek, EndOfWeek);
+	}
 }

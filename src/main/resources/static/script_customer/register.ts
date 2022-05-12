@@ -60,10 +60,9 @@ function setAnimationWhenFirstLoadingPage(): void {
 	})
 
 	form.addEventListener('submit', (e) => {
-
 		if (
 			!validateFirstName(firstNameInput.value.trim()) || !validateLastName(lastNameInput.value.trim()) ||
-			!validateUserName(emailInput.value.trim()) || !validatePassword(passwordInput.value.trim())
+			!validatePassword(passwordInput.value.trim()) || !validateUserName(emailInput.value.trim())
 		)
 			e.preventDefault()
 	})
@@ -100,10 +99,10 @@ function setAnimationWhenFirstLoadingPage(): void {
 
 		if (userName === '') {
 			emailInput.parentElement.classList.add('error')
-			emailInput.nextElementSibling.textContent = 'Tên đăng nhập không được để trống!'
+			emailInput.nextElementSibling.textContent = 'Tên đăng nhập không được trống!'
 			return false
 		}
-
+			
 		return true
 	}
 
