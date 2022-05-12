@@ -33,7 +33,7 @@
             <div class="pa-left h-full px-3 bg-white w-1/4 border-r-[1px] border-slate-300 flex flex-col justify-start items-start sticky top-0 left-0">
                 <div class="pa-left-top-wrapper w-full flex-shrink-0">
                     <div class="pa-userinfo w-full px-3 py-3 flex flex-row justify-start items-center">
-                        <div class="pa-userinfo-left w-11 h-11 overflow-hidden flex-shrink-0">
+                        <div class="pa-userinfo-left w-11 h-11 overflow-hidden flex-shrink-0 rounded-full border-2 border-blue-600">
                             <img th:src="${userAvatar}" alt="" class="w-full h-full object-cover rounded-full">
                         </div>
                         <div class="pa-userinfo-right flex flex-col justify-between flex-1 items-start ml-3">
@@ -86,10 +86,10 @@
                         <div class="personalinfo-main w-full py-3">
                             <div class="personalinfo-top w-full flex flex-row justify-between items-start">
                                 <div class="personalinfo-top-left relative w-1/4 h-full flex flex-row justify-between items-center">
-                                    <figure class="inline-block w-full h-28 overflow-hidden flex-1 rounded-full border-2 border-slate-400">
+                                    <div class="w-28 h-28 overflow-hidden flex-shrink-0 rounded-full border-2 border-slate-400">
                                         <img th:src="${userAvatar}" alt=""
-                                             class="w-full h-full object-cover rounded-full">
-                                    </figure>
+                                             class="w-full h-full object-cover rounded-full" id="userAva">
+                                    </div>
                                     <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 flex-shrink-0 flex flex-row items-center justify-center">
                                         <input type="file" value="Cập nhật avatar" id="changeAvatar" class="hidden flex-shrink-0" name="avatar">
                                         <label for="changeAvatar" title="Cập nhật avatar của bạn"
@@ -211,5 +211,6 @@
 
 <!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
 <script src="/script_customer/header_footer-control.js"></script>
+<script src="/script_customer/pa_account.js"></script>
 </body>
 </html>

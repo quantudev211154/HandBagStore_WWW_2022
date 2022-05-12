@@ -77,7 +77,10 @@
             flex-auto
             ">
                 <div class="login__main w-full md:w-3/5 lg:w-3/5">
-                    <div class="main-content">
+                 <div th:if="${param.error != null}">
+					<div class='text-red-500'>Invalid User name or Password!</div>	
+				</div>
+                   <!--  <div class="main-content">
                         <button type="button" class="
                         w-full
                         flex flex-row justify-center items-center
@@ -103,7 +106,7 @@
                                 Hoặc
                             </p>
                         </div>
-                    </div>
+                    </div> -->
                     <form th:action="@{/authenUser}" method="post" class="main-form mt-6">
                         <div class="form-comp form-email">
                             <div class="title">
@@ -111,7 +114,7 @@
                                     Email
                                 </p>
                             </div>
-                            <input type="text" placeholder="abc123@gmail.com" name="email" autofocus>
+                            <input type="text" placeholder="abc123@gmail.com" id="emailInput" name="email" autofocus>
                             <p class="notify">
                                 
                             </p>
@@ -131,7 +134,7 @@
                                     Quên mật khẩu
                                 </a>
                             </div>
-                            <input type="password" name="password" placeholder="*****"
+                            <input type="password" name="password" id="passwordInput" placeholder="*****"
                             class="
                             
                             "
@@ -147,8 +150,8 @@
                                     Nhớ mật khẩu
                                 </label>
                          </div>
-                        
-                        <input type="submit" class="
+                   
+                        <input type="submit" id="btnLogin" class="
                         w-full mt-3
                         py-3 md:py-3 lg:py-3
                         bg-blue-600
