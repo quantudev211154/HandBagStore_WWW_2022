@@ -78,7 +78,7 @@
             ">
                 <div class="login__main w-full md:w-3/5 lg:w-3/5">
                  <div th:if="${param.error != null}">
-					<div class='text-red-500'>Invalid User name or Password!</div>	
+					<div class='text-red-500 text-2xl text-center'>Tên đăng nhập hoặc mật khẩu không đúng!</div>
 				</div>
                    <!--  <div class="main-content">
                         <button type="button" class="
@@ -107,14 +107,14 @@
                             </p>
                         </div>
                     </div> -->
-                    <form th:action="@{/authenUser}" method="post" class="main-form mt-6">
+                    <form th:action="@{/authenUser}" method="post" class="main-form mt-10">
                         <div class="form-comp form-email">
                             <div class="title">
                                 <p class="label">
-                                    Email
+                                    Tên đăng nhập
                                 </p>
                             </div>
-                            <input type="text" placeholder="abc123@gmail.com" id="emailInput" name="email" autofocus>
+                            <input type="text" placeholder="VD: vitconlonton123" id="emailInput" name="email" autofocus>
                             <p class="notify">
                                 
                             </p>

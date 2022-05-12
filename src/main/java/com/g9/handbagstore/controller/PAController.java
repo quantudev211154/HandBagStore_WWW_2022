@@ -50,7 +50,7 @@ public class PAController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/save")
+	@PostMapping("/account/save")
 	public String saveUser(@RequestParam("customerId") String customerId, @RequestParam("firstName") String firstName,
 			@RequestParam("lastName") String lastName, @RequestParam("address") String address,
 			@RequestParam("gender") String gender, @RequestParam("email") String email,

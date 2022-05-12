@@ -56,10 +56,11 @@ public class CheckoutController {
         model.addAttribute("user", currentUser);
         model.addAttribute("cartDetailList", cartDetailList);
         model.addAttribute("cartHeader", cartHeader);
-        model.addAttribute("pageTitle", "Thanh toán");
+        model.addAttribute("pageTitle", "Tiến hành đặt hàng");
 
         return "view_customer/checkout";
     }
+
     @GetMapping("/done")
     public String showThankYouPage(Model model,
     		@RequestParam("address") String address,
@@ -75,7 +76,7 @@ public class CheckoutController {
         model.addAttribute("user", currentUser);
         model.addAttribute("cartDetailList", cartDetailList);
         model.addAttribute("cartHeader", cartHeader);
-        model.addAttribute("pageTitle", "Thanh toán");
+        model.addAttribute("pageTitle", "Uraaa! Đặt hàng thành công!");
         
         LocalDateTime orderDate = LocalDateTime.now();
 		Date dt = new Date();
@@ -112,6 +113,6 @@ public class CheckoutController {
         cartHeader.setTotalQuantity(0);
         cartHeaderService.addOrUpdateCartHeader(cartHeader);
         
-    	return "view_customer/checkout";
+    	return "/view_customer/checkout_success";
     }
 }

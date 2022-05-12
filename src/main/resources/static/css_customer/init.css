@@ -732,7 +732,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .notify{
     @apply
-    text-sm
+    text-sm pt-1
 }
 
 .form-comp.error input{
@@ -747,12 +747,12 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .form-comp.error .notify{
     @apply
-    border-red-600 bg-white
+    text-red-600 bg-white
 }
 
 .form-comp.success .notify{
     @apply
-    border-green-600 bg-white
+    text-green-600 bg-white
 }
 
 /* END LOGIN PAGE */
@@ -1785,3 +1785,14 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 /* END PA PAGE */
+
+/* START PA SHIPPING ORDER PAGE */
+.order-viewOptions.active{
+    @apply
+    z-50 visible top-14 opacity-100
+}
+
+.order-viewOptions-chevron.active{
+    @apply
+    transform rotate-180
+}

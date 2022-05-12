@@ -61,12 +61,10 @@ function setAnimationWhenFirstLoadingPage() {
     function validateUserInput(username, password) {
         if (username === '') {
             emailInput.focus();
-            emailInput.blur();
             return false;
         }
         if (password === '') {
             passwordInput.focus();
-            passwordInput.blur();
             return false;
         }
         return true;
