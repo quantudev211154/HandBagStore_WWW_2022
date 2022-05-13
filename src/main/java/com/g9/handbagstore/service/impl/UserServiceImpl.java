@@ -45,5 +45,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getUsersByRole(String role) {
 		return userRepo.getUsersByRole(role);
+ }
+  
+  @Override
+	public List<User> getUsersByGender(String gender) {
+		return userRepo.getUsersByGender(gender);
+	}
+
+	@Override
+	public List<User> searchUserALikeByKeyWord(String keyword) {
+		return userRepo.searchUserALikeByKeyWord("%" + keyword + "%");
 	}
 }

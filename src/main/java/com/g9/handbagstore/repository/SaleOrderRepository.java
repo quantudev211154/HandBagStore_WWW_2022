@@ -26,4 +26,9 @@ public interface SaleOrderRepository extends JpaRepository<SaleOrder, Integer> {
 	
 	@Query(value = "select * from sale_orders where order_date >= CONVERT(DATETIME, :startOfWeek) and order_date <= CONVERT(DATETIME, :EndOfWeek)", nativeQuery = true)
 	List<SaleOrder> getSaleOrderThisWeek(@Param("startOfWeek") String startOfWeek, @Param("EndOfWeek") String EndOfWeek);
+	
+	@Query(value = "select top 5 * from sale_orders where "
+			+ "phone like :keyword or sale_order_id like :keyword or "
+			+ "customer_id like :keyword", nativeQuery = true)
+	List<SaleOrder> getSaleOrderALikeByKeyWord(@Param("keyword") String keyword);
 }

@@ -69,9 +69,38 @@
     hover:border-slate-500
 }
 
-.order-search-suggesstion span:nth-child(3){
+.product-search-suggesstion{
     @apply
-    font-medium
+    block w-full px-3 py-3 transition-all
+    flex flex-row justify-between items-center
+    border border-dashed border-transparent
+    rounded-md
+    hover:border-slate-500
+}
+
+.search-product-cateId{
+    @apply
+    w-14 flex-shrink-0
+}
+
+.search-product-other{
+    @apply
+    flex-1 flex flex-row justify-end items-center
+}
+
+.search-product-brand{
+    @apply
+    w-36 text-center flex-shrink-0
+}
+
+.search-product-name{
+    @apply
+    flex-1
+}
+
+.product-search-suggesstion span{
+    @apply
+    px-2
 }
 
 .search-order-status{
@@ -253,3 +282,44 @@
     hover:bg-slate-200
 }
 /* END CUSTOMER MANAGER PAGE */
+
+
+/* START ADMIN ORDER DETAIL PAGE */
+
+.overrall-info-wrapper{
+    @apply
+    w-1/4 px-2 py-2
+    flex flex-col justify-start items-start
+}
+
+.overrall-info-wrapper-title{
+    @apply
+    mb-1
+}
+
+.overrall-info-input{
+    @apply
+    outline-none
+    border border-slate-600
+    pointer-events-none
+    px-5 py-3 rounded-md
+}
+
+.order-detail-button{
+    @apply
+    px-5 py-3
+    rounded-md
+    transition-all duration-200
+    text-white mr-3
+}
+
+.btn-ready{
+    @apply
+    bg-blue-600 hover:bg-blue-700
+}
+
+.btn-cancel{
+    @apply
+    bg-red-600 hover:bg-red-700
+}
+/* END ADMIN ORDER DETAIL PAGE */

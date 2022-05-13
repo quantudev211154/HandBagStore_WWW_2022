@@ -5,6 +5,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
+import com.g9.handbagstore.entity.Bag;
+import com.g9.handbagstore.entity.BagCategory;
+import com.g9.handbagstore.entity.SaleOrder;
+import com.g9.handbagstore.service.UserService;
+import com.g9.handbagstore.service.impl.BagCategoryServiceImpl;
+import com.g9.handbagstore.ultility.MyUltility;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +49,9 @@ public class AdminProductController {
     private BagService bagService;
     @Autowired
     private BagImageService bagImageService;
+    
+    @Autowired
+    private BagCategoryServiceImpl bagCategoryServiceImpl;
 
     @GetMapping("/all")
     public String showProductsManagersPage(Model model){
@@ -82,6 +94,21 @@ public class AdminProductController {
         model.addAttribute("pageTitle", "G9 - Quản lí sản phẩm");
         List<BagCategory> bagCategorieList = bagCategoryService.getAllBagCategories();
         model.addAttribute("listProducts", bagCategorieList);
+        
+        List<BagCategory> bagCategories = bagCategoryServiceImpl.getAllBagCategories();
+        addBagCateAmount(model, bagCategories);
+        model.addAttribute("bagCates", bagCategories);
+        
         return "/view_admin/products_manager";
     }
+    
+    private void addBagCateAmount(Model model, List<BagCategory> bagCategories) {
+    	 
+		List<Integer> bagCateAmount = MyUltility.getBagCateAmount(bagCategories);
+
+		model.addAttribute("bagCateTotalCate", bagCateAmount.get(0));
+		model.addAttribute("bagCateTotal", bagCateAmount.get(1));
+		model.addAttribute("bagCateInStock", bagCateAmount.get(2));
+		model.addAttribute("bagCateOutOfStock", bagCateAmount.get(3)); 
+	}
 }
