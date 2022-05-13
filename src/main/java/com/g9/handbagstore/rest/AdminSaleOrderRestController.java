@@ -58,6 +58,4 @@ public class AdminSaleOrderRestController {
 	private String dinhDangNgay(LocalDate ngay, String dinhDang) {
 		return ngay.format(DateTimeFormatter.ofPattern(dinhDang));
 	}
-	
-	
 }

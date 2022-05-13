@@ -16,4 +16,5 @@ public interface BagCategoryService {
 	List<BagCategory> getBagCategoriesOrderByPriceAsc();
 	List<BagCategory> getBagCategoriesOrderByPriceDesc();
 	List<BagCategory> getBagCategoriesByNewestDate();
+	List<BagCategory> searchBagCaterogyALikeByKeyword(String keyword);
 }

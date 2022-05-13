@@ -201,21 +201,21 @@
                     </tr>
                     <th:block th:each="order: ${orderList}">
                     <tr class="border-b border-slate-300 text-center">
-                        <td class="h-full pt-1 flex flex-row justify-start items-center">
+                        <td class="h-full pt-1 flex flex-row justify-center items-center">
                             <a href="" class="mr-2 px-2 py-2 rounded-md bg-indigo-500 text-white transition-all hover:bg-indigo-600">
                                 Xem
                             </a>
-                            <a href="" th:if="${order.status} == 1" class="px-2 py-2 rounded-md bg-red-500 text-white transition-all hover:bg-red-600"
+                            <a href="" th:if="${order.status} == 1" class="mr-2 px-2 py-2 rounded-md bg-red-500 text-white transition-all hover:bg-red-600"
                             onclick="if(!(confirm('Bạn có chắc sẽ hủy đơn hàng không?'))) return false;"
                             th:href="@{/admin/cancelOrders/{saleOrderId}(saleOrderId=${order.saleOrderId})}">
                                 Huỷ
                             </a>
-                            <a href="" th:if="${order.status} == 1" class="ml-2 px-2 py-2 rounded-md bg-blue-500 text-white transition-all hover:bg-blue-600"
+                            <a href="" th:if="${order.status} == 1" class="mr-2 ml-2 px-2 py-2 rounded-md bg-blue-500 text-white transition-all hover:bg-blue-600"
                                onclick="if(!(confirm('Bạn có chắc đã chuẩn bị xong đơn hàng này không?'))) return false;"
                                th:href="@{/admin/confirmProcessedOrders/{saleOrderId}(saleOrderId=${order.saleOrderId})}">
                                 Giao
                             </a>
-                            <a href="" th:if="${order.status} == 2" class="px-2 py-2 rounded-md bg-purple-600 text-white transition-all hover:bg-green-600"
+                            <a href="" th:if="${order.status} == 2" class="mr-2 px-2 py-2 rounded-md bg-purple-600 text-white transition-all hover:bg-green-600"
                                onclick="if(!(confirm('Bạn có chắc chắn muốn chuyển trạng thái đơn hàng từ đang giao sang đã giao không?'))) return false;"
                                th:href="@{/admin/confirmShippedOrders/{saleOrderId}(saleOrderId=${order.saleOrderId})}">
                                 Xong

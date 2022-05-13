@@ -1,6 +1,9 @@
 package com.g9.handbagstore.repository;
 
 import com.g9.handbagstore.entity.User;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -8,4 +11,13 @@ import org.springframework.data.repository.query.Param;
 public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("from User where username = :username")
 	User getUserByUserName(@Param("username") String username);
+	
+	@Query("from User where gender = :gender")
+	List<User> getUsersByGender(@Param("gender") String gender);
+	
+	@Query(value = "select top 5 * from users where "
+			+ "last_name like :keyword or "
+			+ "phone like :keyword or "
+			+ "user_id like :keyword", nativeQuery = true)
+	List<User> searchUserALikeByKeyWord(@Param("keyword") String keyword);
 }
