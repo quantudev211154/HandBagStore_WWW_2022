@@ -22,70 +22,45 @@ public class AdminCustomerController {
     public String showCustomersManagersPage(Model model){
 
         UserSession.getLoggedUserInfo(userService, model);
-        
+
         List<User> listUsers = userService.getUsersByRole("USER");
-        model.addAttribute("listUsers", listUsers);
+        model.addAttribute("users", listUsers);
 
         model.addAttribute("pageTitle", "G9 - Quản lí khách hàng");
-      
-        addUserGenderAmount(model, users);
-        model.addAttribute("users", users);
-        model.addAttribute("customerFilterOption", "Tất cả khách hàng");
-      
+        model.addAttribute("customerViewOption", "Tất cả khách hàng");
         addUserGenderAmount(model, listUsers);
-       
+
         return "/view_admin/customers_manager";
     }
-    
-//     @GetMapping("/all/gender/{gender}")
-//     public String showCustomersManagersPageByGender(Model model, @PathVariable String gender){
-    	
-//     	UserSession.getLoggedUserInfo(userService, model);
-    	
-//     	List<User> users = userService.getAllUsers();
-    	
-//     	model.addAttribute("pageTitle", "G9 - Quản lí khách hàng");
-//     	addUserGenderAmount(model, users);
-//     	model.addAttribute("users", userService.getUsersByGender(gender));
-
-//         if (gender.toLowerCase().equalsIgnoreCase("nam")){
-//             model.addAttribute("customerFilterOption", "Khách hàng nam");
-//         }
-//         else{
-//             model.addAttribute("customerFilterOption", "Khách hàng nữ");
-//         }
-    	
-//     	return "/view_admin/customers_manager";
-//     }
-    
 
     private void addUserGenderAmount(Model model, List<User> users) {
-    	List<Integer> userGenderAmount = MyUltility.getUserGenderAmount(users);
-    	model.addAttribute("userGenderTotal", userGenderAmount.get(0));
-    	model.addAttribute("userGenderMale", userGenderAmount.get(1));
-    	model.addAttribute("userGenderFemale", userGenderAmount.get(2));
+        List<Integer> userGenderAmount = MyUltility.getUserGenderAmount(users);
+        model.addAttribute("userGenderTotal", userGenderAmount.get(0));
+        model.addAttribute("userGenderMale", userGenderAmount.get(1));
+        model.addAttribute("userGenderFemale", userGenderAmount.get(2));
     }
-  
     @GetMapping("/male")
     public String showMaleCustomers(Model model){
 
         UserSession.getLoggedUserInfo(userService, model);
-        
+
         List<User> listUsers = userService.getUsersByGender("USER", "Nam");
-        model.addAttribute("listUsers", listUsers);
+        model.addAttribute("users", listUsers);
         addUserGenderAmount(model, listUsers);
         model.addAttribute("pageTitle", "G9 - Quản lí khách hàng");
+        model.addAttribute("customerViewOption", "Khách hàng nam");
         return "/view_admin/customers_manager";
     }
     @GetMapping("/female")
     public String showFemaleCustomers(Model model){
 
         UserSession.getLoggedUserInfo(userService, model);
-        
+
         List<User> listUsers = userService.getUsersByGender("USER", "Nữ");
-        model.addAttribute("listUsers", listUsers);
+        model.addAttribute("users", listUsers);
         addUserGenderAmount(model, listUsers);
         model.addAttribute("pageTitle", "G9 - Quản lí khách hàng");
+        model.addAttribute("customerViewOption", "Khách hàng nữ");
         return "/view_admin/customers_manager";
     }
 }

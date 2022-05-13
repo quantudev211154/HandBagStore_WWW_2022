@@ -107,13 +107,17 @@
 				<div class="flex flex-row justify-start items-center">
 					<div class="relative mr-3">
 						<div class="admin-customer-viewOptions-title cursor-pointer rounded-md flex flex-row justify-between items-center px-5 py-3 border-2 border-slate-600 transition-all duration-200 hover:border-blue-600">
-							<span class="font-medium mr-3 pointer-events-none" th:text="${customerViewOption}"></span>
+							<span class="font-medium mr-3 pointer-events-none" th:text="${customerFilterOption}"></span>
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);" class="admin-customer-viewOptions-icon pointer-events-none transform transition-all duration-200">
 								<path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path>
 							</svg>
 						</div>
 						<div class="admin-customer-viewOptions z-50 absolute top-8 left-0 transition-all duration-200 flex flex-col justify-start items-start px-2 py-2 w-56 border border-slate-400 shadow-lg rounded-md bg-white opacity-0 invisible">
+
+<!-- 							<a th:href="@{/admin/customers/all}" class="admin-customer-view-option"> -->
+
 							<a  href="/admin/customers/all" class="admin-customer-view-option">
+
 								Tất cả khách hàng
 							</a>
 							<a href="/admin/customers/male" class="admin-customer-view-option">
