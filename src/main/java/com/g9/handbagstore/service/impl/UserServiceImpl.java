@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService {
 	public void updateOldUser(User user) {
 		userRepo.save(user);
 	}
+
+	@Override
+	public List<User> getUsersByRole(String role) {
+		return userRepo.getUsersByRole(role);
+	}
 }

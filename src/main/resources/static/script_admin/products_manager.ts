@@ -78,24 +78,24 @@
                             <div class="prd-info-wrapper">
                                     <div class="add-comp add-comp-prd comp-color">
                                         <span class="add-comp-title add-comp-color-title">Màu sắc</span>
-                                        <input type="text" placeholder="VD: Trắng ngọc trai" class="add-comp-input add-comp-color-input">
-                                        <span class="add-comp-notify add-comp-color-notify"></span>
+                                        <input type="text" placeholder="VD: Trắng ngọc trai" class="add-comp-input add-comp-color-input" name="color" id="txtColor">
+                                        <span class="add-comp-notify add-comp-color-notify text-red-500" id="tbColor">(*)</span>
                                     </div>
                                     <div class="add-comp add-comp-prd comp-quantity">
                                         <span class="add-comp-title add-comp-quantity-title">Số lượng</span>
-                                        <input type="text" placeholder="VD: 20" class="add-comp-input add-comp-quantity-input">
-                                        <span class="add-comp-notify add-comp-quantity-notify"></span>
+                                        <input type="text" placeholder="VD: 20" class="add-comp-input add-comp-quantity-input" name="quantity" id="txtQty">
+                                        <span class="add-comp-notify add-comp-quantity-notify text-red-500" id="tbQty">(*)</span>
                                     </div>
                                     <div class="add-comp add-comp-prd comp-price">
                                         <span class="add-comp-title add-comp-price-title">Giá niêm yết</span>
-                                        <input type="text" placeholder="VD: 3000000" class="add-comp-input add-comp-price-input">
-                                        <span class="add-comp-notify add-comp-price-notify"></span>
+                                        <input type="text" placeholder="VD: 3000000" class="add-comp-input add-comp-price-input" name="price" id="txtPrice">
+                                        <span class="add-comp-notify add-comp-price-notify text-red-500" id="tbPrice">(*)</span>
                                     </div>
                                 </div>
                                 <div class="prd-images-container">
                                     <div class="prd-images-header">
                                         <span>Các ảnh của sản phẩm</span>
-                                        <input type="file" multiple class="prd-image-choose">
+                                        <input type="file" multiple class="prd-image-choose" name="listImage">
                                     </div>
                                     <div class="prd-images-wrapper">
                                             

@@ -92,4 +92,9 @@ public class BagCategoryServiceImpl implements BagCategoryService {
 	public List<BagCategory> getBagCategoriesByNewestDate() {
 		return bagCategoryRepo.getBagCategoriesByNewestDate();
 	}
+
+	@Override
+	public void addOrUpdateBagCategory(BagCategory bagCategory) {
+		bagCategoryRepo.save(bagCategory);
+	}
 }
