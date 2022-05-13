@@ -5,15 +5,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
-import com.g9.handbagstore.entity.Bag;
-import com.g9.handbagstore.entity.BagCategory;
-import com.g9.handbagstore.entity.SaleOrder;
-import com.g9.handbagstore.service.UserService;
-import com.g9.handbagstore.service.impl.BagCategoryServiceImpl;
-import com.g9.handbagstore.ultility.MyUltility;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +25,7 @@ import com.g9.handbagstore.service.BagImageService;
 import com.g9.handbagstore.service.BagService;
 import com.g9.handbagstore.service.BrandService;
 import com.g9.handbagstore.service.UserService;
+import com.g9.handbagstore.service.impl.BagCategoryServiceImpl;
 
 @Controller
 @RequestMapping("/admin/products")
@@ -60,6 +52,7 @@ public class AdminProductController {
         List<BagCategory> bagCategorieList = bagCategoryService.getAllBagCategories();
         model.addAttribute("listProducts", bagCategorieList);
         model.addAttribute("pageTitle", "G9 - Quản lí sản phẩm");
+        addBagCateAmount(model, bagCategoryServiceImpl.getAllBagCategories());
         return "/view_admin/products_manager";
     }
     @PostMapping("/save")
@@ -96,7 +89,7 @@ public class AdminProductController {
         model.addAttribute("listProducts", bagCategorieList);
         
         List<BagCategory> bagCategories = bagCategoryServiceImpl.getAllBagCategories();
-        addBagCateAmount(model, bagCategories);
+        
         model.addAttribute("bagCates", bagCategories);
         
         return "/view_admin/products_manager";
@@ -104,7 +97,12 @@ public class AdminProductController {
     
     private void addBagCateAmount(Model model, List<BagCategory> bagCategories) {
     	 
-		List<Integer> bagCateAmount = MyUltility.getBagCateAmount(bagCategories);
+		List<Integer> bagCateAmount = new ArrayList<>();
+		
+		bagCateAmount.add(bagCategories.size());
+		bagCateAmount.add(bagService.sumQuantity());
+		bagCateAmount.add(bagService.countBag());
+		bagCateAmount.add(bagService.countBagNotInStock());
 
 		model.addAttribute("bagCateTotalCate", bagCateAmount.get(0));
 		model.addAttribute("bagCateTotal", bagCateAmount.get(1));

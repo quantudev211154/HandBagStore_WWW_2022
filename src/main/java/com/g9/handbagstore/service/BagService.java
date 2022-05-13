@@ -16,4 +16,7 @@ public interface BagService {
 	List<String> listPrice(List<BagCategory> listBagCategory);
 	LinkedHashSet<Integer> getBagCategoryIdOrderByPriceAsc();
 	LinkedHashSet<Integer> getBagCategoryIdOrderByPriceDesc();
+	int countBag();
+	int countBagNotInStock();
+	int sumQuantity();
 }

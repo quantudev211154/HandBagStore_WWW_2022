@@ -23,4 +23,13 @@ public interface BagRepository extends JpaRepository<Bag, Integer>{
 	
 	@Query(value = "select bag_category_id from bags order by price desc", nativeQuery = true)
 	LinkedHashSet<Integer> getBagCategoryIdOrderByPriceDesc();
+	
+	@Query(value = "Select count(*) from bags where quantity > 0", nativeQuery = true)
+	int countBag();
+	
+	@Query(value = "Select count(*) from bags where quantity < 1", nativeQuery = true)
+	int countBagNotInStock();
+	
+	@Query(value = "select sum(quantity) from bags", nativeQuery = true)
+	int sumQuantity();
 }
