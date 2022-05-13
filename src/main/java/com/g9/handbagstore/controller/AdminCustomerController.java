@@ -24,6 +24,9 @@ public class AdminCustomerController {
 
         UserSession.getLoggedUserInfo(userService, model);
         
+        List<User> listUsers = userService.getUsersByRole("USER");
+        model.addAttribute("listUsers", listUsers);
+
         List<User> users = userService.getAllUsers();
         
         model.addAttribute("pageTitle", "G9 - Quản lí khách hàng");

@@ -161,52 +161,48 @@
 						<div
 							class="search-order-suggesstion-container opacity-0 invisible z-50 bg-white absolute top-full mt-1 w-96 border border-slate-300 shadow-md rounded-md px-1 py-1">
 
+                    </div>
+                </div>
+            </div>
+            <div class="w-full max-h-[400px] overflow-auto mt-6">
+                <table class="w-full rounded-md relative bg-white">
+                    <tr class="sticky top-0 left-0 bg-slate-200 border-b border-slate-300 text-center font-medium">
+                        <td class="w-1/12 rounded-tl-md">Mã</td>
+                        <td class="w-2/12">Họ</td>
+                        <td class="w-1/12">Tên</td>
+                        <td class="w-2/12">Email</td>
+                        <td class="w-3/12">Địa chỉ</td>
+                        <td class="w-2/12 py-3">Số điện thoại</td>
+                        <td class="w-1/12">Giới tính</td>
+                    </tr>
+                    <th:block th:each="user: ${listUsers}">
+                    <tr class="border-b border-slate-300 text-center">
+                        <td th:text="${user.customerId}"></td>
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td class="font-medium" th:text="${user.email}"></td>
+                        <td class=" py-3" th:text="${user.address}"></td>
+                        <td th:text="${user.phone}"></td>
+                        <td>
+                            <span class="inline-block w-14 font-medium py-2 text-sm text-white rounded-md bg-emerald-600" th:if="${user.gender} == 'Nữ'">Nữ</span>
+                             <span class="inline-block w-14 font-medium py-2 text-sm text-white rounded-md bg-indigo-600" th:if="${user.gender} == 'Nam'">Nam</span>
+                        </td>
+                    </tr>
+                    </th:block>
+                </table>
+            </div>
+            <div class="overlay transition-all duration-200 fixed top-0 left-0 w-screen h-screen bg-slate-500 opacity-0 invisible flex flex-row justify-center items-center">
+            </div>
+            <div class="category-container transition-all duration-200 fixed top-1/2 left-full opacity-0 invisible transform -translate-x-1/2 -translate-y-1/2 w-3/4 max-h-screen px-5 py-5 rounded-md border bg-white border-slate-400 shadow-md overflow-y-scroll">
+                <div class="w-full bg-white">
+                    <div class="w-full flex flex-row justify-end items-center">
+                        <button class="close-category-container flex flex-row justify-center items-center w-8 h-8 rounded-full bg-slate-400 transition-all duration-200 hover:bg-red-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white">
+
 						</div>
 					</div>
 				</div>
-				<div class="w-full max-h-[400px] overflow-auto mt-6">
-					<table class="w-full rounded-md relative bg-white">
-						<tr
-							class="sticky top-0 left-0 bg-slate-200 border-b border-slate-300 text-center font-medium">
-							<td class="w-1/12 rounded-tl-md">Mã</td>
-							<td class="w-2/12">Họ</td>
-							<td class="w-1/12">Tên</td>
-							<td class="w-2/12">Email</td>
-							<td class="w-3/12">Địa chỉ</td>
-							<td class="w-2/12 py-3">Số điện thoại</td>
-							<td class="w-1/12">Giới tính</td>
-						</tr>
-
-						<tr th:each="user: ${users}"
-							class="border-b border-slate-300 text-center">
-							<td th:text="${user.customerId}"></td>
-							<td th:text="${user.firstName}"></td>
-							<td th:text="${user.lastName}"></td>
-							<td th:text="${user.email}" class="font-medium"></td>
-							<td th:text="${user.address}" class=" py-3"></td>
-							<td th:text="${user.phone}"></td>
-							<td><span
-								class="inline-block w-14 font-medium py-2 text-sm text-white rounded-md bg-emerald-600" th:text="${user.gender}"></span>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<div
-					class="overlay transition-all duration-200 fixed top-0 left-0 w-screen h-screen bg-slate-500 opacity-0 invisible flex flex-row justify-center items-center">
-				</div>
-				<div
-					class="category-container transition-all duration-200 fixed top-1/2 left-full opacity-0 invisible transform -translate-x-1/2 -translate-y-1/2 w-3/4 max-h-screen px-5 py-5 rounded-md border bg-white border-slate-400 shadow-md overflow-y-scroll">
-					<div class="w-full bg-white">
-						<div class="w-full flex flex-row justify-end items-center">
-							<button
-								class="close-category-container flex flex-row justify-center items-center w-8 h-8 rounded-full bg-slate-400 transition-all duration-200 hover:bg-red-600">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-									class="fill-white">
-                                <path
-										d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
-                            </svg>
-							</button>
-						</div>
+				
 						<div
 							class="add-wrapper w-full h-full flex flex-row justify-between items-center">
 							<div class="w-3/4 px-3 flex flex-col justify-start items-start">

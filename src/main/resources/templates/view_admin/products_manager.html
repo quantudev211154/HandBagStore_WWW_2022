@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title th:text="${pageTitle}"></title>
   <link rel="stylesheet" href="/css_admin/__base.css">
+  <script src="/script_customer/bootstrap.min.js"></script>
+  <script src="/script_customer/popper.min.js"></script>
+  <script src="/script_customer/jquery-3.6.0.min.js"></script>
+  
 </head>
 <body class="bg-[#f9fafb]">
 
@@ -180,55 +184,57 @@
             <td class="w-1/12 py-3">Cân nặng</td>
             <td class="w-2/12">Hãng sản xuất</td>
           </tr>
-          <tr class="border-b border-slate-300 text-center" th:each="bagCate: ${bagCates}">
+          <th:block th:each="product: ${listProducts}">
+          <tr class="border-b border-slate-300 text-center">
             <td class="h-full pt-1 flex flex-row justify-center items-center">
               <a href="" class="mr-2 px-2 py-2 rounded-md bg-blue-500 text-white transition-all hover:bg-blue-600">
                 Xem
               </a>
             </td>
-            <td th:text="${bagCate.bagCategoryId}"></td>
-            <td class="py-3" th:text="${bagCate.name}"></td>
-            <td th:text="${bagCate.importDate}"></td>
-            <td th:text="${bagCate.size}"></td>
-            <td th:text="${bagCate.weight} + ' Kg'"></td>
-            <td th:text="${bagCate.getBrandName()}"> 
-            </td>
+            <td th:text="${product.bagCategoryId}"></td>
+            <td class="py-3" th:text="${product.name}"></td>
+            <td th:text="${#temporals.format(product.importDate, 'dd-MM-yyyy')}">12-02-2021</td>
+            <td th:text="${product.size}"></td>
+            <td th:text="${product.weight} + ' kg'"></td>
+            <td th:text="${product.brand.name}"></td>
           </tr>
-
+		  </th:block>	
         </table>
       </div>
+      <form action="/admin/products/save" enctype="multipart/form-data" method="POST">
       <div class="overlay transition-all duration-200 fixed top-0 left-0 w-screen h-screen bg-slate-500 opacity-0 invisible flex flex-row justify-center items-center">
       </div>
       <div class="category-container transition-all duration-200 fixed top-1/2 left-full opacity-0 invisible transform -translate-x-1/2 -translate-y-1/2 w-3/4 max-h-screen px-5 py-5 rounded-md border bg-white border-slate-400 shadow-md overflow-y-scroll">
         <div class="w-full bg-white">
           <div class="w-full flex flex-row justify-end items-center">
-            <button class="close-category-container flex flex-row justify-center items-center w-8 h-8 rounded-full bg-slate-400 transition-all duration-200 hover:bg-red-600">
+            <button type="button" class="close-category-container flex flex-row justify-center items-center w-8 h-8 rounded-full bg-slate-400 transition-all duration-200 hover:bg-red-600">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white">
                 <path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
               </svg>
             </button>
           </div>
+          
           <div class="add-wrapper w-full h-full flex flex-row justify-between items-center">
             <div class="w-3/4 px-3 flex flex-col justify-start items-start">
               <div class="add-comp comp-prdName">
                 <span class="add-comp-title add-comp-prdName-title">Tên danh mục</span>
-                <input type="text" placeholder="VD: Túi đeo chéo Gucci beng 2022" class="add-comp-input add-comp-prdName-input">
-                <span class="add-comp-notify add-comp-prdName-notify"></span>
+                <input type="text" placeholder="VD: Túi đeo chéo Gucci beng 2022" class="add-comp-input add-comp-prdName-input" name="categoryName" id="txtName">
+                <span class="add-comp-notify add-comp-prdName-notify text-red-500" id="tbName">(*)</span>
               </div>
               <div class="add-comp comp-brand">
                 <span class="add-comp-title add-comp-brand-title">Hãng sản xuất</span>
-                <input type="text" placeholder="VD: Gucci" class="add-comp-input add-comp-brand-input">
-                <span class="add-comp-notify add-comp-brand-notify"></span>
+                <input type="text" placeholder="VD: Gucci" class="add-comp-input add-comp-brand-input" name="brandName" id="txtBrand">
+                <span class="add-comp-notify add-comp-brand-notify text-red-500" id="tbBrand">(*)</span>
               </div>
               <div class="add-comp comp-size">
                 <span class="add-comp-title add-comp-size-title">Kích thước</span>
-                <input type="text" placeholder="VD: 12cm * 20cm * 3cm" class="add-comp-input add-comp-size-input">
-                <span class="add-comp-notify add-comp-size-notify"></span>
+                <input type="text" placeholder="VD: 12cm * 20cm * 3cm" class="add-comp-input add-comp-size-input" name="size" id="txtSize">
+                <span class="add-comp-notify add-comp-size-notify text-red-500" id="tbSize">(*)</span>
               </div>
               <div class="add-comp comp-weight">
                 <span class="add-comp-title add-comp-weight-title">Cân nặng</span>
-                <input type="text" placeholder="VD: 2kg" class="add-comp-input add-comp-weight-input">
-                <span class="add-comp-notify add-comp-weight-notify"></span>
+                <input type="text" placeholder="VD: 2kg" class="add-comp-input add-comp-weight-input" name="weight" id="txtWeight">
+                <span class="add-comp-notify add-comp-weight-notify text-red-500" id="tbWeight">(*)</span>
               </div>
             </div>
             <div class="w-1/4 h-80 px-3">
@@ -238,30 +244,31 @@
                        class="w-full h-full object-cover">
                 </figure>
                 <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-gray-200 border border-slate-500 flex flex-row justify-center items-center">
-                  <input type="file" class="hidden" id="choosePrdCoverPhoto">
+                  <input type="file" class="hidden" id="choosePrdCoverPhoto" name="coverPhoto" accept=".png,.jpg">
                   <label for="choosePrdCoverPhoto" title="Chọn ảnh bìa của danh mục" class="cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);">
                       <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
                     </svg>
                   </label>
                 </div>
+                <div class="add-comp-notify add-comp-weight-notify text-red-500 mt-5 text-center" id="tbPhoto">(*)</div>
               </div>
             </div>
           </div>
           <div class="w-full px-3 flex flex-col justify-start items-start">
             <div class="add-comp comp-shortDesc">
               <span class="add-comp-title add-comp-shortDesc-title">Mô tả ngắn</span>
-              <input type="text" placeholder="VD: Sản phẩm được làm từ da nguyên đai" class="add-comp-input add-comp-shortDesc-input">
-              <span class="add-comp-notify add-comp-shortDesc-notify"></span>
+              <input type="text" placeholder="VD: Sản phẩm được làm từ da nguyên đai" class="add-comp-input add-comp-shortDesc-input" name="shortDescription" id="txtShortDes">
+              <span class="add-comp-notify add-comp-shortDesc-notify text-red-500" id="tbShortDes">(*)</span>
             </div>
             <div class="add-comp comp-longDesc">
               <span class="add-comp-title add-comp-longDesc-title">Mô tả chi tiết</span>
-              <textarea name="" id="" cols="30" rows="3" class="add-comp-input add-comp-longDesc-input"></textarea>
-              <span class="add-comp-notify add-comp-longDesc-notify"></span>
+              <textarea name="longDescription" id="txtLongDes" cols="30" rows="3" class="add-comp-input add-comp-longDesc-input"></textarea>
+              <span class="add-comp-notify add-comp-longDesc-notify text-red-500" id="tbLongDes">(*)</span>
             </div>
           </div>
           <div class="px-3 mb-3">
-            <button class="add-prd-btn flex flex-row justify-center items-center px-5 py-3 bg-purple-600 rounded-md transition-all text-white hover:bg-purple-700">
+            <button type="button" class="add-prd-btn flex flex-row justify-center items-center px-5 py-3 bg-purple-600 rounded-md transition-all text-white hover:bg-purple-700">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white">
                 <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
               </svg>
@@ -274,12 +281,13 @@
 
           </div>
           <div class="w-full mt-3">
-            <a href="" class="block w-full py-5 text-center text-white rounded-md bg-blue-600 font-medium hover:bg-blue-700">
+            <button type="submit" class="block w-full py-5 text-center text-white rounded-md bg-blue-600 font-medium hover:bg-blue-700" id="btnAdd">
               Thêm danh mục vào cơ sở dữ liệu
-            </a>
+            </button>
           </div>
         </div>
       </div>
+      </form>
     </main>
   </div>
 </div>
@@ -287,5 +295,127 @@
 <!-- SCRIPT FOR MAKING ANIMATION OF HEADER AND FOOTER -->
 <script src="/script_admin/header.js"></script>
 <script src="/script_admin/products_manager.js"></script>
+<script>
+        /* $(document).ready(function(){
+            function checkName() {
+                let x = $("#txtName").val()
+                if (x.trim()===''){
+                    $("#tbName").html("Tên danh mục không được để trống");
+                    return false;
+                }
+                $("#tbName").html("(*)");
+                return true;
+            }
+            function checkBrand() {
+                let x = $("#txtBrand").val()
+                if (x.trim()==='') {
+                    $("#tbBrand").html("Hãng sản xuất không được để trống")
+                    return false
+                }
+                $("#tbBrand").html("(*)")
+                return true
+            }
+            function checkSize() {
+                let x = $("#txtSize").val()
+                if (x.trim()===''){
+                    $("#tbSize").html("Kích thước không được để trống");
+                    return false;
+                }
+                $("#tbSize").html("(*)");
+                return true;
+            }
+            function checkWeight() {
+                let x = $("#txtWeight").val()
+                let regex = /^(\d)+(.)?(\d)*$/
+                let regex2 = /^(0)+(.)?(0)*$/
+                if (x.trim()===''){
+                    $("#tbWeight").html("Cân nặng không được để trống");
+                    return false;
+                }
+                if (!regex.test(x) || regex2.test(x)) {
+                    $("#tbWeight").html("Cân nặng phải nhập số lớn hơn 0")
+                    return false
+                }
+                $("#tbWeight").html("(*)");
+                return true;
+            }
+            function checkShortDes() {
+                let x = $("#txtShortDes").val()
+                if (x.trim()===''){
+                    $("#tbShortDes").html("Mô tả ngắn không được để trống");
+                    return false;
+                }
+                $("#tbShortDes").html("(*)");
+                return true;
+            }
+            function checkLongDes() {
+                let x = $("#txtLongDes").val()
+                if (x.trim()===''){
+                    $("#tbLongDes").html("Mô tả chi tiết không được để trống");
+                    return false;
+                }
+                $("#tbLongDes").html("(*)");
+                return true;
+            }
+            function checkPhoto() {
+                let x = $("#choosePrdCoverPhoto").val()
+                if (x.trim().files.length == 0){
+                    $("#tbPhoto").html("Ảnh bìa không được để trống");
+                    return false;
+                }
+                $("#tbPhoto").html("(*)");
+                return true;
+            }
+            function checkColor() {
+                let x = $("#txtColor").val()
+                console.log(x)
+                if (x.trim()==''){
+                    $("#tbColor").html("Màu sắc không được để trống");
+                    return false;
+                }
+                $("#tbColor").html("(*)");
+                return true;
+            }
+            function checkQty() {
+                let x = $("#txtQty").val()
+                if (x.trim()===''){
+                    $("#tbQty").html("Số lượng không được để trống");
+                    return false;
+                }
+                $("#tbQty").html("(*)");
+                return true;
+            }
+            function checkPrice() {
+                let x = $("#txtPrice").val()
+                if (x.trim()===''){
+                    $("#tbPrice").html("Giá không được để trống");
+                    return false;
+                }
+                $("#tbPrice").html("(*)");
+                return true;
+            }
+            function save() {
+                if (!checkName() || !checkBrand() || !checkSize()
+                		|| !checkWeight() || !checkShortDes() || !checkLongDes()
+                		|| !checkPhoto() || !checkColor() || !checkQty()
+                		|| !checkPrice()) {
+                    alert("Vui lòng nhập đủ thông tin!!")
+                    return false
+                }
+                return true
+            }
+            $("#txtName").blur(checkName)
+            $("#txtBrand").blur(checkBrand)
+            $("#txtSize").blur(checkSize)
+            $("#txtWeight").blur(checkWeight)
+            $("#txtShortDes").blur(checkShortDes)
+            $("#txtLongDes").blur(checkLongDes)
+            $("#choosePrdCoverPhoto").blur(checkPhoto)
+            $("#txtColor").blur(checkColor)
+            $("#txtQty").blur(checkQty)
+            $("#txtPrice").blur(checkPrice)
+            $("#btnAdd").click(save)
+        }) */
+  </script>
 </body>
 </html>

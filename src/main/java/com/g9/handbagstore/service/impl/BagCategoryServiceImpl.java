@@ -94,6 +94,11 @@ public class BagCategoryServiceImpl implements BagCategoryService {
 	}
 
 	@Override
+	public void addOrUpdateBagCategory(BagCategory bagCategory) {
+		bagCategoryRepo.save(bagCategory);
+  }
+    
+  @Override
 	public List<BagCategory> searchBagCaterogyALikeByKeyword(String keyword) {
 		return bagCategoryRepo.searchBagCaterogyALikeByKeyword("%" + keyword + "%");
 	}
