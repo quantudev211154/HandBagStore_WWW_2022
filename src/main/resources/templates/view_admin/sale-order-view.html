@@ -53,10 +53,10 @@
                     Thông tin đơn hàng
                 </p>
                 <div class="flex flex-row justify-end items-center">
-                    <a href="" class="order-detail-button btn-ready">
+                    <a th:href="@{/admin/confirmProcessedOrders/{saleOrderId}(saleOrderId=${order.saleOrderId})}" class="order-detail-button btn-ready" th:if="${order.status} == 1">
                         Sẵn sàng vận chuyển
                     </a>
-                    <a href="" class="order-detail-button btn-cancel">
+                    <a th:href="@{/admin/cancelOrders/{saleOrderId}(saleOrderId=${order.saleOrderId})}" class="order-detail-button btn-cancel" th:if="${order.status} == 1">
                         Huỷ đơn hàng này
                     </a>
                     <button onclick="history.back()" class="px-5 py-3 rounded-md transition-all duration-200 text-white bg-slate-500 hover:bg-slate-600">
@@ -68,32 +68,32 @@
                 <div class="w-full px-3 flex flex-row justify-between items-center">
                     <div class="overrall-info-wrapper">
                         <span class="overrall-info-wrapper-title">Mã đơn</span>
-                        <input type="text" class="overrall-info-input" value="12312">
+                        <input type="text" class="overrall-info-input" th:value="${order.saleOrderId}">
                     </div>
                     <div class="overrall-info-wrapper">
-                        <span class="overrall-info-wrapper-title">Tên khách hàng</span>
-                        <input type="text" class="overrall-info-input" value="Do Trung Tin">
+                        <span class="overrall-info-wrapper-title">Họ tên</span>
+                        <input type="text" class="overrall-info-input" th:value="${user.firstName} + ' ' + ${user.lastName}">
                     </div>
                     <div class="overrall-info-wrapper">
                         <span class="overrall-info-wrapper-title">Số điện thoại</span>
-                        <input type="text" class="overrall-info-input" value="03727312">
+                        <input type="text" class="overrall-info-input" th:value="${order.phone}">
                     </div>
                     <div class="overrall-info-wrapper">
                         <span class="overrall-info-wrapper-title">Tổng giá trị đơn</span>
-                        <input type="text" class="overrall-info-input font-medium text-red-600" value="3.000.000">
+                        <input type="text" class="overrall-info-input font-medium text-red-600" th:value="${order.totalDue}">
                     </div>
                 </div>
                 <div class="w-full flex flex-col">
                     <div class="w-full px-3">
                         <div class="w-full px-3 py-3 flex flex-col justify-start items-start">
                             <span class="mb-1">Địa chỉ giao hàng</span>
-                            <input type="text" class="overrall-info-input w-full" value="62 Hàng Thuyên Ga Cầu Tẻ Hà Nội">
+                            <input type="text" class="overrall-info-input w-full" th:value="${order.address}">
                         </div>
                     </div>
                     <div class="w-full px-3">
                         <div class="w-full px-3 py-3 flex flex-col justify-start items-start">
                             <span class="mb-1">Ghi chú của khách hàng</span>
-                            <input type="text" class="overrall-info-input w-full" value="62 Hàng Thuyên Ga Cầu Tẻ Hà Nội">
+                            <input type="text" class="overrall-info-input w-full" th:value="${order.comment}">
                         </div>
                     </div>
                 </div>
@@ -106,32 +106,21 @@
                             <td class="w-2/12">Số lượng</td>
                             <td class="w-2/12">Tổng tiền</td>
                         </tr>
+                        <th:block th:each="detail: ${listOrderDetails}">
                         <tr class="text-center">
-                            <td class="w-2/12 font-medium">1</td>
-                            <td class="w-4/12 py-3">Túi xách Gucci bag 20123</td>
+                            <td class="w-2/12 font-medium" th:text="${detail.bag.bagId}"></td>
+                            <td class="w-4/12 py-3" th:text="${detail.bag.bagCategory.name}"></td>
                             <td class="w-2/12">
-                                <span>200.000</span>
+                                <span th:text="${detail.unitPrice}"></span>
                                 <span>&#8363</span>
                             </td>
-                            <td class="w-2/12">3</td>
+                            <td class="w-2/12" th:text="${detail.orderQty}"></td>
                             <td class="w-w/12 text-red-600 font-medium">
-                                <span>600.000</span>
+                                <span th:text="${@priceConvert.chuyenMoney(detail.orderQty * detail.unitPrice)}"></span>
                                 <span>&#8363</span>
                             </td>
                         </tr>
-                        <tr class="text-center">
-                            <td class="w-2/12 font-medium">1</td>
-                            <td class="w-4/12 py-3">Túi xách Gucci bag 20123</td>
-                            <td class="w-2/12">
-                                <span>200.000</span>
-                                <span>&#8363</span>
-                            </td>
-                            <td class="w-2/12">3</td>
-                            <td class="w-w/12 text-red-600 font-medium">
-                                <span>600.000</span>
-                                <span>&#8363</span>
-                            </td>
-                        </tr>
+                        <th:block>
                     </table>
                 </div>
             </div>

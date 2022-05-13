@@ -66,4 +66,19 @@ public class BagServiceImpl implements BagService {
 	public LinkedHashSet<Integer> getBagCategoryIdOrderByPriceDesc() {
 		return bagRepo.getBagCategoryIdOrderByPriceDesc();
 	}
+
+	@Override
+	public int countBag() {
+		return bagRepo.countBag();
+	}
+
+	@Override
+	public int sumQuantity() {
+		return bagRepo.sumQuantity();
+	}
+
+	@Override
+	public int countBagNotInStock() {
+		return bagRepo.countBagNotInStock();
+	}
 }

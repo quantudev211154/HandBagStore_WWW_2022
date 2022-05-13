@@ -22,4 +22,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 			+ "phone like :keyword or "
 			+ "user_id like :keyword", nativeQuery = true)
 	List<User> searchUserALikeByKeyWord(@Param("keyword") String keyword);
+	@Query("from User where gender = :gender_value AND role = :role_value")
+	List<User> getUsersByGender(@Param("role_value") String role, @Param("gender_value") String gender);
 }

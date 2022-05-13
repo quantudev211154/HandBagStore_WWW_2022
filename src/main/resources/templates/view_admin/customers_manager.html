@@ -113,13 +113,17 @@
 							</svg>
 						</div>
 						<div class="admin-customer-viewOptions z-50 absolute top-8 left-0 transition-all duration-200 flex flex-col justify-start items-start px-2 py-2 w-56 border border-slate-400 shadow-lg rounded-md bg-white opacity-0 invisible">
-							<a th:href="@{/admin/customers/all}" class="admin-customer-view-option">
+
+<!-- 							<a th:href="@{/admin/customers/all}" class="admin-customer-view-option"> -->
+
+							<a  href="/admin/customers/all" class="admin-customer-view-option">
+
 								Tất cả khách hàng
 							</a>
-							<a th:href="@{/admin/customers/all/gender/Nam}" class="admin-customer-view-option">
+							<a href="/admin/customers/male" class="admin-customer-view-option">
 								Khách hàng nam
 							</a>
-							<a th:href="@{/admin/customers/all/gender/Nữ}" class="admin-customer-view-option">
+							<a href="/admin/customers/female" class="admin-customer-view-option">
 								Khách hàng nữ
 							</a>
 						</div>
