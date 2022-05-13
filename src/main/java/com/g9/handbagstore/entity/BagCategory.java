@@ -149,6 +149,18 @@ public class BagCategory implements Serializable {
 		this.importDate = importDate;
 	}
 
+	public List<Bag> getListBags() {
+		return listBags;
+	}
+
+	public void setListBags(List<Bag> listBags) {
+		this.listBags = listBags;
+	}
+
+	public String getBrandName() {
+		return this.brand.getName();
+	}
+	
 	@Override
 	public String toString() {
 		return "BagCategory [bagCategoryId=" + bagCategoryId + ", brand=" + brand + ", name=" + name + ", size=" + size

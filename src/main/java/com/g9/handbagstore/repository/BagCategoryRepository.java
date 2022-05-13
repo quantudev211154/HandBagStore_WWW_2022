@@ -28,6 +28,10 @@ public interface BagCategoryRepository extends JpaRepository<BagCategory, Intege
 	@Query(value = "from BagCategory order by import_date desc")
 	List<BagCategory> getBagCategoriesByNewestDate();
 
+	@Query(value = "select top 5 * from bag_categories where "
+			+ "name like :keyword or bag_category_id like :keyword", nativeQuery = true)
+	List<BagCategory> searchBagCaterogyALikeByKeyword(@Param("keyword") String keyword);
+ 
 //	@Query("select min(Bag.price) from BagCategory join Bag on BagCategory.bagCategoryId = Bag.bagCategory.bagCategoryId")
 //	double getMinPriceOfBagCategory(@Param("bagCategoryId") int bagCategoryId);
 }

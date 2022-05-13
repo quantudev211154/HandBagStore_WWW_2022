@@ -13,4 +13,5 @@ public interface SaleOrderService {
 	List<SaleOrder> getSaleOrderThisMonth(int month, int year);
 	List<SaleOrder> getSaleOrderThisWeek(String startOfWeek, String EndOfWeek);
 	List<SaleOrder> getSaleOrderByStatus(short status);
+	List<SaleOrder> getSaleOrderALikeByKeyWord(String keyword);
 }

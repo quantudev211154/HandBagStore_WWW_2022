@@ -54,4 +54,9 @@ public class SaleOrderServiceImpl implements SaleOrderService {
 	public List<SaleOrder> getSaleOrderThisWeek(String startOfWeek, String EndOfWeek) {
 		return saleOrderRepo.getSaleOrderThisWeek(startOfWeek, EndOfWeek);
 	}
+
+	@Override
+	public List<SaleOrder> getSaleOrderALikeByKeyWord(String keyword) {
+		return saleOrderRepo.getSaleOrderALikeByKeyWord("%" + keyword + "%");
+	}
 }

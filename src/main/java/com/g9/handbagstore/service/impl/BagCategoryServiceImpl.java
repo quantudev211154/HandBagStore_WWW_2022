@@ -92,4 +92,9 @@ public class BagCategoryServiceImpl implements BagCategoryService {
 	public List<BagCategory> getBagCategoriesByNewestDate() {
 		return bagCategoryRepo.getBagCategoriesByNewestDate();
 	}
+
+	@Override
+	public List<BagCategory> searchBagCaterogyALikeByKeyword(String keyword) {
+		return bagCategoryRepo.searchBagCaterogyALikeByKeyword("%" + keyword + "%");
+	}
 }

@@ -41,4 +41,14 @@ public class UserServiceImpl implements UserService {
 	public void updateOldUser(User user) {
 		userRepo.save(user);
 	}
+
+	@Override
+	public List<User> getUsersByGender(String gender) {
+		return userRepo.getUsersByGender(gender);
+	}
+
+	@Override
+	public List<User> searchUserALikeByKeyWord(String keyword) {
+		return userRepo.searchUserALikeByKeyWord("%" + keyword + "%");
+	}
 }
