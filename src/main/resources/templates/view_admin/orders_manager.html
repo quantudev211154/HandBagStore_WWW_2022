@@ -202,7 +202,7 @@
                     <th:block th:each="order: ${orderList}">
                     <tr class="border-b border-slate-300 text-center">
                         <td class="h-full pt-1 flex flex-row justify-start items-center">
-                            <a href="/admin/orders/order" class="mr-2 px-2 py-2 rounded-md bg-indigo-500 text-white transition-all hover:bg-indigo-600">
+                            <a th:href="@{/admin/orders/order/{orderId}(orderId=${order.saleOrderId})}" class="mr-2 px-2 py-2 rounded-md bg-indigo-500 text-white transition-all hover:bg-indigo-600">
                                 Xem
                             </a>
                             <a href="" th:if="${order.status} == 1" class="mr-2 px-2 py-2 rounded-md bg-red-500 text-white transition-all hover:bg-red-600"

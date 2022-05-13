@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.g9.handbagstore.entity.SaleOrder;
+import com.g9.handbagstore.entity.SaleOrderDetail;
 import com.g9.handbagstore.entity.User;
 import com.g9.handbagstore.service.SaleOrderDetailService;
 import com.g9.handbagstore.service.SaleOrderService;
@@ -166,9 +167,15 @@ public class AdminOrderController {
     }
 
     @GetMapping("/orders/order/{orderId}")
-    public String showFullInfoOfOrder(Model model){
-
+    public String showFullInfoOfOrder(Model model, @PathVariable(name = "orderId", required = false) int saleOrderId){
+    	SaleOrder saleOrder = saleOrderService.getSaleOrderBySaleOrderID(saleOrderId);
+    	model.addAttribute("order", saleOrder);
+    	
         UserSession.getLoggedUserInfo(userService, model);
+        User currentUser = UserSession.getCurrentUser(userService);
+        model.addAttribute("user", currentUser);
+        List<SaleOrderDetail> listOrderDetails = saleOrderDetailService.getSaleOrderDetailsBySaleOrderID(saleOrderId);
+        model.addAttribute("listOrderDetails", listOrderDetails);
         return "/view_admin/sale-order-view";
     }
 }

@@ -13,4 +13,5 @@ public interface UserService {
 	void updateOldUser(User user);
 	List<User> getUsersByRole(String role);
 	List<User> searchUserALikeByKeyWord(String keyword);
+	List<User> getUsersByGender(String role, String gender);
 }
