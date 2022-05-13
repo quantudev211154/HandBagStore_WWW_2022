@@ -7,6 +7,7 @@
     <title th:text="${pageTitle}"></title>
     <link rel="icon" th:src="@{/imgs/logo.png}">
     <link rel="stylesheet" href="css_customer/__base.css">
+    <link rel="stylesheet" href="css_customer/index_base.css">
 </head>
 <body>
 <!-- START HEADER -->
@@ -23,7 +24,79 @@
 
 
 <!-- START MAIN CONTENT -->
+<div class="container">
 
+    <div class="img1">
+        <img src="../imgs/page_1.jpg"></div> <br>
+    <div class="page1">
+        <h1>TÚI CLUTCH NỮ CAO CẤP DA THẬT ELLY EC4</h1> <br>
+        <h4>Da bò cao cấp, bền, đẹp.</h4>
+    </div>
+
+    <th:block th:each="product,iter: ${listProducts}">
+        <a class="btn1" th:href="@{/products/product/{categoryId}(categoryId={categoryId}(categoryId=1))}" class="products-links"
+           th:title="${product.name}">Xem thêm</a>
+    </th:block>
+</div>
+<div class="container">
+
+    <div class="img2">
+        <img src="../imgs/page_2.jpg" ></div> <br>
+    <div class="page2">
+        <h1>TÚI XÁCH NỮ THỜI TRANG CAO CẤP ELLY EL140</h1> <br>
+        <h4>Da tổng hợp cao cấp, bền, đẹp.</h4>
+    </div>
+
+    <th:block th:each="product,iter: ${listProducts}">
+        <a class="btn2" th:href="@{/products/product/{categoryId}(categoryId={categoryId}(categoryId=3))}" class="products-links"
+           th:title="${product.name}">Xem thêm</a>
+    </th:block>
+</div>
+<div class="container">
+
+    <div class="img3">
+        <img src="../imgs/page_3.jpg"></div>
+    <div class="page3">
+        <h1>Túi Xách Charles & Keith Charlot CK2</h1> <br>
+        <h4>Da nhân tạo, bền, đẹp.</h4>
+    </div>
+
+    <th:block th:each="product,iter: ${listProducts}">
+        <a class="btn3" th:href="@{/products/product/{categoryId}(categoryId={categoryId}(categoryId=16))}" class="products-links"
+           th:title="${product.name}">Xem thêm</a>
+    </th:block>
+</div>
+<div class="pic1" >
+    <th:block th:each="product,iter: ${listProducts}">
+    <a th:href="@{/products/product/{categoryId}(categoryId={categoryId}(categoryId=13))}" class="products-links"
+       th:title="${product.name}"><img src="../imgs/pic1.jpg" ></a> </th:block>
+    <div class="h2">
+        <p>"Túi Xách Chanel Mini Coco Handle Flap Bag In Green Caviar <br> là chiếc túi xách cao cấp đến từ thương hiệu Chanel nổi tiếng.
+            <br> Sở hữu tông màu đỏ nổi bật, cùng thiết kế hiện đại, <br>mang đến cho người dùng trở nên sang trọng và nổi bật hơn."
+        </p></div>
+</div>
+<div class="pic2" >
+    <div class="h2">
+        <p>""Túi Xách Gucci Pebbled Leather Interlocking G Wallet On Chain Clutch Bag<br> là chiếc túi đeo vai sang trọng, được thiết kế hiện đại <br> đến từ thương hiệu Gucci nổi tiếng của nước Ý.
+            <br> Túi GucciPebbled Leather Interlocking G Wallet On Chain Clutch <br> được làm từ chất liệu cao cấp bền đẹp trong suốt quá trình sử dụng."
+        </p></div>
+
+    <th:block th:each="product,iter: ${listProducts}">
+        <a th:href="@{/products/product/{categoryId}(categoryId={categoryId}(categoryId=12))}" class="products-links"
+           th:title="${product.name}"><img src="../imgs/pic2.jpg" ></a> </th:block>
+
+</div>
+<div class="pic3" >
+
+    <th:block th:each="product,iter: ${listProducts}">
+        <a th:href="@{/products/product/{categoryId}(categoryId={categoryId}(categoryId=15))}" class="products-links"
+           th:title="${product.name}"><img src="../imgs/pic3.jpg" ></a> </th:block>
+    <div class="h2">
+        <p>"Túi Đeo Chéo Charles & Keith Large Double Handle Bag <br> đang là chiếc túi HOT được nhiều tín đồ săn đón trên thị trường. <br>
+            Với gam màu hiện đại cùng thiết kế bắt mắt, <br>cho người đeo thêm sành điệu và nổi bật hơn."
+        </p></div>
+
+</div>
 <!-- END MAIN CONTENT -->
 
 
