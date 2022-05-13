@@ -148,14 +148,14 @@ public class BagCategory implements Serializable {
 	public void setImportDate(LocalDate importDate) {
 		this.importDate = importDate;
 	}
-
-	public List<Bag> getListBags() {
-		return listBags;
-	}
-
-	public void setListBags(List<Bag> listBags) {
-		this.listBags = listBags;
-	}
+//
+//	public List<Bag> getListBags() {
+//		return listBags;
+//	}
+//
+//	public void setListBags(List<Bag> listBags) {
+//		this.listBags = listBags;
+//	}
 
 	public String getBrandName() {
 		return this.brand.getName();

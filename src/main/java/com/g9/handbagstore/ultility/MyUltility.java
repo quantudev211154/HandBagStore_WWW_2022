@@ -57,16 +57,6 @@ public class MyUltility {
 		int totalProduct = 0;
 		int totalInStockProduct = 0;
 
-		for (BagCategory bagCate : bagCateList) {
-
-			List<Bag> bags = bagCate.getListBags();
-
-			totalProduct += bags.size();
-
-			for (Bag bag : bags)
-				if (bag.getQuantity() > 0)
-					totalInStockProduct++;
-		}
 
 		amount.set(0, bagCateList.size());
 		amount.set(1, totalProduct);
