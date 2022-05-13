@@ -1,19 +1,29 @@
+function toggleMenuOnVertical(
+    titleContainer,
+    optionsWrapper,
+    icon
+): void{
+    titleContainer.onclick = function(e: Event){
+        optionsWrapper.classList.toggle('active')
+        icon.classList.toggle('active')
+    }
+
+    window.addEventListener('click', function(e: Event){
+        let target: object = e.target
+
+        if (target != titleContainer && target != optionsWrapper){
+            optionsWrapper.classList.remove('active')
+            icon.classList.remove('active')
+        }
+    })
+}
+
 ;(function(){
     const adminOrderViewOptionTitle = document.querySelector('.admin-order-viewOptions-title') as HTMLDivElement
     const adminOrderViewOptions = document.querySelector('.admin-order-viewOptions') as HTMLDivElement
     const adminOrderViewOptionsIcon = document.querySelector('.admin-order-viewOptions-icon') as SVGElement
 
-    adminOrderViewOptionTitle.onclick = function(){
-        adminOrderViewOptions.classList.toggle('active')
-        adminOrderViewOptionsIcon.classList.toggle('active')
-    }
-
-    window.addEventListener('click', function(e: Event){
-        if (e.target != adminOrderViewOptionTitle && e.target != adminOrderViewOptions){
-            adminOrderViewOptions.classList.remove('active')
-            adminOrderViewOptionsIcon.classList.remove('active')
-        }
-    })
+    toggleMenuOnVertical(adminOrderViewOptionTitle, adminOrderViewOptions, adminOrderViewOptionsIcon)
 })()
 
 ;(function(){
@@ -34,4 +44,27 @@
                             </a>
         `
     })
+})()
+
+;(function(){
+    const orderStaticOptionsTitle = document.querySelector('.order-staticOptions-title') as HTMLDivElement
+    const orderStaticIcon = document.querySelector('.order-static-icon') as SVGElement
+    const orderStaticOptions = document.querySelector('.order-staticOptions') as HTMLDivElement
+
+    toggleMenuOnVertical(orderStaticOptionsTitle, orderStaticOptions, orderStaticIcon)
+
+    const orderStaticOptionList = document.getElementsByClassName('order-static-option') as HTMLCollection
+    const orderStaticOptionName = document.querySelector('.order-static-option-name') as HTMLSpanElement
+
+    for (let i = 0; i < orderStaticOptionList.length; ++i){
+        let tmp = orderStaticOptionList[i] as HTMLButtonElement
+
+        tmp.addEventListener('click', function (){
+            let optionText = tmp.innerText
+
+            orderStaticOptionName.innerText = optionText
+
+            orderStaticOptions.classList.remove('active')
+        })
+    }
 })()

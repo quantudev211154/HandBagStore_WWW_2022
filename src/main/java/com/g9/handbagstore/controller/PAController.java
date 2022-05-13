@@ -62,7 +62,6 @@ public class PAController {
 		user.setGender(gender);
 		user.setEmail(email);
 		user.setPhone(phone);
-		System.out.println(avatar.getOriginalFilename());
 		if (!avatar.getOriginalFilename().trim().equals("")) {
 			String imageDataString = Base64.getEncoder().encodeToString(avatar.getBytes());
 			user.setAvatar(imageDataString);

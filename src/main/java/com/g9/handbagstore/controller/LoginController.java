@@ -21,7 +21,6 @@ public class LoginController {
 			UserSession.getLoggedUserInfo(userService, model);
  
 			model.addAttribute("pageTitle", "G9 - Quản lí đơn hàng");
-			
 			return "redirect:/admin/all";
 		}
 
