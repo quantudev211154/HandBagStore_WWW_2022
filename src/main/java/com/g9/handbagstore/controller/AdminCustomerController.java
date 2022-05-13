@@ -32,6 +32,7 @@ public class AdminCustomerController {
         model.addAttribute("pageTitle", "G9 - Quản lí khách hàng");
         addUserGenderAmount(model, users);
         model.addAttribute("users", users);
+        model.addAttribute("customerFilterOption", "Tất cả khách hàng");
        
         return "/view_admin/customers_manager";
     }
@@ -46,6 +47,13 @@ public class AdminCustomerController {
     	model.addAttribute("pageTitle", "G9 - Quản lí khách hàng");
     	addUserGenderAmount(model, users);
     	model.addAttribute("users", userService.getUsersByGender(gender));
+
+        if (gender.toLowerCase().equalsIgnoreCase("nam")){
+            model.addAttribute("customerFilterOption", "Khách hàng nam");
+        }
+        else{
+            model.addAttribute("customerFilterOption", "Khách hàng nữ");
+        }
     	
     	return "/view_admin/customers_manager";
     }

@@ -125,31 +125,6 @@
       </div>
       <div class="w-full mt-6 flex flex-row justify-between items-center">
         <div class="flex flex-row justify-start items-center">
-          <div class="relative mr-3">
-            <div class="admin-order-viewOptions-title cursor-pointer rounded-md flex flex-row justify-between items-center px-5 py-3 border-2 border-slate-600 transition-all duration-200 hover:border-blue-600">
-              <span class="font-medium mr-3 pointer-events-none">Tất cả đơn hàng</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="fill: rgba(0, 0, 0, 1);" class="admin-order-viewOptions-icon pointer-events-none transform transition-all duration-200">
-                <path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path>
-              </svg>
-            </div>
-            <div class="admin-order-viewOptions z-50 absolute top-8 left-0 transition-all duration-200 flex flex-col justify-start items-start px-2 py-2 w-56 border border-slate-400 shadow-lg rounded-md bg-white opacity-0 invisible">
-              <a href="" class="admin-order-view-option">
-                Tất cả đơn hàng
-              </a>
-              <a href="" class="admin-order-view-option">
-                Đơn hàng mới
-              </a>
-              <a href="" class="admin-order-view-option">
-                Đơn hàng đang giao
-              </a>
-              <a href="" class="admin-order-view-option">
-                Đơn hàng đã giao
-              </a>
-              <a href="" class="admin-order-view-option">
-                Đơn hàng đã huỷ
-              </a>
-            </div>
-          </div>
           <button class="add-category px-3 py-3 flex flex-row justify-start items-center rounded-md bg-blue-600 transition-all hover:bg-blue-700">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="fill-white">
               <path d="m21.484 11.125-9.022-5a1 1 0 0 0-.968-.001l-8.978 4.96a1 1 0 0 0-.003 1.749l9.022 5.04a.995.995 0 0 0 .973.001l8.978-5a1 1 0 0 0-.002-1.749zm-9.461 4.73-6.964-3.89 6.917-3.822 6.964 3.859-6.917 3.853z"></path><path d="M12 22a.994.994 0 0 0 .485-.126l9-5-.971-1.748L12 19.856l-8.515-4.73-.971 1.748 9 5A1 1 0 0 0 12 22zm8-20h-2v2h-2v2h2v2h2V6h2V4h-2z"></path>
@@ -186,7 +161,7 @@
           </tr>
           <th:block th:each="product: ${listProducts}">
           <tr class="border-b border-slate-300 text-center">
-            <td class="h-full pt-1 flex flex-row justify-center items-center">
+            <td class="h-full pt-5 flex flex-row justify-center items-center">
               <a href="" class="mr-2 px-2 py-2 rounded-md bg-blue-500 text-white transition-all hover:bg-blue-600">
                 Xem
               </a>
@@ -296,7 +271,7 @@
 <script src="/script_admin/header.js"></script>
 <script src="/script_admin/products_manager.js"></script>
 <script>
-        /* $(document).ready(function(){
+        $(document).ready(function(){
             function checkName() {
                 let x = $("#txtName").val()
                 if (x.trim()===''){
@@ -366,6 +341,7 @@
                 $("#tbPhoto").html("(*)");
                 return true;
             }
+            /*
             function checkColor() {
                 let x = $("#txtColor").val()
                 console.log(x)
