@@ -105,13 +105,32 @@
                             </span>
                             <span class="cart-totalQuantity font-medium" th:text="${totalQty}"></span>
         </div>
+          <div class="cart-totalDue-container w-full mb-5 flex flex-row justify-between items-center">
+                            <span class="cart-totalDue-title">
+                                Giá gốc
+                            </span>
+              <div>
+                  <span class="cart-totalDue font-medium text-red-600" th:text="${@priceConvert.chuyenMoney(saleOrder.subTotal)}"> </span>
+                  <span class="text-red-500 font-medium">&#8363</span>
+              </div>
+          </div>
+          <div class="cart-totalDue-container w-full mb-5 flex flex-row justify-between items-center">
+                            <span class="cart-totalDue-title">
+                                VAT
+                            </span>
+              <div>
+                  <span class="cart-totalDue font-medium text-red-600" th:text="${@priceConvert.chuyenMoney(saleOrder.taxVat)}"> </span>
+                  <span class="text-red-500 font-medium">&#8363</span>
+              </div>
+          </div>
         <div class="cart-totalDue-container w-full mb-5 flex flex-row justify-between items-center">
                             <span class="cart-totalDue-title">
                                 Tổng tiền
                             </span>
-          <span class="cart-totalDue font-medium text-red-600" th:text="${@priceConvert.chuyenMoney(saleOrder.totalDue)}">
-                                &#8363
-                            </span>
+            <div>
+                <span class="cart-totalDue font-medium text-red-600" th:text="${@priceConvert.chuyenMoney(saleOrder.totalDue)}"> </span>
+                <span class="text-red-500 font-medium">&#8363</span>
+            </div>
         </div>
         <div class="cart-buy-container w-full flex flex-col justify-start items-center">
             <a th:href="@{/pa/orders/cancelOrders/{saleOrderId}(saleOrderId=${saleOrder.saleOrderId})}" 

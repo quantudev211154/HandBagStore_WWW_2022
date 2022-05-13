@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css_admin/__base.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 </head>
-<body>
+<body class="bg-[#f9fafb]">
 
 <div class="relative flex flex-row justify-between items-start">
     <!--  START SIDEBAR-->
@@ -201,8 +201,8 @@
                     </tr>
                     <th:block th:each="order: ${orderList}">
                     <tr class="border-b border-slate-300 text-center">
-                        <td class="h-full pt-1 flex flex-row justify-center items-center">
-                            <a href="" class="mr-2 px-2 py-2 rounded-md bg-indigo-500 text-white transition-all hover:bg-indigo-600">
+                        <td class="h-full pt-1 flex flex-row justify-start items-center">
+                            <a href="/admin/orders/order" class="mr-2 px-2 py-2 rounded-md bg-indigo-500 text-white transition-all hover:bg-indigo-600">
                                 Xem
                             </a>
                             <a href="" th:if="${order.status} == 1" class="mr-2 px-2 py-2 rounded-md bg-red-500 text-white transition-all hover:bg-red-600"
@@ -247,7 +247,7 @@
                         </td>
                         <td th:if="${order.status} == 1">
                             <span class="inline-block w-24 py-2 text-sm font-medium text-white rounded-md bg-yellow-600">
-                                Chờ xử lí
+                                Đang xử lí
                             </span>
                         </td>
                     </tr>

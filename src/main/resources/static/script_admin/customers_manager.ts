@@ -1,4 +1,4 @@
-/*function toggleMenuOnVerticall(
+function toggleMenuOnVerticall(
 	titleContainer,
 	optionsWrapper,
 	icon
@@ -25,14 +25,6 @@
 		document.querySelector('.admin-customer-viewOptions-icon') as SVGElement
 	)
 })()
-
-	; (function() {
-		toggleMenuOnVerticall(
-			document.querySelector('.order-staticOptions-title') as HTMLDivElement,
-			document.querySelector('.order-staticOptions') as HTMLDivElement,
-			document.querySelector('.order-static-icon') as SVGElement
-		)
-	})()*/
 
 ; (function() {
 	const orderSearchInput = document.querySelector('.order-search-input') as HTMLInputElement

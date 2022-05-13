@@ -119,15 +119,15 @@
 	                                <span th:text="${#temporals.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></span>
 	                            </td>
 	                            <td th:if="${order.status} == 4">
-	                                <span th:text="${order.subTotal}"></span>
+	                                <span th:text="${@priceConvert.chuyenMoney(order.subTotal)}"></span>
 	                                <span>&#8363</span>
 	                            </td>
 	                            <td th:if="${order.status} == 4">
-	                                <span th:text="${order.taxVat}"></span>
+	                                <span th:text="${@priceConvert.chuyenMoney(order.taxVat)}"></span>
 	                                <span>&#8363</span>
 	                            </td>
 	                            <td th:if="${order.status} == 4">
-	                                <span class="text-red-600 font-medium" th:text="${order.totalDue}"></span>
+	                                <span class="text-red-600 font-medium" th:text="${@priceConvert.chuyenMoney(order.totalDue)}"></span>
 	                                <span class="text-red-600 font-medium">&#8363</span>
 	                            </td>
 	                            <td th:if="${order.status} == 1">
