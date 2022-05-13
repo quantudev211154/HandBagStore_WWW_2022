@@ -233,3 +233,23 @@
     left-1/2
 }
 /* END PRODUCTS MANAGER PAGE */
+
+/* START CUSTOMER MANAGER PAGE */
+.admin-customer-viewOptions.active{
+    @apply
+    opacity-100 visible top-full mt-2
+}
+
+.admin-customer-viewOptions-icon.active{
+    @apply
+    rotate-180
+}
+
+.admin-customer-view-option{
+    @apply
+    block w-full px-3 py-3
+    transition-all duration-200
+    rounded-md
+    hover:bg-slate-200
+}
+/* END CUSTOMER MANAGER PAGE */
