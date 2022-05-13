@@ -3,12 +3,11 @@ package com.g9.handbagstore.ultility;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.g9.handbagstore.entity.Bag;
-import com.g9.handbagstore.entity.BagCategory;
 import com.g9.handbagstore.entity.SaleOrder;
 import com.g9.handbagstore.entity.User;
 
 public class MyUltility {
+	
 	public static List<Integer> getOrderStatus(List<SaleOrder> saleOrders) {
 
 		List<Integer> orderStatus = new ArrayList<>();
@@ -44,25 +43,5 @@ public class MyUltility {
 		userGenderAmount.set(0, users.size());
 
 		return userGenderAmount;
-	}
-
-	public static List<Integer> getBagCateAmount(List<BagCategory> bagCateList) {
-		List<Integer> amount = new ArrayList<>();
-
-		amount.add(0);
-		amount.add(0);
-		amount.add(0);
-		amount.add(0);
-
-		int totalProduct = 0;
-		int totalInStockProduct = 0;
-
-
-		amount.set(0, bagCateList.size());
-		amount.set(1, totalProduct);
-		amount.set(2, totalInStockProduct);
-		amount.set(3, totalProduct - totalInStockProduct);
-
-		return amount;
 	}
 }
